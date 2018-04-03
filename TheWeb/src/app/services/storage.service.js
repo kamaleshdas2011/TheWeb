@@ -8,9 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
-var StorageService = (function () {
+var StorageService = /** @class */ (function () {
     function StorageService(_http) {
         this._http = _http;
     }
@@ -60,6 +61,7 @@ var StorageService = (function () {
         var cart = [];
         if (localStorage.getItem('cart_items')) {
             cart = JSON.parse(localStorage.getItem('cart_items'));
+            //Object.assign(cart, JSON.parse(localStorage.getItem('cart_items')));
         }
         //console.log(cart);
         return cart;
@@ -69,6 +71,7 @@ var StorageService = (function () {
         if (localStorage.getItem('cart_items')) {
             var cart = JSON.parse(localStorage.getItem('cart_items'));
             count = cart.length;
+            //console.log(JSON.parse(localStorage.getItem('cart_items')));
         }
         return count;
     };
@@ -115,6 +118,7 @@ var StorageService = (function () {
         if (localStorage.getItem('wish_items')) {
             var wish = JSON.parse(localStorage.getItem('wish_items'));
             count = wish.length;
+            //console.log(JSON.parse(localStorage.getItem('cart_items')));
         }
         return count;
     };
@@ -144,11 +148,11 @@ var StorageService = (function () {
             return false;
         }
     };
+    StorageService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http])
+    ], StorageService);
     return StorageService;
 }());
-StorageService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
-], StorageService);
 exports.StorageService = StorageService;
 //# sourceMappingURL=storage.service.js.map

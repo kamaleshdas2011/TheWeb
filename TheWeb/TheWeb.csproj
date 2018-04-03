@@ -46,6 +46,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -408,6 +414,7 @@
     <TypeScriptCompile Include="node_modules\popper.js\index.d.ts" />
     <TypeScriptCompile Include="src\app\cart\cart.component.ts" />
     <TypeScriptCompile Include="src\app\classes\image.ts" />
+    <Content Include="src\app\account\account.component.css" />
     <Content Include="src\app\app.component.html" />
     <Content Include="src\app\cart\cart.component.css" />
     <Content Include="src\app\cart\cart.component.html" />
@@ -417,12 +424,14 @@
     <Content Include="src\app\header.component.html" />
     <Content Include="src\app\home\productdetails.component.css" />
     <Content Include="src\app\home\productdetails.component.html" />
+    <Content Include="src\app\images\profile-pic-male.png" />
     <Content Include="src\app\images\search.png" />
     <Content Include="src\app\images\opc-ajax-loader.gif" />
     <Content Include="src\app\login\login.component.css" />
     <Content Include="src\app\login\login.component.html" />
     <Content Include="src\app\login\login.js" />
     <Content Include="src\app\login\register.component.html" />
+    <Content Include="src\app\account\account.component.html" />
     <Content Include="src\tsconfig.json" />
     <Content Include="tslint.json" />
     <Content Include="src\app\home\home.component.html" />
@@ -463,6 +472,7 @@
     <TypeScriptCompile Include="src\app\services\miscellaneous.service.ts" />
     <TypeScriptCompile Include="src\app\services\storage.service.ts" />
     <TypeScriptCompile Include="src\app\services\product.service.ts" />
+    <TypeScriptCompile Include="src\app\account\account.component.ts" />
     <TypeScriptCompile Include="src\main.ts" />
   </ItemGroup>
   <ItemGroup>
@@ -484,7 +494,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49488</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

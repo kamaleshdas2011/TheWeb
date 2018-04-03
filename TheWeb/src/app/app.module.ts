@@ -20,12 +20,15 @@ import { AuthenticationService } from './services/authentication.service';
 import { StorageService } from './services/storage.service';
 import { CartComponent } from './cart/cart.component';
 import { MiscellaneousService } from './services/miscellaneous.service';
+import { AccountComponent } from './account/account.component';
 //import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap'
 
 const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'productdetails/:id', component: ProductDetailsComponent },
     { path: 'cart', component: CartComponent },
+    { path: 'account', component: AccountComponent },
+
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ];
@@ -36,7 +39,7 @@ const appRoutes: Routes = [
     declarations: [AppComponent, HomeComponent, CartComponent,
         ProductDetailsComponent, PageNotFoundComponent,
         FooterComponent, HeaderComponent,
-        LoginComponent, RegisterComponent,
+        LoginComponent, RegisterComponent, AccountComponent
         ],
     bootstrap: [AppComponent],
     providers: [ImageService, HomeService, ProductService,

@@ -8,10 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var authentication_service_1 = require("../services/authentication.service");
-var RegisterComponent = (function () {
+var RegisterComponent = /** @class */ (function () {
     function RegisterComponent(_fb, _authService) {
         this._fb = _fb;
         this._authService = _authService;
@@ -43,14 +44,14 @@ var RegisterComponent = (function () {
             password_confirmation: ['', [forms_1.Validators.required]]
         });
     };
+    RegisterComponent = __decorate([
+        core_1.Component({
+            selector: 'register-popup',
+            templateUrl: 'app/login/register.component.html',
+        }),
+        __metadata("design:paramtypes", [forms_1.FormBuilder, authentication_service_1.AuthenticationService])
+    ], RegisterComponent);
     return RegisterComponent;
 }());
-RegisterComponent = __decorate([
-    core_1.Component({
-        selector: 'register-popup',
-        templateUrl: 'app/login/register.component.html',
-    }),
-    __metadata("design:paramtypes", [forms_1.FormBuilder, authentication_service_1.AuthenticationService])
-], RegisterComponent);
 exports.RegisterComponent = RegisterComponent;
 //# sourceMappingURL=register.component.js.map

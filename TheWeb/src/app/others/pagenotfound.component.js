@@ -8,19 +8,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var PageNotFoundComponent = (function () {
+var PageNotFoundComponent = /** @class */ (function () {
     function PageNotFoundComponent() {
     }
     PageNotFoundComponent.prototype.ngOnInit = function () {
     };
+    PageNotFoundComponent = __decorate([
+        core_1.Component({
+            template: '<h1>The page does not exists.</h1>'
+        }),
+        __metadata("design:paramtypes", [])
+    ], PageNotFoundComponent);
     return PageNotFoundComponent;
 }());
-PageNotFoundComponent = __decorate([
-    core_1.Component({
-        template: '<h1>The page does not exists.</h1>'
-    }),
-    __metadata("design:paramtypes", [])
-], PageNotFoundComponent);
 exports.PageNotFoundComponent = PageNotFoundComponent;
 //# sourceMappingURL=pagenotfound.component.js.map

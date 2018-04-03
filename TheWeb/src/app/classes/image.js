@@ -1,5 +1,6 @@
 "use strict";
-var Image = (function () {
+Object.defineProperty(exports, "__esModule", { value: true });
+var Image = /** @class */ (function () {
     function Image() {
     }
     return Image;

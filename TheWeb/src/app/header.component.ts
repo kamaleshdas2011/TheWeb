@@ -31,7 +31,9 @@ export class HeaderComponent implements OnInit {
         location.reload();
     }
     account() {
-        console.log(this.access_token.userName);
+        $('.modal').modal('hide')
+        this._router.navigate(['/account']);
+        //console.log(this.access_token.userName);
     }
     
     cartPopup() {

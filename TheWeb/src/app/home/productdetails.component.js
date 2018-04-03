@@ -8,12 +8,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var image_service_1 = require("../services/image.service");
 var product_service_1 = require("../services/product.service");
 var router_1 = require("@angular/router");
 var storage_service_1 = require("../services/storage.service");
-var ProductDetailsComponent = (function () {
+var ProductDetailsComponent = /** @class */ (function () {
     function ProductDetailsComponent(_imgService, _elm, _rend, _prodService, _activateroute, _storeService) {
         this._imgService = _imgService;
         this._elm = _elm;
@@ -68,20 +69,20 @@ var ProductDetailsComponent = (function () {
         }
         this._storeService.storeWish(prod);
     };
+    ProductDetailsComponent = __decorate([
+        core_1.Component({
+            selector: 'product-details',
+            templateUrl: 'app/home/productdetails.component.html',
+            styleUrls: ['app/home/productdetails.component.css'],
+        }),
+        __metadata("design:paramtypes", [image_service_1.ImageService,
+            core_1.ElementRef,
+            core_1.Renderer2,
+            product_service_1.ProductService,
+            router_1.ActivatedRoute,
+            storage_service_1.StorageService])
+    ], ProductDetailsComponent);
     return ProductDetailsComponent;
 }());
-ProductDetailsComponent = __decorate([
-    core_1.Component({
-        selector: 'product-details',
-        templateUrl: 'app/home/productdetails.component.html',
-        styleUrls: ['app/home/productdetails.component.css'],
-    }),
-    __metadata("design:paramtypes", [image_service_1.ImageService,
-        core_1.ElementRef,
-        core_1.Renderer2,
-        product_service_1.ProductService,
-        router_1.ActivatedRoute,
-        storage_service_1.StorageService])
-], ProductDetailsComponent);
 exports.ProductDetailsComponent = ProductDetailsComponent;
 //# sourceMappingURL=productdetails.component.js.map
