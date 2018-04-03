@@ -1,0 +1,65 @@
+﻿#cart-accordion .accordion-content .crosssell li.item .product-name a, #cart-accordion h3.accordion-title, #footer .footer-address-block p, #footer .footer-block-title h2, #footer .footer-topline .custom-footer-content li > span h3, #login-form h2, #login-holder .link-box a, #login-holder .page-title h1, #login-holder form p, #onepagecheckout_orderform .col3-set.onepagecheckout_datafields .op_block_title, .addresses-list .addresses-additional h2, .addresses-list .addresses-primary h2, .ajax-media-button-holder .ajax-media, .block-layered-nav dl#narrow-by-list2 dt h2, .block-poll label, .block-related .block-content .block-subtitle a, .block-related .block-title strong span, .block-related .product-name a, .block-subscribe .form-subscribe-header label, .block-subscribe-popup .indent h3, .block-vertical-nav li.level-top a.level-top, .btn-quick-view span, .cart .page-title h1, .cart-blocks-title h2, .catalog-product-view .box-reviews ul li h6 a, .dashboard .box-head h2, .dashboard .box-head h3, .dashboard .box-title h2, .dashboard .box-title h3, .dashboard .welcome-msg .hello, .data-table .product-name a, .fieldset .legend, .header-slider-container .iosSlider .slider .item .slide-container.slide-skin-2 h4, .header-slider-container .iosSlider .slider .item .slide-container.slide-skin-2 p, .header-slider-container .iosSlider .slider .item h2, .header-slider-container .iosSlider .slider .item h3, .label-new, .label-sale, .map-container .map-block, .meigee-tabs a, .minimal-price-link .label, .multiple-checkout h2, .nav-container li.level-top > a span, .nav-wide#nav-wide .top-content .top-menu-features li span h3, .nav-wide#nav-wide ul.level0 li.level1 span.subtitle, .onepagecheckout-index-index .main-container .page-title, .opc .step-title h2, .opc h3, .page-title h1, .page-title h2, .page-title h3, .page-title h4, .page-title h5, .page-title h6, .pager .pages ol li a, .pager .pages ol li.current, .price, .price-as-configured .price-label, .product-collateral h2, .product-options-title h2, .product-review .product-name, .product-view .product-shop .product-name h1, .products-grid .product-name a, .products-list .product-name a, .quick-view-title h2, .rating-subtitle h2, .sorter .sort-by label, .toolbar .sbSelector > span, .widget .widget-title h1, .widget .widget-title h2, .widget-latest li h3 a, .widget-title h1, .widget-title h2, aside.sidebar .block .block-subtitle, aside.sidebar .block-account li a, aside.sidebar .block-account li strong, aside.sidebar .block-title strong span, aside.sidebar .block.block-cart .product-details .product-name a, aside.sidebar .block.block-cart .subtotal, aside.sidebar .block.block-layered-nav #amount, aside.sidebar .block.block-layered-nav #amount-2, aside.sidebar .block.block-layered-nav .currently .label, aside.sidebar .block.block-layered-nav dl dd a, aside.sidebar .block.block-layered-nav dl dd li span, aside.sidebar .block.block-layered-nav dl dt h2, aside.sidebar .product-name a, header#header .top-cart .block-content .subtotal span, header#header .top-cart .block-title .title-cart, header#header .top-cart .product-name a, section .crosssell .product-details .product-name a {
+    font-family: DINweb,Open Sans,sans-serif
+}
+
+body {
+    background-color: #FFF
+}
+
+#cart-accordion .accordion-content .crosssell li.item .product-name a:hover, #categories-accordion .btn-cat.closed > i, #categories-accordion li.level-top a.level-top:hover, #categories-accordion li.level-top.parent ul.level0 li a:hover, #footer .footer-address-block p a:hover, #footer address a:hover, #login-holder .link-box a:hover, #login-holder form .actions > a:hover, .availability-only i, .availability.out-of-stock span, .block-compare li.item .btn-remove i:hover, .block-related .block-content .block-subtitle a:hover, .block-related .product-name a:hover, .cart .totals .checkout-types li a:hover, .catalog-product-view .box-reviews .form-add h3 span, .catalog-product-view .box-reviews ul li small span, .dashboard .box-head a i:hover, .dashboard .box-title a i:hover, .data-table .c_actions a i:hover, .data-table .cart-price .price, .data-table .product-name a:hover, .data-table .remove i:hover, .header-slider-container .iosSlider .slider .item .slide-container.slide-skin-2 h3 span, .header-slider-container .iosSlider .slider .item .slide-container.slide-skin-3 h3 span, .md-modal-footer a:hover, .minimal-price-link .price, .multiple-checkout .grand-total .price, .my-account .addresses-list li.item a:hover, .my-account .data-table a:hover, .my-wishlist .data-table .table-buttons a i:hover, .nav-wide#nav-wide .top-content .top-menu-links li a, .opc-wrapper-opc .page-title .text-login a:hover, .price-as-configured .price, .price-from .price, .price-to .price, .product-options-bottom i:hover, .product-view .product-shop .add-to-links-box i:hover, .products-grid .add-to-links li i:hover, .products-grid .product-name a:hover, .products-list .add-to-links i:hover, .products-list .product-name a:hover, .sp-methods .price, .special-price .price, .tags-list li a:hover, .widget-latest li .comments a:hover, .widget-latest li h3 a:hover, a:hover, aside.sidebar .block.block-cart .product-details .product-box .price, aside.sidebar .block.block-cart .subtotal .price, div.quantity-decrease i:hover, div.quantity-increase i:hover, header#header .customer-name .user i, header#header .top-cart .block-content .mini-products-list .product-details .price, header#header .top-cart .block-content .subtotal .price, header#header .top-cart .product-name a:hover, nav.breadcrumbs li a:hover, nav.breadcrumbs li a:hover + span {
+    color: #c5995a
+}
+
+#regular-price .price {
+    color: #000
+}
+
+#checkout-coupon-discount-load .discount-form .buttons-set button.button:hover span span, #footer .block-tags .actions a:hover, #footer .block-tags .tags-list li a:hover, #login-holder form .actions button:hover span span, #onepagecheckout_orderform #checkout-review-submit button span span, .add-to-cart-success a:hover, .block-compare .actions a:hover, .block-compare .actions button span, .block-reorder .actions button span, .block-subscribe-popup .indent button.button:hover span span, .cart .btn-proceed-checkout span, .cart-remove-box a:hover, .cart-table .buttons-row button.btn-continue:hover span, .catalog-product-view .box-reviews .full-review, .category-products .toolbar-bottom:before, .header-slider-container .iosSlider .next:hover i, .header-slider-container .iosSlider .prev:hover i, .ias_trigger.active button.button > span, .iwdbutton button.button span, .md-modal-footer button.button:hover span span, .my-wishlist .buttons-set .btn-update:hover span, .products-grid .availability-only, .products-list .availability-only, .sorter .view-mode a:hover i, .sorter .view-mode strong i, .sorter a.asc i:hover, .sorter a.desc i:hover, .ui-slider .ui-slider-range, a.aw-blog-read-more:hover, aside.sidebar .block-reorder .actions a:hover, aside.sidebar .block-tags .actions a:hover, aside.sidebar .block-tags li a:hover, aside.sidebar .block.block-layered-nav .actions a:hover, aside.sidebar .block.block-wishlist .actions a:hover, button.button:hover > span, div.label-sale, header#header .top-cart .block-content .actions .button span, header#header .top-cart .block-content .actions a:hover, nav.breadcrumbs li span:after, table#wishlist-table td .cart-cell button.button:hover span span, ul.social-links li a i:hover {
+    background-color: grey
+}
+
+.add-to-cart button.button span {
+    background-color: #d4a048
+}
+
+.label-type-5 div.label-sale:before, .products-grid.label-type-5 .availability-only:before, .products-list.label-type-5 .availability-only:before {
+    border-top-color: #FF1341
+}
+
+.label-type-5 div.label-sale:after, .products-grid.label-type-5 .availability-only:after, .products-list.label-type-5 .availability-only:after {
+    border-bottom-color: #FF1341
+}
+
+#checkout-coupon-discount-load .discount-form .buttons-set button.button:hover span, #footer .block-tags .actions a:hover, #footer .block-tags .tags-list li a:hover, #login-holder form .actions button:hover > span, #onepagecheckout_orderform #checkout-review-submit button > span, .add-to-cart button.button span, .add-to-cart-success a:hover, .block-compare .actions a:hover, .block-compare .actions button span, .block-reorder .actions button span, .block-subscribe-popup .indent button.button:hover > span, .cart .btn-proceed-checkout span, .cart-remove-box a:hover, .cart-table .buttons-row button.btn-continue:hover span, .ias_trigger.active button.button span, .iwdbutton button.button span, .md-modal-footer button.button:hover > span, .my-wishlist .buttons-set .btn-update:hover span, a.aw-blog-read-more:hover, aside.sidebar .block-reorder .actions a:hover, aside.sidebar .block-tags .actions a:hover, aside.sidebar .block-tags li a:hover, aside.sidebar .block.block-layered-nav .actions a:hover, aside.sidebar .block.block-wishlist .actions a:hover, button.button:hover span, header#header .top-cart .block-content .actions .button span, header#header .top-cart .block-content .actions a:hover {
+    border-color: grey
+}
+
+.header-slider-container .iosSlider .slider .item .slide-container.slide-skin-2 h4, .header-slider-container .iosSlider .slider .item .slide-container.slide-skin-3 h4, .header-slider-container .iosSlider .slider .item h3, .nav-wide#nav-wide .top-content .top-menu-links li a:hover, .opc-wrapper-opc .page-title .text-login, .opc-wrapper-opc .page-title .text-login a, a {
+    color: #c5995a
+}
+
+.products-grid .btn-quick-view > span, .products-list .btn-quick-view > span {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#CCF8BA75, endColorstr=#CCF8BA75);
+    background-color: #FFF
+}
+
+.ajax-media-button-holder .ajax-media, .products-grid .btn-quick-view:hover > span, .products-list .btn-quick-view:hover > span, span.label-new {
+    color: #000;
+    background-color: #FFF
+}
+
+.label-type-5 span.label-new:before {
+    border-top-color: #F8BA75
+}
+
+.label-type-5 span.label-new:after {
+    border-bottom-color: #F8BA75
+}
+
+.product-view .product-name div.sku::selection {
+    background-color: #F8BA75
+}
+
+.product-view .product-name div.sku::-moz-selection {
+    background-color: #F8BA75
+}

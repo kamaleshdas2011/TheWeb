@@ -1,0 +1,141 @@
+﻿.popup_bg {
+    position: absolute;
+    visibility: hidden;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    filter: alpha(opacity=70);
+    opacity: .7;
+    background-color: #999;
+    z-index: 1
+}
+
+.magento_e, .magento_ne, .magento_nw, .magento_w {
+    width: 6px
+}
+
+.magento_n, .magento_ne, .magento_nw {
+    height: 28px
+}
+
+.dialog {
+    box-shadow: 0 0 12px 5px #888
+}
+
+    .dialog .bot {
+        display: none !important
+    }
+
+.overlay_magento {
+    background-color: #000;
+    filter: alpha(opacity=60);
+    -moz-opacity: .6;
+    opacity: .6;
+    -webkit-opacity: .6
+}
+
+.top.table_window {
+    background-color: #444
+}
+
+.magento_se, .magento_sizer, .magento_sw {
+    width: 5px
+}
+
+.magento_content, .magento_e, .magento_w {
+    background-color: #FFF
+}
+
+.magento_s, .magento_se, .magento_sizer, .magento_sw {
+    background: #deebf0;
+    height: 3px
+}
+
+.magento_close, .magento_maximize, .magento_minimize {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 5px;
+    z-index: 1000
+}
+
+.magento_sizer {
+    cursor: se-resize
+}
+
+.magento_close {
+    background: url(magento/window_close.png) no-repeat;
+    right: 7px;
+    cursor: pointer
+}
+
+.magento_minimize {
+    background: url(magento/window_minimize.png) no-repeat;
+    right: 28px;
+    cursor: pointer
+}
+
+.magento_maximize {
+    background: url(magento/window_maximize.png) no-repeat;
+    right: 49px;
+    cursor: pointer
+}
+
+.magento_title {
+    float: left;
+    width: 100%;
+    font: 700 12px/28px Arial,Helvetica,sans-serif;
+    color: #fff;
+    text-align: left
+}
+
+.magento_content {
+    overflow: auto;
+    font-size: 12px
+}
+
+    .magento_content, .magento_content label {
+        color: #333;
+        font-family: Arial,sans-serif
+    }
+
+.magento_buttons {
+    padding: 10px;
+    text-align: right
+}
+
+    .magento_buttons input.button {
+        border-width: 1px;
+        border-style: solid;
+        border-color: #ed6502 #a04300 #a04300 #ed6502;
+        background: url(magento/btn_bg.gif) 0 100% repeat-x #ffac47;
+        padding: 0 7px 1px;
+        font: 700 12px/18px Arial,Helvetica,sans-serif;
+        color: #fff;
+        cursor: pointer;
+        text-align: center;
+        white-space: nowrap
+    }
+
+    .magento_buttons button.button span span span {
+        display: inline;
+        background: 0 0;
+        padding: 0;
+        height: auto
+    }
+
+* html .magento_close {
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../themes/magento/window_maximize.png", sizingMethod="crop")
+}
+
+* html .magento_minimize {
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../themes/magento/window_close.png", sizingMethod="crop")
+}
+
+* html .magento_maximize {
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../themes/magento/window_minimize.png", sizingMethod="crop")
+}

@@ -1,0 +1,15 @@
+﻿<div class="box">
+    <div class="content registerBox" style="display:none;">
+        <div class="form">
+            <form novalidate (ngSubmit)="register()" [formGroup]="registerForm">
+                <input formControlName="email" id="reg-email" class="form-control" type="text" placeholder="Email" value="kamalesh.das@capgemini.com">
+                <input formControlName="password" id="reg-password" class="form-control" type="password" placeholder="Password" value="Pass=1234">
+                <input formControlName="password_confirmation" id="reg-password_confirmation" class="form-control" type="password" placeholder="Repeat Password" value="Pass=1234">
+                <input class="checkout-button" type="submit" value="Create account" name="commit">
+            </form>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div *ngIf="statusMessage" class="alert alert-success"><strong>{{statusMessage}}</strong></div>
+</div>

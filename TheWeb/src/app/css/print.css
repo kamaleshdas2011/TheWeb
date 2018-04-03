@@ -1,0 +1,104 @@
+﻿@media print {
+    *, a, a:visited {
+        color: #444 !important
+    }
+
+    blockquote, img, pre, tr {
+        page-break-inside: avoid
+    }
+
+    * {
+        background: 0 0 !important;
+        text-shadow: none !important
+    }
+
+    a, a:visited {
+        text-decoration: underline
+    }
+
+    abbr:after {
+        content: " (" attr(title) ")"
+    }
+
+    .ir a:after {
+        content: ""
+    }
+
+    blockquote, pre {
+        border: 1px solid #999
+    }
+
+    thead {
+        display: table-header-group
+    }
+
+    @page {
+        margin: .5cm
+    }
+
+    h2, h3, p {
+        orphans: 3;
+        widows: 3
+    }
+
+    h2, h3 {
+        page-break-after: avoid
+    }
+}
+
+body {
+    background-color: #fff !important
+}
+
+form#measurementForm {
+    clear: both;
+    padding: 0 20px
+}
+
+.customer_measurement_name, .group_image img, .incm, .measure-actions, .meigee-tabs, .meigee-tabs-cust {
+    display: none !important
+}
+
+#measurement_popup_content {
+    height: auto !important
+}
+
+.meigee-tabs-content h2 {
+    display: block;
+    margin: 20px 0 0 10px
+}
+
+.meigee-tabs-content {
+    visibility: visible !important
+}
+
+.picker {
+    overflow: hidden
+}
+
+.dialog {
+    box-shadow: 0 0 #fff !important
+}
+
+.default_image {
+    display: block !important
+}
+
+    #measurement_image_div img, .default_image img {
+        width: 300px !important;
+        height: 300px !important
+    }
+
+#measurement_outer_div input, #measurement_outer_div select {
+    height: auto;
+    padding: 5px 5px 0;
+    pointer-events: none
+}
+
+#measurement_outer_div checkbox, #measurement_outer_div radio {
+    pointer-events: none
+}
+
+#measurement_outer_div #measurement_image_div {
+    margin: 0
+}

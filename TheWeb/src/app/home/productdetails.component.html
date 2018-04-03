@@ -1,0 +1,111 @@
+﻿<div class="main-container col1-layout">
+    <div *ngIf="statusMessage" class="alert alert-success"><strong>{{statusMessage}}</strong></div>
+    <div class="main">
+
+        <div class="col-main">
+
+            <div class="product-view">
+                <div class="product-essential">
+                    <form method="post" id="product_addtocart_form">
+                        <div class="product-img-box">
+
+                            <div class="product-image product-image-zoom zoom-available">
+                                <div class="product-image-gallery" *ngIf="images">
+                                    <img [attr.id]="'image-'+currentElementIndex"
+                                         *ngFor="let img of images;let currentElementIndex=index"
+                                         [ngClass]="currentElementIndex==0 ? visible : ''"
+                                         class="gallery-image" src="{{img.ImageUrl}}" />
+
+                                </div>
+                            </div>
+
+
+                            <div class="more-views">
+                                <div class="swiper-container swiper-container-vertical">
+                                    <div class="swiper-wrapper product-image-thumbs" *ngIf="images">
+
+                                        <div class="swiper-slide"
+                                             *ngFor="let img of images;let currentElementIndex=index"
+                                             style="height: 26px; margin-bottom: 10px;">
+                                            <a class="thumb-link handtool" (click)="displayImage(currentElementIndex)" title=""
+                                               data-image-index="currentElementIndex">
+                                                <img src="{{img.ImageUrl}}" width="75" height="75" alt="">
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-shop" *ngIf="product">
+                            <div id="messages_product_view"></div>
+
+                            <div class="product-info-container">
+                                <div [innerHTML]="product.ProductShortDesc" class="product-subtitle"></div>
+                                <div class="product-name">
+                                    <span [innerHTML]="product.ProductName" class="h1"></span>
+                                </div>
+                                <div class="extra-info">
+                                </div>
+
+                                <div class="description" [innerHTML]="product.ProductLongDesc">
+
+                                </div>
+                                <div class="price-info">
+                                    <div class="price-box">
+                                        <span class="regular-price" id="product-price-13892">
+                                            <span class="price">{{product.ProductPrice | currency:'INR':'symbol'}}</span>
+                                        </span>
+
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="add-to-cart">
+                                        <label for="qty" class="productLabel">Quantity:</label><br><br>
+                                        <div class="qty-wrapper">
+
+                                            <input type="text" pattern="\d*" name="qty" id="prodqty" maxlength="12"
+                                                   value="1" title="Qty" class="input-text qty">
+                                        </div>
+                                        <div class="add-to-cart-buttons">
+                                            <button (click)="addToCart(product);" type="button" title="Add to Cart"
+                                                    class="button btn-cart">
+                                                Add to Cart
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                    <div role="alert" id="alertAddCart" class="alert alert-info collapse">
+                                        <strong>Successfully added to cart</strong>
+                                    </div>
+                                </div>
+                                <div class="wishlistFormat">
+                                    <a *ngIf="!_storeService.presentInWishlist(product.ProductID)" (click)="clickWish(product)" 
+                                       class="handtool"><i class="fa fa-heart-o">&nbsp;</i>Add to wishlist</a>
+                                    <a *ngIf="_storeService.presentInWishlist(product.ProductID)" (click)="clickWish(product)" 
+                                       class="handtool"><i class="fa fa-heart text-danger">&nbsp;</i>Remove from wishlist</a>
+
+                                </div>
+
+                            </div>
+                            <div role="alert" id="alertWishAdd" class="alert alert-success collapse">
+                                <strong>Added to wishlist</strong>
+                            </div>
+                            <div role="alert" id="alertWishRemove" class="alert alert-success collapse">
+                                <strong>Removed from wishlist</strong>
+                            </div>
+                            <div class="zigzagBlk">&nbsp;&nbsp;</div>
+                            <div [innerHTML]="product.ProductCartDesc" class="product-standard-features product-standard-features-sideBar">
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

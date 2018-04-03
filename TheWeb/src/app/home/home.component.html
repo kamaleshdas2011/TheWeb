@@ -1,0 +1,68 @@
+﻿
+<section class="main_section">
+    <div class="col-md-12 no-padding">
+        <article id="post-1549" class="post-1549 page type-page status-publish hentry">
+            <div class="border-none">
+                <div class="content">
+                    <div id="pl-1549" class="panel-layout">
+                        <div id="pg-1549-0" class="panel-grid panel-no-style">
+                            <div id="pgc-1549-0-0" class="panel-grid-cell">
+                                <div id="panel-1549-0-0-0" class="so-panel widget widget_msp-home-custom-url-widget panel-first-child panel-last-child" data-index="0">
+                                    <div class="home_featured_post panel-widget-style panel-widget-style-for-1549-0-0-0">
+                                        <div class="so-widget-msp-home-custom-url-widget so-widget-msp-home-custom-url-widget-msp-home-custom-url-widget-style-d75171398898">
+                                            <div *ngIf="images">
+                                                <a href="javascript:void(0)" *ngFor="let img of images;let index = index" 
+                                                   (click)="gotoProductDetails(img.ProductID)">
+                                                    <div *ngIf="index==0" class="quotation_div">
+                                                        <img src="{{img.ImageUrl}}" />
+
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>
+
+<div class="content-wrapper">
+    <div class="container_12">
+        <div class="main-container col1-layout">
+            <div class="grid_12"></div>
+            <div class="clear"></div>
+            <div class="grid_12 col-main">
+
+                <div class="std" *ngIf="images">
+
+                    <!-- 2 block area -->
+                    <div class="hpgrid_4" *ngFor="let img of images;let index = index">
+                        <a href="javascript:void(0)" (click)="gotoProductDetails(img.ProductID)" 
+                           banner="yes" *ngIf="index>0" style="display:inline-block; max-width:100%; margin-bottom:5px">
+                            <img src="{{img.ImageUrl}}"
+                                 alt="online shopping for mangalgiri silk sarees | pure handloom silk pattu sarees online | traditional silk pattu sarees online | sarees from andhra">
+                        </a>
+                    </div>
+                    <!--<div class="hpgrid_4"><a banner="yes" target="_blank" href="https://www.unnatisilks.com/blouse-dupattas-kurtis-online/chunni-stoles-sale/mangalgiri-stole-dupatta.html" data="{&quot;id&quot;:&quot;2&quot;, &quot;rowid&quot;:&quot;14&quot;}" style="display:inline-block; max-width:100%; margin-bottom:5px"><img src="https://media.unnatisilks.com/media/wysiwyg/hb210818woveningracerix2.jpg" alt="online shopping for mangalgiri cotton dupattas | pure handloom mangalgiri cotton dupattas | shawls for womens" data-srcx2="https://media.unnatisilks.com/media/wysiwyg/hb210818woveningracerix2.jpg"></a></div>
+                    <div class="hpgrid_4"><a banner="yes" target="_blank" href="https://www.unnatisilks.com/sarees-online/by-popular-variety-name-sarees/mangalagiri-sarees.html" data="{&quot;id&quot;:&quot;3&quot;, &quot;rowid&quot;:&quot;14&quot;}" style="display:inline-block; max-width:100%; margin-bottom:5px"><img src="https://media.unnatisilks.com/media/wysiwyg/hb100318mangalgirix2.jpg" alt="online shopping for mangalgiri cotton sarees | mangalgiri cotton sarees with hand embroidery | sarees from andhra" data-srcx2="https://media.unnatisilks.com/media/wysiwyg/hb100318mangalgirix2.jpg"></a></div>
+                    <div class="hpgrid_4"><a banner="yes" target="_blank" href="https://www.unnatisilks.com/sarees-online/by-popular-variety-name-sarees/kanchipuram-silk.html" data="{&quot;id&quot;:&quot;4&quot;, &quot;rowid&quot;:&quot;14&quot;}" style="display:inline-block; max-width:100%; margin-bottom:5px"><img src="https://www.unnatisilks.com//media/wysiwyg/hb100318kanchisilkx2.jpg" alt="online shopping for kanchipuram silk sarees | indian wedding sarees | kanchi silk sarees online | kanjeevaram silk sarees" data-srcx2="https://www.unnatisilks.com//media/wysiwyg/hb100318kanchisilkx2.jpg"></a></div>
+                    <div class="hpgrid_4"><a banner="yes" target="_blank" href="https://www.unnatisilks.com/online-kurti-kurta.html" data="{&quot;id&quot;:&quot;5&quot;, &quot;rowid&quot;:&quot;14&quot;}" style="display:inline-block; max-width:100%; margin-bottom:5px"><img src="https://media.unnatisilks.com/media/wysiwyg/hb160318thechickclosetx2.jpg" alt="online shopping for kurtas | kalamkari cotton kurtas online | rajasthani cotton kurtas | kurtas for women" data-srcx2="https://media.unnatisilks.com/media/wysiwyg/hb160318thechickclosetx2.jpg"></a></div>
+                    <div class="hpgrid_4"><a banner="yes" target="_blank" href="https://www.unnatisilks.com/sarees-online/by-popular-variety-name-sarees/chettinad-handloom-sarees.html" data="{&quot;id&quot;:&quot;6&quot;, &quot;rowid&quot;:&quot;14&quot;}" style="display:inline-block; max-width:100%; margin-bottom:5px"><img src="https://media.unnatisilks.com/media/wysiwyg/hb280218chettinadx2.jpg" alt="online shopping for chettinad cotton sarees | chettinadu sarees online | online chettinadu cotton sarees | sarees from tamil nadu | pure handloom chettinad cotton sarees" data-srcx2="https://media.unnatisilks.com/media/wysiwyg/hb280218chettinadx2.jpg"></a></div>
+                    <div class="hpgrid_4"><a banner="yes" target="_blank" href="https://www.unnatisilks.com/sarees-online/by-popular-variety-name-sarees/rajkot-sarees.html" data="{&quot;id&quot;:&quot;7&quot;, &quot;rowid&quot;:&quot;14&quot;}" style="display:inline-block; max-width:100%; margin-bottom:5px"><img src="https://media.unnatisilks.com/media/wysiwyg/hb240218weavesofrajkotx2.jpg" alt="Online shopping for rajkot silk sarees | rajkot sarees from gujarat | rajkot patola sarees" data-srcx2="https://media.unnatisilks.com/media/wysiwyg/hb240218weavesofrajkotx2.jpg"></a></div>
+                    <div class="hpgrid_4"><a banner="yes" target="_blank" href="https://www.unnatisilks.com/blouse-dupattas-kurtis-online/chunni-stoles-sale/online-rajasthani-cotton-chunni.html" data="{&quot;id&quot;:&quot;8&quot;, &quot;rowid&quot;:&quot;14&quot;}" style="display:inline-block; max-width:100%; margin-bottom:5px"><img src="https://media.unnatisilks.com/media/wysiwyg/hb100318rajasthanx2.jpg" alt="Online shopping for rajasthani cotton dupattas online | hand block printed cotton dupattas online | cotton dupattas from rajasthan" data-srcx2="https://media.unnatisilks.com/media/wysiwyg/hb100318rajasthanx2.jpg"></a></div>
+                    <div class="hpgrid_4"><a banner="yes" target="_blank" href="https://www.unnatisilks.com/sarees-online/by-work-sarees/kalamkari-patch-work-design-sarees.html" data="{&quot;id&quot;:&quot;9&quot;, &quot;rowid&quot;:&quot;14&quot;}" style="display:inline-block; max-width:100%; margin-bottom:5px"><img src="https://media.unnatisilks.com/media/wysiwyg/hb-190218kotacottonx2.jpg" alt="Online shopping for kalamkari sarees | kalamkari cotton sarees online | online shop for kalamkari sarees | kalamkari silk sarees online | sarees from andhra pradesh" data-srcx2="https://media.unnatisilks.com/media/wysiwyg/hb-190218kotacottonx2.jpg"></a></div>
+                    <div class="hpgrid_4"><a banner="yes" target="_blank" href="https://www.unnatisilks.com/sarees-online/by-popular-variety-name-sarees/bengal-silk-saris.html" data="{&quot;id&quot;:&quot;10&quot;, &quot;rowid&quot;:&quot;14&quot;}" style="display:inline-block; max-width:100%; margin-bottom:5px"><img src="https://media.unnatisilks.com/media/wysiwyg/hb200218bengalbeautyx2.jpg" alt="Online shopping for Bengal silk sarees | traditional silk saris | bengal pure silk sarees | sarees from Bengal" data-srcx2="https://media.unnatisilks.com/media/wysiwyg/hb200218bengalbeautyx2.jpg"></a></div>
+                    <div class="hpgrid_4"><a banner="yes" target="_blank" href="https://www.unnatisilks.com/indian-running-fabrics.html" data="{&quot;id&quot;:&quot;11&quot;, &quot;rowid&quot;:&quot;14&quot;}" style="display:inline-block; max-width:100%; margin-bottom:5px"><img src="https://www.unnatisilks.com//media/wysiwyg/hb100318fabriccloset2.jpg" alt="Online shopping for cotton fabrics online | kalamkari cotton fabrics online | running fabrics online" data-srcx2="https://www.unnatisilks.com//media/wysiwyg/hb100318fabriccloset2.jpg"></a></div>
+                    <div class="hpgrid_4"><a banner="yes" target="_blank" href="https://www.unnatisilks.com/sarees-online/by-popular-variety-name-sarees/narayanpet-handlooms-sarees.html" data="{&quot;id&quot;:&quot;12&quot;, &quot;rowid&quot;:&quot;14&quot;}" style="display:inline-block; max-width:100%; margin-bottom:5px"><img src="https://media.unnatisilks.com/media/wysiwyg/hb080218narayanpetx2.jpg" alt="Online shopping for narayanpet cotton sarees | pure handloom narayanpet cotton sarees | traditional narayanpet cotton sarees" data-srcx2="https://media.unnatisilks.com/media/wysiwyg/hb080218narayanpetx2.jpg"></a></div>-->
+
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>

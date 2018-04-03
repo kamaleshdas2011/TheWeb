@@ -1,0 +1,19 @@
+﻿ol{
+    list-style:none;
+}
+.cart-wish-list{
+    padding:0px;
+}
+.v-line-m {
+    border-left: 1px #ad9268;
+    height: 50px;
+}
+.h-line {
+    width: 80%;
+    color: #ad9268;
+}
+ol a {
+    color: #918f90;
+    font-size: 14px;
+    font-style: italic;
+}

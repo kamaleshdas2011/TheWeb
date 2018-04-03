@@ -1,0 +1,82 @@
+﻿
+/*login and register popup*/
+
+
+
+
+.social .circle .fa {
+        font-size: 16px;
+    }
+
+.social .facebook {
+    background-color: #455CA8;
+    color: #FFFFFF;
+}
+
+.social .google {
+    background-color: #F74933;
+}
+
+.login .social .github {
+    background-color: #403A3A;
+}
+
+.login .facebook:hover {
+    background-color: #6E83CD;
+}
+
+.login .google:hover {
+    background-color: #FF7566;
+}
+
+.login .github:hover {
+    background-color: #4D4D4d;
+}
+
+.login .forgot {
+    color: #797979;
+    margin-left: 0;
+    overflow: hidden;
+    text-align: center;
+    width: 100%;
+}
+
+@media (max-width:400px) {
+    .login .modal-dialog {
+        width: 100%;
+    }
+}
+
+.big-login, .big-register {
+    background-color: #00bbff;
+    color: #FFFFFF;
+    border-radius: 7px;
+    border-width: 2px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 200;
+    padding: 16px 60px;
+    text-transform: uppercase;
+    transition: all 0.3s ease 0s;
+}
+
+    .big-login:hover {
+        background-color: #00A4E4;
+        color: #FFFFFF;
+    }
+
+.big-register {
+    background-color: rgba(0,0,0,.0);
+    color: #00bbff;
+    border-color: #00bbff;
+}
+
+    .big-register:hover {
+        border-color: #00A4E4;
+        color: #00A4E4;
+    }
+
+.circle-avatar {
+    border-radius: 50%;
+    width: 100px;
+}
