@@ -46,7 +46,7 @@ var CartComponent = (function () {
     };
     CartComponent.prototype.checkPin = function () {
         var _this = this;
-        console.log(this.pincode);
+        //console.log(this.pincode);
         this._misService.getAddress(this.pincode)
             .subscribe(function (response) {
             _this.address = response.results[0].formatted_address;
@@ -54,7 +54,6 @@ var CartComponent = (function () {
         }, function (error) {
             console.log("Error happened" + error);
         });
-        ;
     };
     CartComponent.prototype.ngOnInit = function () {
         this.cart = this._storeService.pullCart();

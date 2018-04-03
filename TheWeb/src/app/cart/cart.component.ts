@@ -24,7 +24,7 @@ export class CartComponent implements OnInit {
     cart: Product[] = [];
     cartSum: number;
     pincode: string;
-    address: object;
+    address: any;
 
     removeFromCart(prod: Product) {
         this._storeService.storeCart(prod, 0);
@@ -47,7 +47,7 @@ export class CartComponent implements OnInit {
     }
 
     checkPin() {
-        console.log(this.pincode);
+        //console.log(this.pincode);
         this._misService.getAddress(this.pincode)
             .subscribe(
             (response) => {
@@ -57,7 +57,7 @@ export class CartComponent implements OnInit {
                 (error) => {
                     console.log("Error happened" + error)
                 }
-            );;
+            );
         
     }
     ngOnInit(): void {
