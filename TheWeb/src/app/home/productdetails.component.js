@@ -8,13 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var image_service_1 = require("../services/image.service");
 var product_service_1 = require("../services/product.service");
 var router_1 = require("@angular/router");
 var storage_service_1 = require("../services/storage.service");
-var ProductDetailsComponent = /** @class */ (function () {
+var ProductDetailsComponent = (function () {
     function ProductDetailsComponent(_imgService, _elm, _rend, _prodService, _activateroute, _storeService) {
         this._imgService = _imgService;
         this._elm = _elm;
@@ -22,7 +21,7 @@ var ProductDetailsComponent = /** @class */ (function () {
         this._prodService = _prodService;
         this._activateroute = _activateroute;
         this._storeService = _storeService;
-        this.visible = 'visible';
+        this.visible = 'prod-img-visible';
     }
     ProductDetailsComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -46,11 +45,15 @@ var ProductDetailsComponent = /** @class */ (function () {
             }
         });
     };
-    ProductDetailsComponent.prototype.displayImage = function (index, event) {
+    ProductDetailsComponent.prototype.displayImage = function (index) {
+        //hide active image
+        var activeImage = this._elm.nativeElement.querySelector(".prod-img-visible");
+        this._rend.removeClass(activeImage, 'prod-img-visible');
+        this._rend.addClass(activeImage, 'prod-img-hide');
+        //show clicked image
         var input = this._elm.nativeElement.querySelector('#image-' + index);
-        var allImages = this._elm.nativeElement.querySelector(".visible");
-        this._rend.removeClass(allImages, 'visible');
-        this._rend.addClass(input, 'visible');
+        this._rend.removeClass(input, 'prod-img-hide');
+        this._rend.addClass(input, 'prod-img-visible');
     };
     ProductDetailsComponent.prototype.addToCart = function (product) {
         var itemCount = this._elm.nativeElement.querySelector('#prodqty').value;
@@ -58,7 +61,6 @@ var ProductDetailsComponent = /** @class */ (function () {
         $('#alertAddCart').show('fade');
     };
     ProductDetailsComponent.prototype.clickWish = function (prod) {
-        console.log(this._storeService.presentInWishlist(prod.ProductID));
         if (this._storeService.presentInWishlist(prod.ProductID)) {
             $('#alertWishRemove').show('fade');
             $('#alertWishAdd').hide('fade');
@@ -69,20 +71,20 @@ var ProductDetailsComponent = /** @class */ (function () {
         }
         this._storeService.storeWish(prod);
     };
-    ProductDetailsComponent = __decorate([
-        core_1.Component({
-            selector: 'product-details',
-            templateUrl: 'app/home/productdetails.component.html',
-            styleUrls: ['app/home/productdetails.component.css'],
-        }),
-        __metadata("design:paramtypes", [image_service_1.ImageService,
-            core_1.ElementRef,
-            core_1.Renderer2,
-            product_service_1.ProductService,
-            router_1.ActivatedRoute,
-            storage_service_1.StorageService])
-    ], ProductDetailsComponent);
     return ProductDetailsComponent;
 }());
+ProductDetailsComponent = __decorate([
+    core_1.Component({
+        selector: 'product-details',
+        templateUrl: 'app/home/productdetails.component.html',
+        styleUrls: ['app/home/productdetails.component.css'],
+    }),
+    __metadata("design:paramtypes", [image_service_1.ImageService,
+        core_1.ElementRef,
+        core_1.Renderer2,
+        product_service_1.ProductService,
+        router_1.ActivatedRoute,
+        storage_service_1.StorageService])
+], ProductDetailsComponent);
 exports.ProductDetailsComponent = ProductDetailsComponent;
 //# sourceMappingURL=productdetails.component.js.map

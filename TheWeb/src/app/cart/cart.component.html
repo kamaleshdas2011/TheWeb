@@ -1,45 +1,47 @@
 ﻿<div *ngIf="cart.length==0" class="main-container cart-container">
     <div class="text-capitalize text-center jumbotron">your cart is empty !</div>
 </div>
-<div *ngIf="cart.length>0" class="main-container cart-container">
+<div *ngIf="cart.length>0" class="main-container">
     <div class="row">
-        <div class="col-md-7">
-            <h4 class="text-capitalize">shopping cart</h4>
-            <div *ngFor="let prod of cart;let index=index" class="row cart-items">
-                <div class="col-md-3">
-                    <a [routerLink]="['/productdetails',prod.ProductID]" class="handtool">
-                        <img class="" src="{{prod.ProductImage}}">
-                    </a>
-                    <div>
-                        <button class="btn" (click)="changeNumber(prod,-1)">
-                            <i class="fa fa-arrow-circle-left"></i>
-                        </button>
-                        <input disabled type="text" pattern="\d*" value="{{prod.CartCount}}" size="4"
-                               title="Qty" class="input-text qty" maxlength="12">
-                        <button class="btn" (click)="changeNumber(prod,1)">
-                            <i class="fa fa-arrow-circle-right"></i>
-                        </button>
+        <div class="col-md-1"></div>
+        <div class="col-md-6">
+            <div class="cart-container">
+                <h4 class="text-capitalize">shopping cart</h4>
+                <div *ngFor="let prod of cart;let index=index" class="row cart-items">
+                    <div class="col-md-3">
+                        <a [routerLink]="['/productdetails',prod.ProductID]" class="handtool">
+                            <img class="" src="{{prod.ProductImage}}">
+                        </a>
+                        <div>
+                            <button class="btn" (click)="changeNumber(prod,-1)">
+                                <i class="fa fa-arrow-circle-left"></i>
+                            </button>
+                            <input disabled type="text" pattern="\d*" value="{{prod.CartCount}}" size="4"
+                                   title="Qty" class="input-text qty" maxlength="12">
+                            <button class="btn" (click)="changeNumber(prod,1)">
+                                <i class="fa fa-arrow-circle-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <a [routerLink]="['/productdetails',prod.ProductID]" href="#">{{prod.ProductName}}</a>
+                    </div>
+                    <div class="col-md-2">
+                        <strong class="price">
+                            {{prod.ProductPrice | currency:'INR':'symbol'}}
+                            <i class="fa fa-remove"></i>
+                            {{prod.CartCount}}
+                        </strong>
+                    </div>
+                    <div class="col-md-2">
+                        <button (click)="removeFromCart(prod,0)" class="checkout-button">REMOVE</button>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <a [routerLink]="['/productdetails',prod.ProductID]" href="#">{{prod.ProductName}}</a>
-                </div>
-                <div class="col-md-2">
-                    <strong class="price">
-                        {{prod.ProductPrice | currency:'INR':'symbol'}}
-                        <i class="fa fa-remove"></i>
-                        {{prod.CartCount}}
-                    </strong>
-                </div>
-                <div class="col-md-2">
-                    <button (click)="removeFromCart(prod,0)" class="checkout-button">REMOVE</button>
-                </div>
-            </div>
-            
 
+            </div>
         </div>
         <div class="col-md-4 text-capitalize">
-            <div>
+            <div class="cart-container">
                 <h4>Estimate Shipping</h4>
                 <table class="table table-dark">
                     <tbody>
@@ -48,12 +50,14 @@
                             <td>
                                 <form>
                                     <div class="input-group pull-right">
-                                        <input type="text" [(ngModel)]="pincode" name="pincode" class="input-text pin" 
+                                        <input type="text" [(ngModel)]="pincode" name="pincode" class="input-text pin"
                                                pattern="\d*" maxlength="6">
-                                        <button (click)="checkPin();" class="input-group-addon handtool"><i class="fa fa-search"></i></button>
+                                        <button (click)="checkPin();" class="input-group-addon handtool">
+                                            <i class="fa fa-search"></i>
+                                        </button>
                                     </div>
                                 </form>
-                                
+
                             </td>
                         </tr>
                         <tr *ngIf="address">
@@ -67,12 +71,12 @@
                                 </div>
                             </td>
                         </tr>
-                        
-                        
+
+
                     </tbody>
                 </table>
             </div>
-            <div>
+            <div class="cart-container">
                 <h4>Summary</h4>
                 <table class="table table-dark">
                     <tbody>
@@ -90,10 +94,12 @@
                         </tr>
                     </tbody>
                 </table>
+                <button class="checkout-button">
+                    Proceed to checkout
+                </button>
             </div>
-            <button class="checkout-button">
-                Proceed to checkout
-            </button>
+           
         </div>
+        <div class="col-1"></div>
     </div>
 </div>

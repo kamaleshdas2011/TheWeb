@@ -16,27 +16,26 @@ declare var jquery: any;
 declare var $: any;
 
 @Component({
-    selector: 'user-profile',
-    templateUrl: 'app/account/account.component.html',
-    styleUrls: ['app/account/account.component.css',],
+    templateUrl: 'app/account/acBasic.component.html',
+    styleUrls: ['app/account/account.component.css',]
 
 })
-export class AccountComponent implements OnInit {
+export class AcBasicComponent implements OnInit {
     access_token: any;
     acForm: FormGroup;
     statusMessage: string;
     private user: User;
 
-    ngOnInit(): void {        
+    ngOnInit(): void {
 
         this.user = new User();
         if (this._storeService.pull_access_token()) {
             this.access_token = this._storeService.pull_access_token().access_token;
             this.user = this._storeService.pullFromLocalStorage('user_info');
         }
-       
+
         this.acForm = this._fb.group({
-            Email: [this.user.Email , [Validators.required]],
+            Email: [this.user.Email, [Validators.required]],
             FirstName: [this.user.FirstName],
             LastName: [this.user.LastName],
             MiddleName: [this.user.MiddleName],
@@ -50,9 +49,9 @@ export class AccountComponent implements OnInit {
         setTimeout(() => element.focus(), 0);
     }
     updatebasicinfo() {
-        
+
         var formValue = this.acForm.value;
-        
+
         this._acService.updateUserData(formValue)
             .subscribe(
                 (data: any) => {

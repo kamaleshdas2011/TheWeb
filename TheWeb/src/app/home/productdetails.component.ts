@@ -6,7 +6,6 @@ import { ProductService } from '../services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { StorageService } from '../services/storage.service';
 
-
 declare var jquery: any;
 declare var $: any;
 
@@ -17,22 +16,20 @@ declare var $: any;
     styleUrls: ['app/home/productdetails.component.css'],
 })
 export class ProductDetailsComponent implements OnInit {
-
-    visible: string = 'visible';
+    visible: string = 'prod-img-visible';
     product: Product;
     images: Image[];
     statusMessage: string;
 
     ngOnInit(): void {
-        
         let prodid: string = this._activateroute.snapshot.params['id'];
         this._prodService.getProductDetails(prodid)
             .subscribe(
-                (response)=> {
+                (response) => {
                     this.product = response;
                     //console.log(this.product);
                     this._imgService.getProductImages(this.product.ProductID, 'Details').subscribe(
-                        (imgData: any)=> {
+                        (imgData: any) => {
                             this.images = imgData;
                         },
                         (error1: any) => {
@@ -44,7 +41,7 @@ export class ProductDetailsComponent implements OnInit {
                         }
                     );
                 },
-                (error)=> {
+                (error) => {
                     console.log("Error happened" + error)
 
                     if (error.status === '401') {
@@ -53,15 +50,21 @@ export class ProductDetailsComponent implements OnInit {
                 }
             );
 
+
     }
 
-    displayImage(index: string, event: any) {
+    displayImage(index: string) {
 
+        //hide active image
+        let activeImage = this._elm.nativeElement.querySelector(".prod-img-visible");
+        
+        this._rend.removeClass(activeImage, 'prod-img-visible');
+        this._rend.addClass(activeImage, 'prod-img-hide');
+
+        //show clicked image
         let input = this._elm.nativeElement.querySelector('#image-' + index);
-        let allImages = this._elm.nativeElement.querySelector(".visible");
-        this._rend.removeClass(allImages, 'visible');
-        this._rend.addClass(input, 'visible');
-
+        this._rend.removeClass(input, 'prod-img-hide');
+        this._rend.addClass(input, 'prod-img-visible');
     }
     addToCart(product: Product) {
         let itemCount = this._elm.nativeElement.querySelector('#prodqty').value;
@@ -69,7 +72,6 @@ export class ProductDetailsComponent implements OnInit {
         $('#alertAddCart').show('fade');
     }
     clickWish(prod: Product) {
-        console.log(this._storeService.presentInWishlist(prod.ProductID));
         if (this._storeService.presentInWishlist(prod.ProductID)) {
             $('#alertWishRemove').show('fade');
             $('#alertWishAdd').hide('fade');

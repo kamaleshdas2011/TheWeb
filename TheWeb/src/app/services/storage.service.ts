@@ -18,6 +18,16 @@ export class StorageService {
         }
         return access_token;
     }
+    storeInLocalStorage(content: any, key: string) {
+        localStorage.setItem(key, JSON.stringify(content));
+    }
+    pullFromLocalStorage(key: string) {
+        let content;
+        if (localStorage.getItem(key) != null) {
+            content = JSON.parse(localStorage.getItem(key));
+        }
+        return content;
+    }
     //cart//
     storeCart(product: Product, count: number) {
         let cart: Product[] = [];

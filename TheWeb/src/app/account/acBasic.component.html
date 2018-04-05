@@ -1,0 +1,68 @@
+﻿
+
+    <div class="ac-box">
+        <div class="form loginBox">
+            <form class="form" novalidate (ngSubmit)="updatebasicinfo()" [formGroup]="acForm">
+
+                <div class="form-group row">
+                    <label class="control-label col-md-2" for="name">Email</label>
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <input id="ac-email" class="form-control" type="text" placeholder="Email"
+                                   formControlName="Email" required [readOnly]="true">
+                            <span class="input-group-btn">
+                                <button (click)="enableText('ac-email');" class="btn btn-dark" type="button">
+                                    <i class="fa fa-pencil"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+
+                    <span class="help-block" *ngIf="(acForm.get('Email').touched
+                                                || acForm.get('Email').dirty) &&
+                                                acForm.get('Email').errors">
+                        <span *ngIf="loginForm.get('Email').errors.required">
+                            Please enter your email address.
+                        </span>
+                    </span>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-2" for="name">Name</label>
+                    <div class="col-md-5">
+                        <div class="input-group">
+                            <input id="ac-fname" class="form-control" [readOnly]="true" type="text" placeholder="First name" formControlName="FirstName">
+                            <span class="input-group-btn">
+                                <button (click)="enableText('ac-fname');" class="btn btn-dark" type="button"><i class="fa fa-pencil"></i></button>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <input id="ac-lname" class="form-control" [readOnly]="true" type="text" placeholder="Last name" formControlName="LastName">
+                            <span class="input-group-btn">
+                                <button (click)="enableText('ac-lname');" class="btn btn-dark" type="button"><i class="fa fa-pencil"></i></button>
+                            </span>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-2" for="name">Phone</label>
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <input id="ac-phone" class="form-control" [readOnly]="true" type="text" placeholder="Phone Number" formControlName="PhoneNumber">
+                            <span class="input-group-btn">
+                                <button (click)="enableText('ac-phone');" class="btn btn-dark" type="button"><i class="fa fa-pencil"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <input class="checkout-button" type="submit" value="Update">
+
+            </form>
+            <br />
+            <div *ngIf="statusMessage" class="alert alert-success"><strong>{{statusMessage}}</strong></div>
+        </div>
+    </div>

@@ -8,11 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var image_service_1 = require("../services/image.service");
 var router_1 = require("@angular/router");
-var HomeComponent = /** @class */ (function () {
+var HomeComponent = (function () {
     function HomeComponent(_imgService, _route, _router) {
         this._imgService = _imgService;
         this._route = _route;
@@ -34,16 +33,16 @@ var HomeComponent = /** @class */ (function () {
             console.log("Error happened" + error1);
         });
     };
-    HomeComponent = __decorate([
-        core_1.Component({
-            selector: 'featured-product',
-            templateUrl: 'app/home/home.component.html'
-        }),
-        __metadata("design:paramtypes", [image_service_1.ImageService,
-            router_1.ActivatedRoute,
-            router_1.Router])
-    ], HomeComponent);
     return HomeComponent;
 }());
+HomeComponent = __decorate([
+    core_1.Component({
+        selector: 'featured-product',
+        templateUrl: 'app/home/home.component.html'
+    }),
+    __metadata("design:paramtypes", [image_service_1.ImageService,
+        router_1.ActivatedRoute,
+        router_1.Router])
+], HomeComponent);
 exports.HomeComponent = HomeComponent;
 //# sourceMappingURL=home.component.js.map

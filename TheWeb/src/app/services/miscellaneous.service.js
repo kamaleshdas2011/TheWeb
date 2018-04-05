@@ -8,26 +8,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
-var MiscellaneousService = /** @class */ (function () {
+var MiscellaneousService = (function () {
     function MiscellaneousService(_http) {
         this._http = _http;
-        this.API_KEY = 'AIzaSyAVT-NFAvPYpCp0Jv1ASW-oMN9gKeVg0oc';
+        this.API_KEY = 'AIzaSyCHXdf_OAgvy58e0Ftz0pW1Zb1xF8GsFjk';
     }
     MiscellaneousService.prototype.getAddress = function (pin) {
         return this._http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + pin + '&key=' + this.API_KEY)
             .map(function (response) {
-            //console.log(response.json().results[0]);
+            console.log(response.json().results[0]);
             return response.json();
         });
     };
-    MiscellaneousService = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [http_1.Http])
-    ], MiscellaneousService);
     return MiscellaneousService;
 }());
+MiscellaneousService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], MiscellaneousService);
 exports.MiscellaneousService = MiscellaneousService;
 //# sourceMappingURL=miscellaneous.service.js.map

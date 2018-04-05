@@ -8,11 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var storage_service_1 = require("./services/storage.service");
 var router_1 = require("@angular/router");
-var HeaderComponent = /** @class */ (function () {
+var HeaderComponent = (function () {
     function HeaderComponent(_storageService, _route, _router) {
         this._storageService = _storageService;
         this._route = _route;
@@ -33,7 +32,7 @@ var HeaderComponent = /** @class */ (function () {
     };
     HeaderComponent.prototype.account = function () {
         $('.modal').modal('hide');
-        this._router.navigate(['/account']);
+        this._router.navigate(['/account/basicinfo']);
         //console.log(this.access_token.userName);
     };
     HeaderComponent.prototype.cartPopup = function () {
@@ -64,17 +63,17 @@ var HeaderComponent = /** @class */ (function () {
         this.wish = this._storageService.pullWish();
         this.wishSum = this._storageService.getWishSum();
     };
-    HeaderComponent = __decorate([
-        core_1.Component({
-            selector: 'page-header',
-            templateUrl: 'app/header.component.html',
-            styleUrls: ['app/css/header.css']
-        }),
-        __metadata("design:paramtypes", [storage_service_1.StorageService,
-            router_1.ActivatedRoute,
-            router_1.Router])
-    ], HeaderComponent);
     return HeaderComponent;
 }());
+HeaderComponent = __decorate([
+    core_1.Component({
+        selector: 'page-header',
+        templateUrl: 'app/header.component.html',
+        styleUrls: ['app/css/header.css']
+    }),
+    __metadata("design:paramtypes", [storage_service_1.StorageService,
+        router_1.ActivatedRoute,
+        router_1.Router])
+], HeaderComponent);
 exports.HeaderComponent = HeaderComponent;
 //# sourceMappingURL=header.component.js.map

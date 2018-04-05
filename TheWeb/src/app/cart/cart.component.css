@@ -1,30 +1,19 @@
 ﻿.cart-container {
-    width: 100%;
-    display: table;
+    /*width: 100%;*/
+    /*display: table;*/
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .08);
+    padding: 12px;
+    margin-bottom: 16px;
 }
+
 
 .cart-items {
     padding-bottom: 20px;
 }
 
-.input-text {
-    color: #000000;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    vertical-align: middle;
-    border: none;
-    height: 30px;
-    background: #ededed;
-}
 
-    .input-text:focus {
-        border: 1px solid #3399cc;
-    }
-
-.qty {
-    width: 50px;
-}
 
 .pin {
     width: 100px;

@@ -1,14 +1,33 @@
-﻿<div class="main-container">
+﻿<div class="main-container text-center" *ngIf="!access_token">
+    <div class="jumbotron">
+        <h3>Looks like you are not logged in.</h3>
+    </div>
+</div>
+
+<div class="main-container" *ngIf="access_token">
     <div class="row">
         <div class="col-md-4">
-            <div class="ac-topleft">
+            <div class="ac-box">
                 <i class="fa fa-user-circle fa-5x"></i>
-                <div class="text-center">
-                    {{userName}}
+                <span class="text-center">
+                    {{user.FirstName}}
+                </span>
+            </div>
+            <div class="ac-box text-capitalize">
+                <div [routerLink]="['/account/basicinfo']" routerLinkActive="ac-action-active" class="ac-actions">
+                    <a>Basic info</a><span>&gt;</span>
+                </div>
+                <div [routerLink]="['/account/address']" routerLinkActive="ac-action-active" class="ac-actions">
+                    <a>Address</a><span>&gt;</span>
+                </div>
+                <div [routerLink]="['/account/orders']" routerLinkActive="ac-action-active" class="ac-actions">
+                    <a>Orders</a><span>&gt;</span>
                 </div>
             </div>
         </div>
         <div class="col-md-8">
+            <router-outlet></router-outlet>
+        </div>
+            
         </div>
     </div>
-</div>

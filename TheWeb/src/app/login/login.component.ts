@@ -17,9 +17,7 @@ export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     statusMessage: string;
 
-    private store(body: any): void {
-        localStorage.setItem('access_token', JSON.stringify(body));
-    }
+    
     login() {
         const email = this.loginForm.get('email').value;
         const password = this.loginForm.get('password').value;
@@ -28,7 +26,7 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 (data: any) => {
                     this.statusMessage = "Login successful.";
-                    this.store(data);
+                    //this.store(data);
                     location.reload();
 
                 },

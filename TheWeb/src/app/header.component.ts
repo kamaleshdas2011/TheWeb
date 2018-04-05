@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
     }
     account() {
         $('.modal').modal('hide')
-        this._router.navigate(['/account']);
+        this._router.navigate(['/account/basicinfo']);
         //console.log(this.access_token.userName);
     }
     

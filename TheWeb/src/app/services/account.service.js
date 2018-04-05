@@ -10,37 +10,44 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
-var product_1 = require("../classes/product");
-require("rxjs/add/operator/map");
-require("rxjs/add/operator/catch");
-var ProductService = (function () {
-    function ProductService(_http) {
+var authentication_service_1 = require("./authentication.service");
+var storage_service_1 = require("./storage.service");
+var AccountService = (function () {
+    function AccountService(_http, _authService, _storeService) {
         this._http = _http;
+        this._authService = _authService;
+        this._storeService = _storeService;
         var access_token;
         if (localStorage.getItem('access_token') != null) {
             access_token = JSON.parse(localStorage.getItem('access_token'));
             this.header = new http_1.Headers({
-                'Authorization': 'Bearer ' + access_token.access_token
+                'Authorization': 'Bearer ' + access_token.access_token,
+                'Content-Type': 'application/json',
             });
             this.options = new http_1.RequestOptions({
                 headers: this.header
             });
         }
     }
-    ProductService.prototype.getProductDetails = function (id) {
-        //console.log(localStorage.getItem('access_token'));
-        this.prod = new product_1.Product();
-        return this._http.get('http://localhost:49959/api/product/' + id, this.options)
+    AccountService.prototype.updateUserData = function (formData) {
+        var _this = this;
+        var model = formData;
+        return this._http.post('http://localhost:49959/api/account/editaccount', model, this.options)
             .map(function (response) {
-            //console.log(response.status);
-            return response.json();
+            _this._authService.getAccountInfo().subscribe(function (userdata) {
+                _this._storeService.storeInLocalStorage(userdata, 'user_info');
+            }, function (error) {
+                console.error(error);
+            });
+            return response.status;
         });
     };
-    return ProductService;
+    return AccountService;
 }());
-ProductService = __decorate([
+AccountService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
-], ProductService);
-exports.ProductService = ProductService;
-//# sourceMappingURL=product.service.js.map
+    __metadata("design:paramtypes", [http_1.Http, authentication_service_1.AuthenticationService,
+        storage_service_1.StorageService])
+], AccountService);
+exports.AccountService = AccountService;
+//# sourceMappingURL=account.service.js.map

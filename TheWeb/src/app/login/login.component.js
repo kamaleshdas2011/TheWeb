@@ -8,21 +8,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var authentication_service_1 = require("../services/authentication.service");
 //import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap'
-var LoginComponent = /** @class */ (function () {
+var LoginComponent = (function () {
     function LoginComponent(_fb, _authService, _elm, _rend) {
         this._fb = _fb;
         this._authService = _authService;
         this._elm = _elm;
         this._rend = _rend;
     }
-    LoginComponent.prototype.store = function (body) {
-        localStorage.setItem('access_token', JSON.stringify(body));
-    };
     LoginComponent.prototype.login = function () {
         var _this = this;
         var email = this.loginForm.get('email').value;
@@ -30,7 +26,7 @@ var LoginComponent = /** @class */ (function () {
         this._authService.authenticate(email, password)
             .subscribe(function (data) {
             _this.statusMessage = "Login successful.";
-            _this.store(data);
+            //this.store(data);
             location.reload();
         }, function (error) {
             console.log("Error happened. " + error);
@@ -54,18 +50,18 @@ var LoginComponent = /** @class */ (function () {
             }
         }
     };
-    LoginComponent = __decorate([
-        core_1.Component({
-            selector: 'login-popup',
-            templateUrl: 'app/login/login.component.html',
-            styleUrls: ['app/login/login.component.css'],
-        }),
-        __metadata("design:paramtypes", [forms_1.FormBuilder,
-            authentication_service_1.AuthenticationService,
-            core_1.ElementRef,
-            core_1.Renderer2])
-    ], LoginComponent);
     return LoginComponent;
 }());
+LoginComponent = __decorate([
+    core_1.Component({
+        selector: 'login-popup',
+        templateUrl: 'app/login/login.component.html',
+        styleUrls: ['app/login/login.component.css'],
+    }),
+    __metadata("design:paramtypes", [forms_1.FormBuilder,
+        authentication_service_1.AuthenticationService,
+        core_1.ElementRef,
+        core_1.Renderer2])
+], LoginComponent);
 exports.LoginComponent = LoginComponent;
 //# sourceMappingURL=login.component.js.map

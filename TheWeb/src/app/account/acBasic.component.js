@@ -18,8 +18,8 @@ var forms_1 = require("@angular/forms");
 var authentication_service_1 = require("../services/authentication.service");
 var account_service_1 = require("../services/account.service");
 var user_1 = require("../classes/user");
-var AccountComponent = (function () {
-    function AccountComponent(_imgService, _elm, _rend, _prodService, _activateroute, _storeService, _misService, _fb, _authService, _acService) {
+var AcBasicComponent = (function () {
+    function AcBasicComponent(_imgService, _elm, _rend, _prodService, _activateroute, _storeService, _misService, _fb, _authService, _acService) {
         this._imgService = _imgService;
         this._elm = _elm;
         this._rend = _rend;
@@ -31,7 +31,7 @@ var AccountComponent = (function () {
         this._authService = _authService;
         this._acService = _acService;
     }
-    AccountComponent.prototype.ngOnInit = function () {
+    AcBasicComponent.prototype.ngOnInit = function () {
         this.user = new user_1.User();
         if (this._storeService.pull_access_token()) {
             this.access_token = this._storeService.pull_access_token().access_token;
@@ -45,13 +45,13 @@ var AccountComponent = (function () {
             PhoneNumber: [this.user.PhoneNumber]
         });
     };
-    AccountComponent.prototype.enableText = function (name) {
+    AcBasicComponent.prototype.enableText = function (name) {
         var cont = this._elm.nativeElement.querySelector("#" + name);
         this._rend.removeAttribute(cont, 'readonly');
         var element = this._rend.selectRootElement("#" + name);
         setTimeout(function () { return element.focus(); }, 0);
     };
-    AccountComponent.prototype.updatebasicinfo = function () {
+    AcBasicComponent.prototype.updatebasicinfo = function () {
         var _this = this;
         var formValue = this.acForm.value;
         this._acService.updateUserData(formValue)
@@ -62,13 +62,12 @@ var AccountComponent = (function () {
             _this.statusMessage = "Something went wrong. Try agin after sometime";
         });
     };
-    return AccountComponent;
+    return AcBasicComponent;
 }());
-AccountComponent = __decorate([
+AcBasicComponent = __decorate([
     core_1.Component({
-        selector: 'user-profile',
-        templateUrl: 'app/account/account.component.html',
-        styleUrls: ['app/account/account.component.css',],
+        templateUrl: 'app/account/acBasic.component.html',
+        styleUrls: ['app/account/account.component.css',]
     }),
     __metadata("design:paramtypes", [image_service_1.ImageService,
         core_1.ElementRef,
@@ -80,6 +79,6 @@ AccountComponent = __decorate([
         forms_1.FormBuilder,
         authentication_service_1.AuthenticationService,
         account_service_1.AccountService])
-], AccountComponent);
-exports.AccountComponent = AccountComponent;
-//# sourceMappingURL=account.component.js.map
+], AcBasicComponent);
+exports.AcBasicComponent = AcBasicComponent;
+//# sourceMappingURL=acBasic.component.js.map
