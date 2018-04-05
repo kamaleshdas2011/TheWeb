@@ -18,7 +18,7 @@ var MiscellaneousService = (function () {
     MiscellaneousService.prototype.getAddress = function (pin) {
         return this._http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + pin + '&key=' + this.API_KEY)
             .map(function (response) {
-            console.log(response.json().results[0]);
+            //console.log(response.json().results[0]);
             return response.json();
         });
     };
