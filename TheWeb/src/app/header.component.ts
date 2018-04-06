@@ -3,6 +3,7 @@ import { LoginComponent } from './login/login.component';
 import { StorageService } from './services/storage.service';
 import { Product } from './classes/product';
 import { ActivatedRoute, Router } from '@angular/router';
+import { User } from './classes/user';
 
 declare var jquery: any;
 declare var $: any;
@@ -16,17 +17,25 @@ declare var $: any;
 
 export class HeaderComponent implements OnInit {
     access_token: any;
-    userName: string;
+    user: User;
     cartCount: number;
     cart: Product[] = [];
     cartSum: number;
     wish: Product[] = [];
     wishSum: number;
+
     ngOnInit(): void {
-        
+
+        this.user = new User();
+        if (this._storeService.pull_access_token()) {
+            this.access_token = this._storeService.pull_access_token().access_token;
+            this.user = this._storeService.pullFromLocalStorage('user_info');
+            //console.log(this.access_token);
+        }
     }
+
     logout() {
-        localStorage.removeItem('access_token');
+        sessionStorage.removeItem('access_token');
         this.access_token = null;
         location.reload();
     }
@@ -68,11 +77,8 @@ export class HeaderComponent implements OnInit {
     }
     constructor(private _storageService: StorageService,
         private _route: ActivatedRoute,
-        private _router: Router) {
-        if (localStorage.getItem('access_token') != null) {
-            this.access_token = JSON.parse(localStorage.getItem('access_token'));
-            this.userName = this.access_token.userName;
-        }
+        private _router: Router,
+        private _storeService: StorageService,) {
 
     }
 

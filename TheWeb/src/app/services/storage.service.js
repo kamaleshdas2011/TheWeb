@@ -16,12 +16,12 @@ var StorageService = (function () {
     }
     //access_token//
     StorageService.prototype.store_access_token = function (body) {
-        localStorage.setItem('access_token', JSON.stringify(body));
+        sessionStorage.setItem('access_token', JSON.stringify(body));
     };
     StorageService.prototype.pull_access_token = function () {
         var access_token;
-        if (localStorage.getItem('access_token') != null) {
-            access_token = JSON.parse(localStorage.getItem('access_token'));
+        if (sessionStorage.getItem('access_token') != null) {
+            access_token = JSON.parse(sessionStorage.getItem('access_token'));
         }
         return access_token;
     };

@@ -9,12 +9,12 @@ export class StorageService {
 
     //access_token//
     store_access_token(body: any): void {
-        localStorage.setItem('access_token', JSON.stringify(body));
+        sessionStorage.setItem('access_token', JSON.stringify(body));
     }
     pull_access_token() {
         let access_token;
-        if (localStorage.getItem('access_token') != null) {
-            access_token = JSON.parse(localStorage.getItem('access_token'));
+        if (sessionStorage.getItem('access_token') != null) {
+            access_token = JSON.parse(sessionStorage.getItem('access_token'));
         }
         return access_token;
     }

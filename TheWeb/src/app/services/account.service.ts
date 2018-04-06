@@ -12,6 +12,7 @@ export class AccountService {
     updateUserData(formData: any) {
 
         let model: User = formData;
+        //console.log(this.options)
         return this._http.post('http://localhost:49959/api/account/editaccount', model, this.options)
             .map((response: Response) => {
                 this._authService.getAccountInfo().subscribe(
@@ -26,13 +27,16 @@ export class AccountService {
             })
 
     }
+    access_token: any;
     constructor(private _http: Http, private _authService: AuthenticationService,
         private _storeService: StorageService, ) {
-        let access_token;
-        if (localStorage.getItem('access_token') != null) {
-            access_token = JSON.parse(localStorage.getItem('access_token'));
+
+        if (this._storeService.pull_access_token()) {
+            this.access_token = this._storeService.pull_access_token().access_token;
+            //console.log(this.access_token)
+
             this.header = new Headers({
-                'Authorization': 'Bearer ' + access_token.access_token,
+                'Authorization': 'Bearer ' + this.access_token,
                 'Content-Type': 'application/json',
             });
             this.options = new RequestOptions({

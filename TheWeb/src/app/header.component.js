@@ -11,22 +11,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var storage_service_1 = require("./services/storage.service");
 var router_1 = require("@angular/router");
+var user_1 = require("./classes/user");
 var HeaderComponent = (function () {
-    function HeaderComponent(_storageService, _route, _router) {
+    function HeaderComponent(_storageService, _route, _router, _storeService) {
         this._storageService = _storageService;
         this._route = _route;
         this._router = _router;
+        this._storeService = _storeService;
         this.cart = [];
         this.wish = [];
-        if (localStorage.getItem('access_token') != null) {
-            this.access_token = JSON.parse(localStorage.getItem('access_token'));
-            this.userName = this.access_token.userName;
-        }
     }
     HeaderComponent.prototype.ngOnInit = function () {
+        this.user = new user_1.User();
+        if (this._storeService.pull_access_token()) {
+            this.access_token = this._storeService.pull_access_token().access_token;
+            this.user = this._storeService.pullFromLocalStorage('user_info');
+        }
     };
     HeaderComponent.prototype.logout = function () {
-        localStorage.removeItem('access_token');
+        sessionStorage.removeItem('access_token');
         this.access_token = null;
         location.reload();
     };
@@ -73,7 +76,8 @@ HeaderComponent = __decorate([
     }),
     __metadata("design:paramtypes", [storage_service_1.StorageService,
         router_1.ActivatedRoute,
-        router_1.Router])
+        router_1.Router,
+        storage_service_1.StorageService])
 ], HeaderComponent);
 exports.HeaderComponent = HeaderComponent;
 //# sourceMappingURL=header.component.js.map

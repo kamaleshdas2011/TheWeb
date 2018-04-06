@@ -27,7 +27,7 @@
                             Login
                         </a>
 
-                        <a *ngIf="access_token" data-toggle="modal" data-target="#acModal" href="javascript:void(0)">{{userName}}</a>
+                        <a *ngIf="access_token" data-toggle="modal" data-target="#acModal" href="javascript:void(0)">{{user.FirstName}}</a>
                         <div class="cart-top dropdown-cart">
                             <!--<a href="#"><i class="fa fa-shopping-cart"></i>0</a>-->
                             <a (click)="wishPopup();" id="wishLink" href="javascript:void(0);" title="Wishlist">
@@ -167,13 +167,13 @@
             <br />
 
             <!-- account modal -->
-            <div *ngIf="access_token" class="modal fade" id="acModal">
+            <div *ngIf="access_token && user" class="modal fade" id="acModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
 
                         <!-- Modal Header -->
                         <div class="modal-header">
-                            <h4 class="modal-title">Hi {{userName}}</h4>
+                            <h4 class="modal-title">Hi {{user.FirstName}}</h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
 

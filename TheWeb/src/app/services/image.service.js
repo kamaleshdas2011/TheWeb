@@ -10,15 +10,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
+var storage_service_1 = require("./storage.service");
 var ImageService = (function () {
-    function ImageService(_http) {
+    function ImageService(_http, _storeService) {
         this._http = _http;
+        this._storeService = _storeService;
         this.images = [];
-        var access_token;
-        if (localStorage.getItem('access_token') != null) {
-            access_token = JSON.parse(localStorage.getItem('access_token'));
+        if (this._storeService.pull_access_token()) {
+            this.access_token = this._storeService.pull_access_token().access_token;
             this.header = new http_1.Headers({
-                'Authorization': 'Bearer ' + access_token.access_token
+                'Authorization': 'Bearer ' + this.access_token
             });
             this.options = new http_1.RequestOptions({
                 headers: this.header,
@@ -37,7 +38,7 @@ var ImageService = (function () {
 }());
 ImageService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
+    __metadata("design:paramtypes", [http_1.Http, storage_service_1.StorageService])
 ], ImageService);
 exports.ImageService = ImageService;
 //# sourceMappingURL=image.service.js.map

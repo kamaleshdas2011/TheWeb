@@ -13,14 +13,15 @@ var http_1 = require("@angular/http");
 var product_1 = require("../classes/product");
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/catch");
+var storage_service_1 = require("./storage.service");
 var ProductService = (function () {
-    function ProductService(_http) {
+    function ProductService(_http, _storeService) {
         this._http = _http;
-        var access_token;
-        if (localStorage.getItem('access_token') != null) {
-            access_token = JSON.parse(localStorage.getItem('access_token'));
+        this._storeService = _storeService;
+        if (this._storeService.pull_access_token()) {
+            this.access_token = this._storeService.pull_access_token().access_token;
             this.header = new http_1.Headers({
-                'Authorization': 'Bearer ' + access_token.access_token
+                'Authorization': 'Bearer ' + this.access_token
             });
             this.options = new http_1.RequestOptions({
                 headers: this.header
@@ -32,7 +33,14 @@ var ProductService = (function () {
         this.prod = new product_1.Product();
         return this._http.get('http://localhost:49959/api/product/' + id, this.options)
             .map(function (response) {
-            //console.log(response.status);
+            return response.json();
+        });
+    };
+    ProductService.prototype.getProducts = function () {
+        this.prod = new product_1.Product();
+        return this._http.get('http://localhost:49959/api/product', this.options)
+            .map(function (response) {
+            //console.log(response.json());
             return response.json();
         });
     };
@@ -40,7 +48,7 @@ var ProductService = (function () {
 }());
 ProductService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
+    __metadata("design:paramtypes", [http_1.Http, storage_service_1.StorageService])
 ], ProductService);
 exports.ProductService = ProductService;
 //# sourceMappingURL=product.service.js.map

@@ -2,6 +2,7 @@
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Image } from '../classes/image';
 import { Options } from 'selenium-webdriver/chrome';
+import { StorageService } from './storage.service';
 
 @Injectable()
 export class ImageService {
@@ -17,12 +18,12 @@ export class ImageService {
             })
 
     }
-    constructor(private _http: Http) {
-        let access_token;
-        if (localStorage.getItem('access_token') != null) {
-            access_token = JSON.parse(localStorage.getItem('access_token'));
+    access_token: any;
+    constructor(private _http: Http, private _storeService: StorageService,) {
+        if (this._storeService.pull_access_token()) {
+            this.access_token = this._storeService.pull_access_token().access_token;
             this.header = new Headers({
-                'Authorization': 'Bearer ' + access_token.access_token
+                'Authorization': 'Bearer ' + this.access_token
             });
             this.options = new RequestOptions({
                 headers: this.header,

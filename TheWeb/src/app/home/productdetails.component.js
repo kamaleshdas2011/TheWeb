@@ -44,6 +44,7 @@ var ProductDetailsComponent = (function () {
                 _this.statusMessage = 'Session expired, please login again.';
             }
         });
+        //this._prodService.getProducts().subscribe((res) => this.prodlist = res);
     };
     ProductDetailsComponent.prototype.displayImage = function (index) {
         //hide active image

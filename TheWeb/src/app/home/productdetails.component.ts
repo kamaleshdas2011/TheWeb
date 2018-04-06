@@ -20,7 +20,7 @@ export class ProductDetailsComponent implements OnInit {
     product: Product;
     images: Image[];
     statusMessage: string;
-
+    prodlist: any;
     ngOnInit(): void {
         let prodid: string = this._activateroute.snapshot.params['id'];
         this._prodService.getProductDetails(prodid)
@@ -48,7 +48,9 @@ export class ProductDetailsComponent implements OnInit {
                         this.statusMessage = 'Session expired, please login again.';
                     }
                 }
-            );
+        );
+
+        //this._prodService.getProducts().subscribe((res) => this.prodlist = res);
 
 
     }

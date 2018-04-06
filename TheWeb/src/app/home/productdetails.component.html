@@ -18,6 +18,9 @@
             </div>
 
         </div>
+        <!--<div *ngFor="let img of prodlist;let index=index">
+            <img src="data:image/gif;base64,{{img.LargePhoto}}"/>
+        </div>-->
         <div class="col-md-5" *ngIf="product">
             <div class="product-box">
                 <div [innerHTML]="product.ProductShortDesc" class="product-subtitle"></div>

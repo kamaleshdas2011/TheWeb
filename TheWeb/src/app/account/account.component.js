@@ -37,30 +37,6 @@ var AccountComponent = (function () {
             this.access_token = this._storeService.pull_access_token().access_token;
             this.user = this._storeService.pullFromLocalStorage('user_info');
         }
-        this.acForm = this._fb.group({
-            Email: [this.user.Email, [forms_1.Validators.required]],
-            FirstName: [this.user.FirstName],
-            LastName: [this.user.LastName],
-            MiddleName: [this.user.MiddleName],
-            PhoneNumber: [this.user.PhoneNumber]
-        });
-    };
-    AccountComponent.prototype.enableText = function (name) {
-        var cont = this._elm.nativeElement.querySelector("#" + name);
-        this._rend.removeAttribute(cont, 'readonly');
-        var element = this._rend.selectRootElement("#" + name);
-        setTimeout(function () { return element.focus(); }, 0);
-    };
-    AccountComponent.prototype.updatebasicinfo = function () {
-        var _this = this;
-        var formValue = this.acForm.value;
-        this._acService.updateUserData(formValue)
-            .subscribe(function (data) {
-            _this.statusMessage = "Update successful.";
-        }, function (error) {
-            console.log("Error happened. " + error);
-            _this.statusMessage = "Something went wrong. Try agin after sometime";
-        });
     };
     return AccountComponent;
 }());

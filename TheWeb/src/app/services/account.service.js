@@ -17,11 +17,11 @@ var AccountService = (function () {
         this._http = _http;
         this._authService = _authService;
         this._storeService = _storeService;
-        var access_token;
-        if (localStorage.getItem('access_token') != null) {
-            access_token = JSON.parse(localStorage.getItem('access_token'));
+        if (this._storeService.pull_access_token()) {
+            this.access_token = this._storeService.pull_access_token().access_token;
+            //console.log(this.access_token)
             this.header = new http_1.Headers({
-                'Authorization': 'Bearer ' + access_token.access_token,
+                'Authorization': 'Bearer ' + this.access_token,
                 'Content-Type': 'application/json',
             });
             this.options = new http_1.RequestOptions({
@@ -32,6 +32,7 @@ var AccountService = (function () {
     AccountService.prototype.updateUserData = function (formData) {
         var _this = this;
         var model = formData;
+        //console.log(this.options)
         return this._http.post('http://localhost:49959/api/account/editaccount', model, this.options)
             .map(function (response) {
             _this._authService.getAccountInfo().subscribe(function (userdata) {
