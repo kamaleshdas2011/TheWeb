@@ -35,7 +35,7 @@ var AcBasicComponent = (function () {
         this.user = new user_1.User();
         if (this._storeService.pull_access_token()) {
             this.access_token = this._storeService.pull_access_token().access_token;
-            this.user = this._storeService.pullFromLocalStorage('user_info');
+            this.user = this._storeService.pullFromSessionStorage('user_info');
         }
         this.acForm = this._fb.group({
             Email: [this.user.Email, [forms_1.Validators.required]],

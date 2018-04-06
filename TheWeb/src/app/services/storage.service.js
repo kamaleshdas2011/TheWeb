@@ -25,6 +25,11 @@ var StorageService = (function () {
         }
         return access_token;
     };
+    StorageService.prototype.remove_access_token = function () {
+        if (sessionStorage.getItem('access_token') != null) {
+            sessionStorage.removeItem('access_token');
+        }
+    };
     StorageService.prototype.storeInLocalStorage = function (content, key) {
         localStorage.setItem(key, JSON.stringify(content));
     };
@@ -34,6 +39,26 @@ var StorageService = (function () {
             content = JSON.parse(localStorage.getItem(key));
         }
         return content;
+    };
+    StorageService.prototype.removeFromLocalStorage = function (key) {
+        if (localStorage.getItem(key) != null) {
+            localStorage.removeItem(key);
+        }
+    };
+    StorageService.prototype.storeInSessionStorage = function (content, key) {
+        sessionStorage.setItem(key, JSON.stringify(content));
+    };
+    StorageService.prototype.pullFromSessionStorage = function (key) {
+        var content;
+        if (sessionStorage.getItem(key) != null) {
+            content = JSON.parse(sessionStorage.getItem(key));
+        }
+        return content;
+    };
+    StorageService.prototype.removeFromSessionStorage = function (key) {
+        if (sessionStorage.getItem(key) != null) {
+            sessionStorage.removeItem(key);
+        }
     };
     //cart//
     StorageService.prototype.storeCart = function (product, count) {

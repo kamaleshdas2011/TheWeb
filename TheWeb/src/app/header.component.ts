@@ -4,6 +4,7 @@ import { StorageService } from './services/storage.service';
 import { Product } from './classes/product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from './classes/user';
+import { AuthenticationService } from './services/authentication.service';
 
 declare var jquery: any;
 declare var $: any;
@@ -29,13 +30,17 @@ export class HeaderComponent implements OnInit {
         this.user = new User();
         if (this._storeService.pull_access_token()) {
             this.access_token = this._storeService.pull_access_token().access_token;
-            this.user = this._storeService.pullFromLocalStorage('user_info');
+            this.user = this._storeService.pullFromSessionStorage('user_info');
             //console.log(this.access_token);
         }
     }
 
     logout() {
-        sessionStorage.removeItem('access_token');
+        //this._authService.logout().subscribe((data) => {
+            
+        //}, (error) => console.log(error));
+        this._storageService.remove_access_token();
+        this._storeService.removeFromSessionStorage('user_info');
         this.access_token = null;
         location.reload();
     }
@@ -78,7 +83,8 @@ export class HeaderComponent implements OnInit {
     constructor(private _storageService: StorageService,
         private _route: ActivatedRoute,
         private _router: Router,
-        private _storeService: StorageService,) {
+        private _storeService: StorageService,
+        private _authService: AuthenticationService,) {
 
     }
 

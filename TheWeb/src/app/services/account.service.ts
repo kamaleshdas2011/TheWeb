@@ -17,7 +17,7 @@ export class AccountService {
             .map((response: Response) => {
                 this._authService.getAccountInfo().subscribe(
                     (userdata: any) => {
-                        this._storeService.storeInLocalStorage(userdata, 'user_info');
+                        this._storeService.storeInSessionStorage(userdata, 'user_info');
                     },
                     (error) => {
                         console.error(error);

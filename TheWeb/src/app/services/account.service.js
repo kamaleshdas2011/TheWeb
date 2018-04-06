@@ -36,7 +36,7 @@ var AccountService = (function () {
         return this._http.post('http://localhost:49959/api/account/editaccount', model, this.options)
             .map(function (response) {
             _this._authService.getAccountInfo().subscribe(function (userdata) {
-                _this._storeService.storeInLocalStorage(userdata, 'user_info');
+                _this._storeService.storeInSessionStorage(userdata, 'user_info');
             }, function (error) {
                 console.error(error);
             });

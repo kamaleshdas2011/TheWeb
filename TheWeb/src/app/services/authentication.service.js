@@ -37,22 +37,22 @@ var AuthenticationService = (function () {
     AuthenticationService.prototype.authenticate = function (email, pass) {
         //console.log('user-' + email);
         //console.log('pass-' + pass);
-        var _this = this;
         var headers = new http_1.Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         var options = new http_1.RequestOptions({ headers: headers });
         var model = "username=" + email + "&password=" + pass + "&grant_type=password";
         return this._http.post('http://localhost:49959/token', model, options)
             .map(function (response) {
-            _this._storeService.store_access_token(response.json());
-            _this.access_token = _this._storeService.pull_access_token().access_token;
-            //console.log(response.json());
-            _this.getAccountInfo().subscribe(function (userdata) {
-                //console.log(userdata);
-                _this._storeService.storeInLocalStorage(userdata, 'user_info');
-            }, function (error) {
-                //console.error(error);
-            });
             return response.json();
+        });
+    };
+    AuthenticationService.prototype.logout = function () {
+        var headers = new http_1.Headers({ 'Authorization': 'Bearer ' + this.access_token, });
+        var options = new http_1.RequestOptions({ headers: headers });
+        //console.log("wed");
+        return this._http.post('http://localhost:49959/api/account/logout', options)
+            .map(function (response) {
+            console.log(response);
+            return response.status;
         });
     };
     AuthenticationService.prototype.isUserRegistered = function (access_token) {
@@ -70,6 +70,9 @@ var AuthenticationService = (function () {
         });
     };
     AuthenticationService.prototype.getAccountInfo = function () {
+        if (this._storeService.pull_access_token()) {
+            this.access_token = this._storeService.pull_access_token().access_token;
+        }
         var header = new http_1.Headers({
             'Authorization': 'Bearer ' + this.access_token,
         });
@@ -78,7 +81,7 @@ var AuthenticationService = (function () {
         });
         return this._http.get('http://localhost:49959/api/account/accountinfo', options)
             .map(function (response) {
-            //console.log(response);
+            //console.log(response.json())
             return response.json();
         });
     };

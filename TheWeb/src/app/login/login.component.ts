@@ -4,6 +4,7 @@ import {
     ValidatorFn, AbstractControl, FormArray, Validators
 } from '@angular/forms';
 import { AuthenticationService } from '../services/authentication.service';
+import { StorageService } from '../services/storage.service';
 //import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap'
 
 @Component({
@@ -16,8 +17,8 @@ export class LoginComponent implements OnInit {
 
     loginForm: FormGroup;
     statusMessage: string;
+    access_token: string;
 
-    
     login() {
         const email = this.loginForm.get('email').value;
         const password = this.loginForm.get('password').value;
@@ -25,9 +26,23 @@ export class LoginComponent implements OnInit {
         this._authService.authenticate(email, password)
             .subscribe(
                 (data: any) => {
-                    this.statusMessage = "Login successful.";
-                    //this.store(data);
-                    location.reload();
+                    this._storeService.store_access_token(data);
+                    this.access_token = this._storeService.pull_access_token().access_token;
+                    //console.log(this.access_token);
+                    this._authService.getAccountInfo().subscribe(
+                        (userdata: any) => {
+                            //console.log(userdata);
+                            this._storeService.storeInSessionStorage(userdata, 'user_info');
+                            this.statusMessage = "Login successful.";
+                            location.reload();
+                        },
+                        (error) => {
+                            //console.error(error.json());
+                            this._storeService.remove_access_token();
+                            this.statusMessage = error.json();
+                        }
+                    )
+                    
 
                 },
                 (error: any) => {
@@ -57,5 +72,11 @@ export class LoginComponent implements OnInit {
     constructor(private _fb: FormBuilder,
         private _authService: AuthenticationService,
         private _elm: ElementRef,
-        private _rend: Renderer2) { }
+        private _rend: Renderer2,
+        private _storeService: StorageService) {
+
+        if (this._storeService.pull_access_token()) {
+            this.access_token = this._storeService.pull_access_token().access_token;
+        }
+    }
 }

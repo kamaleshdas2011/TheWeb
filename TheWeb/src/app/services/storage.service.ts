@@ -18,6 +18,11 @@ export class StorageService {
         }
         return access_token;
     }
+    remove_access_token() {
+        if (sessionStorage.getItem('access_token') != null) {
+            sessionStorage.removeItem('access_token');
+        }
+    }
     storeInLocalStorage(content: any, key: string) {
         localStorage.setItem(key, JSON.stringify(content));
     }
@@ -27,6 +32,26 @@ export class StorageService {
             content = JSON.parse(localStorage.getItem(key));
         }
         return content;
+    }
+    removeFromLocalStorage(key: string) {
+        if (localStorage.getItem(key) != null) {
+            localStorage.removeItem(key);
+        }
+    }
+    storeInSessionStorage(content: any, key: string) {
+        sessionStorage.setItem(key, JSON.stringify(content));
+    }
+    pullFromSessionStorage(key: string) {
+        let content;
+        if (sessionStorage.getItem(key) != null) {
+            content = JSON.parse(sessionStorage.getItem(key));
+        }
+        return content;
+    }
+    removeFromSessionStorage(key: string) {
+        if (sessionStorage.getItem(key) != null) {
+            sessionStorage.removeItem(key);
+        }
     }
     //cart//
     storeCart(product: Product, count: number) {

@@ -20,7 +20,23 @@ declare var $: any;
     styleUrls: ['app/account/account.component.css',]
 })
 export class AcAddressComponent implements OnInit {
+    userinfo: any;
+    access_token: any;
+
     ngOnInit(): void {
-        
+        if (this._storeService.pull_access_token()) {
+            this.access_token = this._storeService.pull_access_token().access_token;
+            this.userinfo = this._storeService.pullFromSessionStorage('user_info');
+        }
     }
+    constructor(private _imgService: ImageService,
+        private _elm: ElementRef,
+        private _rend: Renderer2,
+        private _prodService: ProductService,
+        private _activateroute: ActivatedRoute,
+        private _storeService: StorageService,
+        private _misService: MiscellaneousService,
+        private _fb: FormBuilder,
+        private _authService: AuthenticationService,
+        private _acService: AccountService) { }
 }
