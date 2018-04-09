@@ -27,6 +27,13 @@ export class AccountService {
             })
 
     }
+    getAllAddress() {
+        return this._http.get('http://localhost:49959/api/account/getalladdress', this.options)
+            .map((response: Response) => {
+                //console.log(response.json())
+                return response.json();
+            })
+    }
     access_token: any;
     constructor(private _http: Http, private _authService: AuthenticationService,
         private _storeService: StorageService, ) {

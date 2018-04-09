@@ -20,3 +20,9 @@ ol a {
 .quotation_div{
     height:20%;
 }
+.profile-box{
+    padding-right:20px;
+}
+.bg-dark {
+    background-color: #000000 !important;
+}

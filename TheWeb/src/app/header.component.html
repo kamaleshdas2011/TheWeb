@@ -1,204 +1,187 @@
 ﻿<login-popup></login-popup>
-<header id="main-menu">
-    <div class="top_header">
-        <div class="header_actions">
-            <div class="header_left hidden-xs">
-                <div class="social-icon">
-                    <a href="#" target="_blank">
-                        <i class="fa fa-facebook"></i>
-                    </a>
-                    <a href="#" target="_blank">
-                        <i class="fa fa-twitter"></i>
-                    </a>
-                    <a href="#" target="_blank">
-                        <i class="fa fa-pinterest" aria-hidden="true"></i>
-                    </a>
-                    <a href="#" target="_blank">
-                        <i class="fa fa-instagram"></i>
-                    </a>
-                    <a href="#">Contact</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+        <img src="https://s3.ap-south-1.amazonaws.com/elasticbeanstalk-ap-south-1-412611335750/dhonni-meye.png" width="270" height="36">
+    </a>
+    <button class="navbar-toggler navbar-toggler-right collapsed" type="button" data-toggle="collapse" data-target="#navb" aria-expanded="false">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse collapse" id="navb" style="">
+        <ul class="navbar-nav mr-auto social-icon">
+            <li class="nav-item">
+                <a href="#" target="_blank">
+                    <i class="fa fa-facebook"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" target="_blank">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" target="_blank">
+                    <i class="fa fa-pinterest" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" target="_blank">
+                    <i class="fa fa-instagram"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#">Contact</a>
+            </li>
+
+            <li class="nav-item">
+                <a (click)="wishPopup();" id="wishLink" href="javascript:void(0);" title="Wishlist">
+                    <i class="fa fa-heart"></i><span>&nbsp;{{_storageService.getWishCount()}}</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a (click)="cartPopup();" id="cartLink" title="Your Cart" href="javascript:void(0)">
+                    <i class="fa fa-cart-arrow-down"></i><span>&nbsp;{{_storageService.getCartCount()}}</span>
+                </a>
+            </li>
+        </ul>
+        <div class="social-icon">
+            <a *ngIf="!access_token" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">
+                Login
+            </a>
+            <div *ngIf="access_token" class="dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" href="javascript:void(0)" data-toggle="dropdown">
+                    {{user.FirstName}}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a href="javascript:void(0)" class="dropdown-item" (click)="logout();">Logout</a>
+                    <a href="javascript:void(0)" class="dropdown-item" (click)="account()">View profile</a>
                 </div>
             </div>
-            <div class="header_right">
-                <div class="header-group">
+            
+        </div>
+        <form class="form-inline my-2 my-lg-0">
+            <!--<input class="form-control mr-sm-2" type="text" placeholder="Search" autocomplete="off">-->
 
-                    <div class="header-group top-links">
-                        <a *ngIf="!access_token" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">
-                            Login
-                        </a>
-
-                        <a *ngIf="access_token" data-toggle="modal" data-target="#acModal" href="javascript:void(0)">{{user.FirstName}}</a>
-                        <div class="cart-top dropdown-cart">
-                            <!--<a href="#"><i class="fa fa-shopping-cart"></i>0</a>-->
-                            <a (click)="wishPopup();" id="wishLink" href="javascript:void(0);" title="Wishlist">
-                                <i class="fa fa-heart"></i><span>&nbsp;{{_storageService.getWishCount()}}</span>
-                            </a>
-                        </div>
-                        <!-- Modal -->
-                        <div class="modal fade" id="wishPop" tabindex="-1" role="dialog">
-                            <div class="modal-dialog">
-                                <div *ngIf="wish.length==0" class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">your wishlist is empty !</h4>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    </div>
-                                </div>
-                                <div *ngIf="wish.length>0" class="modal-content">
-                                    <div class="modal-header">
-
-                                        <h4 class="modal-title">Wishlist</h4>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="container">
-                                            <div *ngFor="let prod of wish;let index=index" class="row">
-                                                <div class="col-md-6">
-                                                    <a href="#" class="product-image">
-                                                        <img src="{{prod.ProductImage}}">
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-6 text-center">
-                                                    <a href="#">{{prod.ProductName}}</a>
-                                                    <br />
-                                                    <strong class="price">
-                                                        {{prod.ProductPrice | currency:'INR':'symbol'}}
-
-                                                    </strong>
-                                                    <div>
-                                                        <button (click)="removeFromWish(prod)" class="checkout-button">REMOVE</button>
-                                                    </div>
-                                                </div>
-                                                <div class="clear"></div>
-                                                <hr class="h-line" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="checkout-button">View wishlist</button>
-                                        <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-                        <div class="cart-top dropdown-cart">
-                            <!--<a href="#"><i class="fa fa-shopping-cart"></i>0</a>-->
-                            <a (click)="cartPopup();" id="cartLink" data-toggle="modal" href="javascript:void(0)">
-                                <i class="fa fa-shopping-cart"></i>{{_storageService.getCartCount()}}
-                            </a>
-                        </div>
-                        <!-- Modal -->
-                        <div id="cartPop" class="modal fade" role="dialog" tabindex="-1">
-
-                            <div class="modal-dialog">
-                                <div *ngIf="cart.length==0" class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">your cart is empty !</h4>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    </div>
-                                </div>
-                                <!-- Modal content-->
-                                <div *ngIf="cart.length>0" class="modal-content">
-                                    <div class="modal-header">
-
-                                        <h4 class="modal-title">Cart</h4>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="container">
-                                            <div *ngFor="let prod of cart;let index=index" class="row">
-                                                <div class="col-md-6">
-                                                    <a [routerLink]="['/productdetails',prod.ProductID]" href="#" class="product-image">
-                                                        <img src="{{prod.ProductImage}}">
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-6 text-center">
-                                                    <a [routerLink]="['/productdetails',prod.ProductID]" href="#">{{prod.ProductName}}</a>
-                                                    <br />
-                                                    <strong class="price">
-                                                        {{prod.ProductPrice| currency:'INR':'symbol'}}
-                                                        <i class="fa fa-remove"></i>
-                                                        {{prod.CartCount}}
-                                                        &rarr;
-                                                        {{prod.ProductPrice * prod.CartCount | currency:'INR':'symbol'}}
-                                                    </strong>
-                                                    <div>
-                                                        <button (click)="removeFromCart(prod,0)" class="checkout-button">REMOVE</button>
-                                                    </div>
-                                                </div>
-                                                <div class="clear"></div>
-                                                <hr class="h-line" />
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-12 text-left">
-                                                    <strong>Total:{{cartSum | currency:'INR':'symbol'}}</strong>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="checkout-button" (click)="gocart()">View Cart</button>
-                                        <button class="checkout-button" type="button">Checkout</button>
-                                        <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="language_selector sticky-hide">
-                        <div class="form-language">
-                            <div class="input-group">
-                                <input type="text" placeholder="Search" class="form-control">
-                                <span class="input-group-btn">
-                                    <button type="submit" class="btn btn-continue"><i class="fa fa-search"></i></button>
-                                </span>
-                            </div>
-                            <!--<input type="text" class="expand-textbox">-->
-                            
-                        </div>
-                    </div>
-                </div>
+            <input class="form-control mr-sm-2" *ngIf="flag" type="text" [(ngModel)]="ProdName" (keyup)="searchProd(ProdName)" name="search"/>
+            <input class="form-control mr-sm-2" [(ngModel)]="ProdName" disabled *ngIf="!flag" type="text" name="search"/>
+            <div class="dropdown-menu" *ngIf="flag">
+                <ul>
+                    <li *ngFor="let prod of prodlist | async">
+                        <a (click)="onselectClient(prod)">{{prod.Name}}</a>
+                    </li>
+                </ul>
             </div>
-            <br />
+            <button class="btn btn-success my-2 my-sm-0" type="button">Search</button>
+        </form>
+    </div>
+</nav>
 
-            <!-- account modal -->
-            <div *ngIf="access_token && user" class="modal fade" id="acModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
 
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                            <h4 class="modal-title">Hi {{user.FirstName}}</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                            <button type="button" class="btn btn-danger" (click)="logout();">Logout</button>
-                            <button type="button" class="btn btn-success" (click)="account()">View profile</button>
-
-                        </div>
-
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                        </div>
-
-                    </div>
-                </div>
+<!-- wish Modal -->
+<div class="modal fade" id="wishPop" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div *ngIf="wish.length==0" class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">your wishlist is empty !</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
         </div>
+        <div *ngIf="wish.length>0" class="modal-content">
+            <div class="modal-header">
 
-        <div id="site-header" class="hidden-sm hidden-md hidden-lg">
-            <a href="#" rel="home">
-                <img src="https://s3.ap-south-1.amazonaws.com/elasticbeanstalk-ap-south-1-412611335750/dhonni-meye.png" width="270" height="36">
-            </a>
+                <h4 class="modal-title">Wishlist</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div *ngFor="let prod of wish;let index=index" class="row">
+                        <div class="col-md-6">
+                            <a href="#" class="product-image">
+                                <img src="{{prod.ProductImage}}">
+                            </a>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <a href="#">{{prod.ProductName}}</a>
+                            <br />
+                            <strong class="price">
+                                {{prod.ProductPrice | currency:'INR':'symbol'}}
+
+                            </strong>
+                            <div>
+                                <button (click)="removeFromWish(prod)" class="checkout-button">REMOVE</button>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <hr class="h-line" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="checkout-button">View wishlist</button>
+                <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+            </div>
         </div>
     </div>
+</div>
 
-</header>
+<!-- cart Modal -->
+<div id="cartPop" class="modal fade" role="dialog" tabindex="-1">
+
+    <div class="modal-dialog">
+        <div *ngIf="cart.length==0" class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">your cart is empty !</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+        </div>
+        <!-- Modal content-->
+        <div *ngIf="cart.length>0" class="modal-content">
+            <div class="modal-header">
+
+                <h4 class="modal-title">Cart</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div *ngFor="let prod of cart;let index=index" class="row">
+                        <div class="col-md-6">
+                            <a [routerLink]="['/productdetails',prod.ProductID]" href="#" class="product-image">
+                                <img src="{{prod.ProductImage}}">
+                            </a>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <a [routerLink]="['/productdetails',prod.ProductID]" href="#">{{prod.ProductName}}</a>
+                            <br />
+                            <strong class="price">
+                                {{prod.ProductPrice| currency:'INR':'symbol'}}
+                                <i class="fa fa-remove"></i>
+                                {{prod.CartCount}}
+                                &rarr;
+                                {{prod.ProductPrice * prod.CartCount | currency:'INR':'symbol'}}
+                            </strong>
+                            <div>
+                                <button (click)="removeFromCart(prod,0)" class="checkout-button">REMOVE</button>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <hr class="h-line" />
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 text-left">
+                            <strong>Total:{{cartSum | currency:'INR':'symbol'}}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="checkout-button" (click)="gocart()">View Cart</button>
+                <button class="checkout-button" type="button">Checkout</button>
+                <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

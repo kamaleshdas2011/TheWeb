@@ -35,6 +35,16 @@ var AcAddressComponent = (function () {
             this.access_token = this._storeService.pull_access_token().access_token;
             this.userinfo = this._storeService.pullFromSessionStorage('user_info');
         }
+        this.getAllAddress();
+    };
+    AcAddressComponent.prototype.getAllAddress = function () {
+        var _this = this;
+        this._acService.getAllAddress()
+            .subscribe(function (data) {
+            _this.useraddress = data;
+        }, function (error) {
+            console.log("Error happened. " + error);
+        });
     };
     return AcAddressComponent;
 }());

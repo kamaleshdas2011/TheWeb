@@ -7,56 +7,42 @@
             ADD A NEW ADDRESS
         </div>
     </div>
-    <div class="ac-addr-box">
-        <div class="row add-type-box">
-            <div class="col-md-11">
-                <span class="add-type">{{userinfo.AddressType}}</span>
-            </div>
-            <div class="col-md-1">
-                <a>
-                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjE2IiB2aWV3Qm94PSIwIDAgNCAxNiI+CiAgICA8ZyBmaWxsPSIjODc4Nzg3IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxjaXJjbGUgY3g9IjIiIGN5PSIyIiByPSIyIi8+CiAgICAgICAgPGNpcmNsZSBjeD0iMiIgY3k9IjgiIHI9IjIiLz4KICAgICAgICA8Y2lyY2xlIGN4PSIyIiBjeT0iMTQiIHI9IjIiLz4KICAgIDwvZz4KPC9zdmc+Cg==" />
-                </a>
-                <div class="edit-box">
-                    <div class="edit-box-item">Edit</div>
-                    <div class="edit-box-item">Delete</div>
+    <ng-container *ngIf="useraddress">
 
+
+        <div class="ac-addr-box" *ngFor="let addr of useraddress">
+            <div class="row add-type-box">
+                <div class="col-md-11">
+                    <span class="add-type">{{addr.AddressType}}</span>
+                </div>
+                <div class="col-md-1">
+                    
+                    <div class="dropdown">
+                        <a class="btn btn-info dropdown-toggle" href="javascript:void(0)"
+                           id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#">Edit</a>
+                            <a class="dropdown-item" href="#">Delete</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="add-name">
-            <strong>{{userinfo.Title + ' ' + userinfo.FirstName}}</strong>
-            <strong>{{userinfo.PhoneNumber}}</strong>
+            <div class="add-name">
+                <strong>{{addr.Title + ' ' + addr.FirstName}}</strong>
+                <strong>{{addr.PhoneNumber}}</strong>
 
-        </div>
-        <div class="add-line">
-            <p class="">{{userinfo.AddressLine1}},{{userinfo.AddressLine2}},{{userinfo.City +' - '+ userinfo.PostalCode}},{{userinfo.State}}</p>
-        </div>
-    </div>
-    <div class="ac-addr-box">
-        <div class="row add-type-box">
-            <div class="col-md-9">
-                <span class="add-type">{{userinfo.AddressType}}</span>
             </div>
-            <div class="col-md-1">
-                <a>
-                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjE2IiB2aWV3Qm94PSIwIDAgNCAxNiI+CiAgICA8ZyBmaWxsPSIjODc4Nzg3IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxjaXJjbGUgY3g9IjIiIGN5PSIyIiByPSIyIi8+CiAgICAgICAgPGNpcmNsZSBjeD0iMiIgY3k9IjgiIHI9IjIiLz4KICAgICAgICA8Y2lyY2xlIGN4PSIyIiBjeT0iMTQiIHI9IjIiLz4KICAgIDwvZz4KPC9zdmc+Cg==" />
-                </a>
-                <div class="edit-box">
-                    <div class="edit-box-item">Edit</div>
-                    <div class="edit-box-item">Delete</div>
-
-                </div>
+            <div class="add-line">
+                <p class="">{{addr.AddressLine1}},{{addr.AddressLine2}},{{addr.City +' - '+ addr.PostalCode}},{{addr.State}}</p>
             </div>
         </div>
+    </ng-container>
+</div>
+<div class="container">
 
-        <div class="add-name">
-            <strong>{{userinfo.Title + ' ' + userinfo.FirstName}}</strong>
-            <strong>{{userinfo.PhoneNumber}}</strong>
 
-        </div>
-        <div class="add-line">
-            <p class="">{{userinfo.AddressLine1}},{{userinfo.AddressLine2}},{{userinfo.City +' - '+ userinfo.PostalCode}},{{userinfo.State}}</p>
-        </div>
-    </div>
+   
 </div>

@@ -5,6 +5,8 @@ import { Product } from './classes/product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from './classes/user';
 import { AuthenticationService } from './services/authentication.service';
+import { Observable, Subject } from 'rxjs';
+import { ProductService } from './services/product.service';
 
 declare var jquery: any;
 declare var $: any;
@@ -25,6 +27,11 @@ export class HeaderComponent implements OnInit {
     wish: Product[] = [];
     wishSum: number;
 
+    public prodlist: Observable<any[]>;
+    private searchTerms = new Subject<string>();
+    public ProdName = '';
+    public flag: boolean = true; 
+
     ngOnInit(): void {
 
         this.user = new User();
@@ -33,8 +40,35 @@ export class HeaderComponent implements OnInit {
             this.user = this._storeService.pullFromSessionStorage('user_info');
             //console.log(this.access_token);
         }
-    }
 
+        this.prodlist = this.searchTerms
+            .debounceTime(300)        // wait for 300ms pause in events  
+            .distinctUntilChanged()   // ignore if next search term is same as previous  
+            .switchMap(term => term   // switch to new observable each time  
+                // return the http search observable  
+                ? this._prodService.search(term)
+                // or the observable of empty heroes if no search term  
+                : Observable.of<any[]>([]))
+            .catch(error => {
+                // TODO: real error handling  
+                console.log(error);
+                return Observable.of<any[]>([]);
+            });  
+    }
+    // Push a search term into the observable stream.  
+    searchProd(term: string): void {
+        this.flag = true;
+        this.searchTerms.next(term);
+    }
+    onselectProd(prod: any) {
+        if (prod.ClientId != 0) {
+            this.ProdName = prod.Name;
+            this.flag = false;
+        }
+        else {
+            return false;
+        }
+    }  
     logout() {
         //this._authService.logout().subscribe((data) => {
             
@@ -84,7 +118,8 @@ export class HeaderComponent implements OnInit {
         private _route: ActivatedRoute,
         private _router: Router,
         private _storeService: StorageService,
-        private _authService: AuthenticationService,) {
+        private _authService: AuthenticationService,
+        private _prodService: ProductService) {
 
     }
 

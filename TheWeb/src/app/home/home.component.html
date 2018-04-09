@@ -1,8 +1,8 @@
-﻿<div *ngIf="images">
+﻿<div class="" *ngIf="images">
     <a href="javascript:void(0)" *ngFor="let img of images;let index = index"
        (click)="gotoProductDetails(img.ProductID)">
-        <div *ngIf="index==0" class="quotation_div">
-            <img src="{{img.ImageUrl}}" />
+        <div *ngIf="index==0">
+            <img class="home-banner-main" src="{{img.ImageUrl}}" />
 
         </div>
     </a>

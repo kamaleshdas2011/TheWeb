@@ -13,21 +13,53 @@ var storage_service_1 = require("./services/storage.service");
 var router_1 = require("@angular/router");
 var user_1 = require("./classes/user");
 var authentication_service_1 = require("./services/authentication.service");
+var rxjs_1 = require("rxjs");
+var product_service_1 = require("./services/product.service");
 var HeaderComponent = (function () {
-    function HeaderComponent(_storageService, _route, _router, _storeService, _authService) {
+    function HeaderComponent(_storageService, _route, _router, _storeService, _authService, _prodService) {
         this._storageService = _storageService;
         this._route = _route;
         this._router = _router;
         this._storeService = _storeService;
         this._authService = _authService;
+        this._prodService = _prodService;
         this.cart = [];
         this.wish = [];
+        this.searchTerms = new rxjs_1.Subject();
+        this.ProdName = '';
+        this.flag = true;
     }
     HeaderComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.user = new user_1.User();
         if (this._storeService.pull_access_token()) {
             this.access_token = this._storeService.pull_access_token().access_token;
             this.user = this._storeService.pullFromSessionStorage('user_info');
+        }
+        this.prodlist = this.searchTerms
+            .debounceTime(300) // wait for 300ms pause in events  
+            .distinctUntilChanged() // ignore if next search term is same as previous  
+            .switchMap(function (term) { return term // switch to new observable each time  
+            ? _this._prodService.search(term)
+            : rxjs_1.Observable.of([]); })
+            .catch(function (error) {
+            // TODO: real error handling  
+            console.log(error);
+            return rxjs_1.Observable.of([]);
+        });
+    };
+    // Push a search term into the observable stream.  
+    HeaderComponent.prototype.searchProd = function (term) {
+        this.flag = true;
+        this.searchTerms.next(term);
+    };
+    HeaderComponent.prototype.onselectProd = function (prod) {
+        if (prod.ClientId != 0) {
+            this.ProdName = prod.Name;
+            this.flag = false;
+        }
+        else {
+            return false;
         }
     };
     HeaderComponent.prototype.logout = function () {
@@ -83,7 +115,8 @@ HeaderComponent = __decorate([
         router_1.ActivatedRoute,
         router_1.Router,
         storage_service_1.StorageService,
-        authentication_service_1.AuthenticationService])
+        authentication_service_1.AuthenticationService,
+        product_service_1.ProductService])
 ], HeaderComponent);
 exports.HeaderComponent = HeaderComponent;
 //# sourceMappingURL=header.component.js.map

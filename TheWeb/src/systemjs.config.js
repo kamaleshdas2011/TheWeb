@@ -24,7 +24,7 @@
             '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
             '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
             //'hammerjs': 'npm:hammerjs/hammer.js',
-            //'@angular/material': 'npm:@angular/material/material.umd.js',
+            '@angular/material': 'npm:@angular/material/material.umd.js',
             // other libraries
             'rxjs': 'npm:rxjs',
             //'lodash': 'npm:lodash/lodash.js',
@@ -45,7 +45,8 @@
                 }
             },
             rxjs: {
-                defaultExtension: 'js'
+                defaultExtension: 'js',
+                main: 'Rx.js'
             }
         }
     });

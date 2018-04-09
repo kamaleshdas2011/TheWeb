@@ -22,12 +22,25 @@ declare var $: any;
 export class AcAddressComponent implements OnInit {
     userinfo: any;
     access_token: any;
+    useraddress: any;
 
     ngOnInit(): void {
         if (this._storeService.pull_access_token()) {
             this.access_token = this._storeService.pull_access_token().access_token;
             this.userinfo = this._storeService.pullFromSessionStorage('user_info');
         }
+        this.getAllAddress();
+    }
+    getAllAddress() {
+        this._acService.getAllAddress()
+            .subscribe(
+                (data: any) => {
+                    this.useraddress = data;
+                },
+                (error: any) => {
+                    console.log("Error happened. " + error);
+                }
+            );
     }
     constructor(private _imgService: ImageService,
         private _elm: ElementRef,

@@ -43,6 +43,13 @@ var AccountService = (function () {
             return response.status;
         });
     };
+    AccountService.prototype.getAllAddress = function () {
+        return this._http.get('http://localhost:49959/api/account/getalladdress', this.options)
+            .map(function (response) {
+            //console.log(response.json())
+            return response.json();
+        });
+    };
     return AccountService;
 }());
 AccountService = __decorate([

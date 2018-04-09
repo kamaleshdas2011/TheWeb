@@ -15,6 +15,7 @@
 
 .main-container{
     padding-top:2%;
+    padding-bottom:8%;
 }
 body {
     background-color: #ffffff;
@@ -790,6 +791,7 @@ a {
     color: #918f90;
     font-size: 14px;
     font-style: italic;
+    padding-left:10px;
     /*font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;*/
 }
 
@@ -1443,12 +1445,14 @@ a.lang_sel_sel, #lang_sel a {
     left: 0;
     bottom: 0;
     overflow: auto;
+    /*width:90%;*/
 }
 
 .modal-content {
     -webkit-border-radius: 0px !important;
     -moz-border-radius: 0px !important;
     border-radius: 0px !important;
+    /*width:90%;*/
 }
 
 
@@ -1466,9 +1470,11 @@ a.lang_sel_sel, #lang_sel a {
 
 .modal-body {
     /*     background-color: #eeeeee; */
+    /*width: 90%;*/
 }
 .form-control {
-    border-radius: 0px!important;
+    border-radius: 0px !important;
+    border: 0px!important;
 }
 
 .btn {
@@ -1499,4 +1505,8 @@ a.lang_sel_sel, #lang_sel a {
 
 .qty {
     width: 50px;
+}
+.home-banner-main{
+    height:10%;
+    width:100%;
 }

@@ -3,7 +3,7 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Product } from '../classes/product';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { StorageService } from './storage.service';
 
 
@@ -29,6 +29,11 @@ export class ProductService {
                 return response.json();
             })
     }
+    search(term: string): Observable<any[]> {
+        var prodlist = this._http.get('http://localhost:49959/api/product/productsearch/term' + '?term=' + term)
+            .map((r: Response) => { return (r.json().length != 0 ? r.json() : [{ "ClientId": 0, "ClientName": "No Record Found" }]) as any[] });
+        return prodlist;
+    }  
     access_token: any;
     constructor(private _http: Http, private _storeService: StorageService,) {
 
