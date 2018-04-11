@@ -12,6 +12,7 @@ var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var authentication_service_1 = require("../services/authentication.service");
 var miscellaneous_service_1 = require("../services/miscellaneous.service");
+var animations_1 = require("@angular/animations");
 var RegisterComponent = (function () {
     function RegisterComponent(_fb, _authService, _miscServ) {
         this._fb = _fb;
@@ -54,7 +55,18 @@ RegisterComponent = __decorate([
     core_1.Component({
         selector: 'register-popup',
         templateUrl: 'app/login/register.component.html',
-        styleUrls: ['app/login/login.component.css']
+        styleUrls: ['app/login/login.component.css'],
+        animations: [
+            animations_1.trigger('slideInOut', [
+                animations_1.transition(':enter', [
+                    animations_1.style({ transform: 'translateY(-100%)' }),
+                    animations_1.animate('200ms ease-in', animations_1.style({ transform: 'translateY(0%)' }))
+                ]),
+                animations_1.transition(':leave', [
+                    animations_1.animate('200ms ease-in', animations_1.style({ transform: 'translateY(-100%)' }))
+                ])
+            ])
+        ]
     }),
     __metadata("design:paramtypes", [forms_1.FormBuilder,
         authentication_service_1.AuthenticationService,

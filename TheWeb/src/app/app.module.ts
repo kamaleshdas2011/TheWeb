@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 
 import { AppComponent } from './app.component';
@@ -46,11 +47,11 @@ const appRoutes: Routes = [
 
 @NgModule({
     imports: [BrowserModule, HttpModule, RouterModule.forRoot(appRoutes),
-        FormsModule, ReactiveFormsModule],
+        FormsModule, ReactiveFormsModule, BrowserAnimationsModule],
     declarations: [AppComponent, HomeComponent, CartComponent,
         ProductDetailsComponent, PageNotFoundComponent,
         FooterComponent, HeaderComponent,
-        LoginComponent, RegisterComponent, AccountComponent, AcAddressComponent, AcBasicComponent
+        LoginComponent, RegisterComponent, AccountComponent, AcAddressComponent, AcBasicComponent,
     ],
     bootstrap: [AppComponent],
     providers: [ImageService, HomeService, ProductService,

@@ -51,8 +51,8 @@
             </form>
         </div>
         <!-- signup -->
-        <div class="container" *ngIf="!_miscServ.getLoginPopupStatus()">
-            <register-popup></register-popup>
+        <div class="container">
+            <register-popup *ngIf="!_miscServ.getLoginPopupStatus()"></register-popup>
         </div>
     </div>
 </div>

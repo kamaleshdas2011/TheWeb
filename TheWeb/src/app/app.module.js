@@ -9,6 +9,7 @@ var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var router_1 = require("@angular/router");
 var http_1 = require("@angular/http");
+var animations_1 = require("@angular/platform-browser/animations");
 var app_component_1 = require("./app.component");
 var home_component_1 = require("./home/home.component");
 var productdetails_component_1 = require("./home/productdetails.component");
@@ -54,11 +55,11 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule, http_1.HttpModule, router_1.RouterModule.forRoot(appRoutes),
-            forms_1.FormsModule, forms_1.ReactiveFormsModule],
+            forms_1.FormsModule, forms_1.ReactiveFormsModule, animations_1.BrowserAnimationsModule],
         declarations: [app_component_1.AppComponent, home_component_1.HomeComponent, cart_component_1.CartComponent,
             productdetails_component_1.ProductDetailsComponent, pagenotfound_component_1.PageNotFoundComponent,
             footer_component_1.FooterComponent, header_component_1.HeaderComponent,
-            login_component_1.LoginComponent, register_component_1.RegisterComponent, account_component_1.AccountComponent, acAddress_component_1.AcAddressComponent, acBasic_component_1.AcBasicComponent
+            login_component_1.LoginComponent, register_component_1.RegisterComponent, account_component_1.AccountComponent, acAddress_component_1.AcAddressComponent, acBasic_component_1.AcBasicComponent,
         ],
         bootstrap: [app_component_1.AppComponent],
         providers: [image_service_1.ImageService, home_service_1.HomeService, product_service_1.ProductService,
