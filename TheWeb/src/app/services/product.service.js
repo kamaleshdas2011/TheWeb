@@ -36,9 +36,9 @@ var ProductService = (function () {
             return response.json();
         });
     };
-    ProductService.prototype.getProducts = function () {
+    ProductService.prototype.getProducts = function (take, skip) {
         this.prod = new product_1.Product();
-        return this._http.get('http://localhost:49959/api/product', this.options)
+        return this._http.get('http://localhost:49959/api/product/getproducts/' + take + '/' + skip, this.options)
             .map(function (response) {
             //console.log(response.json());
             return response.json();

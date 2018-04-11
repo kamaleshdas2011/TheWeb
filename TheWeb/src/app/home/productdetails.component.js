@@ -14,16 +14,25 @@ var product_service_1 = require("../services/product.service");
 var router_1 = require("@angular/router");
 var storage_service_1 = require("../services/storage.service");
 var ProductDetailsComponent = (function () {
-    function ProductDetailsComponent(_imgService, _elm, _rend, _prodService, _activateroute, _storeService) {
+    function ProductDetailsComponent(_imgService, _elm, _rend, _prodService, _activateroute, _storeService, _route, _router) {
+        var _this = this;
         this._imgService = _imgService;
         this._elm = _elm;
         this._rend = _rend;
         this._prodService = _prodService;
         this._activateroute = _activateroute;
         this._storeService = _storeService;
+        this._route = _route;
+        this._router = _router;
         this.visible = 'prod-img-visible';
+        this._route.params.subscribe(function (params) {
+            _this.loadComponent();
+        });
     }
     ProductDetailsComponent.prototype.ngOnInit = function () {
+        this.loadComponent();
+    };
+    ProductDetailsComponent.prototype.loadComponent = function () {
         var _this = this;
         var prodid = this._activateroute.snapshot.params['id'];
         this._prodService.getProductDetails(prodid)
@@ -44,7 +53,6 @@ var ProductDetailsComponent = (function () {
                 _this.statusMessage = 'Session expired, please login again.';
             }
         });
-        //this._prodService.getProducts().subscribe((res) => this.prodlist = res);
     };
     ProductDetailsComponent.prototype.displayImage = function (index) {
         //hide active image
@@ -85,7 +93,9 @@ ProductDetailsComponent = __decorate([
         core_1.Renderer2,
         product_service_1.ProductService,
         router_1.ActivatedRoute,
-        storage_service_1.StorageService])
+        storage_service_1.StorageService,
+        router_1.ActivatedRoute,
+        router_1.Router])
 ], ProductDetailsComponent);
 exports.ProductDetailsComponent = ProductDetailsComponent;
 //# sourceMappingURL=productdetails.component.js.map

@@ -11,10 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var authentication_service_1 = require("../services/authentication.service");
+var miscellaneous_service_1 = require("../services/miscellaneous.service");
 var RegisterComponent = (function () {
-    function RegisterComponent(_fb, _authService) {
+    function RegisterComponent(_fb, _authService, _miscServ) {
         this._fb = _fb;
         this._authService = _authService;
+        this._miscServ = _miscServ;
     }
     RegisterComponent.prototype.register = function () {
         var _this = this;
@@ -25,6 +27,9 @@ var RegisterComponent = (function () {
             .subscribe(function (data) {
             if (data === 200) {
                 _this.statusMessage = "Successfully registerd! You will be automatically logged in shortly.";
+                setTimeout(function () {
+                    _this._miscServ.changeLoginPopupStatus();
+                }, 2000);
             }
             else {
                 _this.statusMessage = "Something went wrong. Try agin after sometime";
@@ -49,8 +54,11 @@ RegisterComponent = __decorate([
     core_1.Component({
         selector: 'register-popup',
         templateUrl: 'app/login/register.component.html',
+        styleUrls: ['app/login/login.component.css']
     }),
-    __metadata("design:paramtypes", [forms_1.FormBuilder, authentication_service_1.AuthenticationService])
+    __metadata("design:paramtypes", [forms_1.FormBuilder,
+        authentication_service_1.AuthenticationService,
+        miscellaneous_service_1.MiscellaneousService])
 ], RegisterComponent);
 exports.RegisterComponent = RegisterComponent;
 //# sourceMappingURL=register.component.js.map

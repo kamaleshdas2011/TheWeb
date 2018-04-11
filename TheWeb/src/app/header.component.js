@@ -48,19 +48,27 @@ var HeaderComponent = (function () {
             return rxjs_1.Observable.of([]);
         });
     };
+    HeaderComponent.prototype.openSearch = function () {
+        //document.getElementById('searchbox').focus();
+        //document.getElementById('searchbox').value = '';;
+        document.getElementById("myOverlay").style.display = "block";
+        //$('.search').val('');
+        //$('.search').focus();
+        //document.getElementById('#searchbox').value = '';
+        //this.flag = false;
+    };
+    HeaderComponent.prototype.closeSearch = function () {
+        document.getElementById("myOverlay").style.display = "none";
+    };
     // Push a search term into the observable stream.  
     HeaderComponent.prototype.searchProd = function (term) {
         this.flag = true;
         this.searchTerms.next(term);
     };
     HeaderComponent.prototype.onselectProd = function (prod) {
-        if (prod.ClientId != 0) {
-            this.ProdName = prod.Name;
-            this.flag = false;
-        }
-        else {
-            return false;
-        }
+        document.getElementById("myOverlay").style.display = "none";
+        //this._router.navigate(['/productdetails', prod.ProductID]);
+        this._router.navigate(['/productdetails', '1']);
     };
     HeaderComponent.prototype.logout = function () {
         //this._authService.logout().subscribe((data) => {

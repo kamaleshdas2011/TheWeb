@@ -21,9 +21,9 @@ export class ProductService {
                 return response.json();
             })
     }
-    getProducts() {
+    getProducts(take: number, skip: number) {
         this.prod = new Product();
-        return this._http.get('http://localhost:49959/api/product', this.options)
+        return this._http.get('http://localhost:49959/api/product/getproducts/' + take + '/' + skip, this.options)
             .map((response: Response) => {
                 //console.log(response.json());
                 return response.json();

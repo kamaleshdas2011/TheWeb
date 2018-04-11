@@ -14,6 +14,7 @@ var MiscellaneousService = (function () {
     function MiscellaneousService(_http) {
         this._http = _http;
         this.API_KEY = 'AIzaSyCHXdf_OAgvy58e0Ftz0pW1Zb1xF8GsFjk';
+        this.LoginPopupStatus = true;
     }
     MiscellaneousService.prototype.getAddress = function (pin) {
         return this._http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + pin + '&key=' + this.API_KEY)
@@ -21,6 +22,12 @@ var MiscellaneousService = (function () {
             //console.log(response.json().results[0]);
             return response.json();
         });
+    };
+    MiscellaneousService.prototype.getLoginPopupStatus = function () {
+        return this.LoginPopupStatus;
+    };
+    MiscellaneousService.prototype.changeLoginPopupStatus = function () {
+        this.LoginPopupStatus = !this.LoginPopupStatus;
     };
     return MiscellaneousService;
 }());

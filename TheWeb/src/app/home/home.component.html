@@ -20,3 +20,25 @@
 
     </div>
 </div>
+<!--<div class="" *ngIf="images">
+    <a href="javascript:void(0)" *ngFor="let img of images;let index = index"
+       (click)="gotoProductDetails(img.ProductID)">
+        <div *ngIf="index==0">
+            <img class="home-banner-main" src="data:image/jpg;base64,{{img.LargePhoto}}" />
+
+        </div>
+    </a>
+</div>
+
+<div class="container home-main">
+    <div class="row" *ngIf="images">
+        <ng-container *ngFor="let img of images;let index = index">
+            <div *ngIf="index>0" class="col-md-3">
+                <a href="javascript:void(0);" (click)="gotoProductDetails(img.ProductID)" banner="yes" class="home-banner">
+                    <img src="data:image/jpg;base64,{{img.LargePhoto}}" alt="{{img.LargePhotoFileName}}">
+                </a>
+            </div>
+        </ng-container>
+
+    </div>
+</div>-->

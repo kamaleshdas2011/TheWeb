@@ -12,14 +12,16 @@ var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var authentication_service_1 = require("../services/authentication.service");
 var storage_service_1 = require("../services/storage.service");
+var miscellaneous_service_1 = require("../services/miscellaneous.service");
 //import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap'
 var LoginComponent = (function () {
-    function LoginComponent(_fb, _authService, _elm, _rend, _storeService) {
+    function LoginComponent(_fb, _authService, _elm, _rend, _storeService, _miscServ) {
         this._fb = _fb;
         this._authService = _authService;
         this._elm = _elm;
         this._rend = _rend;
         this._storeService = _storeService;
+        this._miscServ = _miscServ;
         if (this._storeService.pull_access_token()) {
             this.access_token = this._storeService.pull_access_token().access_token;
         }
@@ -32,14 +34,11 @@ var LoginComponent = (function () {
             .subscribe(function (data) {
             _this._storeService.store_access_token(data);
             _this.access_token = _this._storeService.pull_access_token().access_token;
-            //console.log(this.access_token);
             _this._authService.getAccountInfo().subscribe(function (userdata) {
-                //console.log(userdata);
                 _this._storeService.storeInSessionStorage(userdata, 'user_info');
                 _this.statusMessage = "Login successful.";
                 location.reload();
             }, function (error) {
-                //console.error(error.json());
                 _this._storeService.remove_access_token();
                 _this.statusMessage = error.json();
             });
@@ -77,7 +76,8 @@ LoginComponent = __decorate([
         authentication_service_1.AuthenticationService,
         core_1.ElementRef,
         core_1.Renderer2,
-        storage_service_1.StorageService])
+        storage_service_1.StorageService,
+        miscellaneous_service_1.MiscellaneousService])
 ], LoginComponent);
 exports.LoginComponent = LoginComponent;
 //# sourceMappingURL=login.component.js.map

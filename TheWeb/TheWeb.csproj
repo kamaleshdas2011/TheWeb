@@ -467,7 +467,6 @@
     <TypeScriptCompile Include="src\app\footer.component.ts" />
     <TypeScriptCompile Include="src\app\header.component.ts" />
     <TypeScriptCompile Include="src\app\home\home.component.ts" />
-    <TypeScriptCompile Include="src\app\javascript\image.ts" />
     <TypeScriptCompile Include="src\app\login\login.component.ts" />
     <TypeScriptCompile Include="src\app\login\register.component.ts" />
     <TypeScriptCompile Include="src\app\services\account.service.ts" />
@@ -487,6 +486,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="node_modules\popper.js\.tmp\" />
+    <Folder Include="src\app\javascript\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

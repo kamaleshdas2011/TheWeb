@@ -1,18 +1,21 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, Input } from '@angular/core';
 import {
     FormGroup, FormsModule, FormBuilder, FormControl, Validator,
     ValidatorFn, AbstractControl, FormArray, Validators
 } from '@angular/forms';
 import { AuthenticationService } from '../services/authentication.service';
+import { MiscellaneousService } from '../services/miscellaneous.service';
 
 @Component({
     selector: 'register-popup',
     templateUrl: 'app/login/register.component.html',
-    //styleUrls: ['app/login/login.component.css']
+    styleUrls: ['app/login/login.component.css']
 })
 export class RegisterComponent implements OnInit {
+
     registerForm: FormGroup;
     statusMessage: string;
+
     register() {
         const email = this.registerForm.get('email').value;
         const password = this.registerForm.get('password').value;
@@ -22,6 +25,10 @@ export class RegisterComponent implements OnInit {
                 (data: any) => {
                     if (data === 200) {
                         this.statusMessage = "Successfully registerd! You will be automatically logged in shortly.";
+                        setTimeout(() => {
+                            this._miscServ.changeLoginPopupStatus();
+                        }, 2000);
+                        
                     }
                     else {
                         this.statusMessage = "Something went wrong. Try agin after sometime";
@@ -42,5 +49,7 @@ export class RegisterComponent implements OnInit {
             password_confirmation: ['', [Validators.required]]
         })
     }
-    constructor(private _fb: FormBuilder, private _authService: AuthenticationService) { }
+    constructor(private _fb: FormBuilder,
+        private _authService: AuthenticationService,
+        private _miscServ: MiscellaneousService) { }
 }

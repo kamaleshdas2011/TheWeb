@@ -1,5 +1,64 @@
-﻿<!-- Modal -->
-<div class="modal fade login" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
+﻿<div id="loginModal" class="modal">
+    <span onclick="document.getElementById('loginModal').style.display='none'" class="close" title="Close Modal">&times;</span>
+    <div class="modal-content">
+        <!-- signin -->
+        <div class="container" *ngIf="_miscServ.getLoginPopupStatus()">
+            <h1>Sign In</h1>
+            <hr>
+            
+            <form novalidate (ngSubmit)="login()" [formGroup]="loginForm">
+                <div class="form-group">
+                    <label for="email"><b>Email</b></label>
+                    <input id="login-email" type="text" placeholder="Email" formControlName="email" required>
+
+                    <span class="help-block" *ngIf="(loginForm.get('email').touched
+                                                || loginForm.get('email').dirty) &&
+                                                loginForm.get('email').errors">
+                        <span *ngIf="loginForm.get('email').errors.required">
+                            Please enter your email address.
+                        </span>
+                    </span>
+                    <br />
+                    <label for="psw"><b>Password</b></label>
+                    <input id="login-password" type="password" placeholder="Password" formControlName="password" required>
+
+                    <span class="help-block" *ngIf="(loginForm.get('password').touched
+                                                                    || loginForm.get('password').dirty) &&
+                                                                    loginForm.get('password').errors">
+                        <span *ngIf="loginForm.get('password').errors.required">
+                            Please enter password
+                        </span>
+                    </span>
+                    <br />
+                    <label>
+                        <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+                    </label>
+
+                    <div class="clearfix">
+                        <button type="button" onclick="document.getElementById('loginModal').style.display='none'" class="cancelbtn">Cancel</button>
+                        <button type="submit" class="signupbtn">Login</button>
+                    </div>
+                </div>
+                <div class="forgot login-footer">
+                    <span>
+                        Looking to
+                        <a href="javascript:void(0);" (click)="_miscServ.changeLoginPopupStatus()">create an account</a>
+                        ?
+                    </span>
+                </div>
+                <br />
+                <div *ngIf="statusMessage" class="alert alert-success"><strong>{{statusMessage}}</strong></div>
+            </form>
+        </div>
+        <!-- signup -->
+        <div class="container" *ngIf="!_miscServ.getLoginPopupStatus()">
+            <register-popup></register-popup>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<!--<div class="modal fade login" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -73,5 +132,5 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
 

@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
     public prodlist: Observable<any[]>;
     private searchTerms = new Subject<string>();
     public ProdName = '';
-    public flag: boolean = true; 
+    public flag: boolean = true;
 
     ngOnInit(): void {
 
@@ -53,7 +53,22 @@ export class HeaderComponent implements OnInit {
                 // TODO: real error handling  
                 console.log(error);
                 return Observable.of<any[]>([]);
-            });  
+            });
+    }
+    openSearch() {
+        //document.getElementById('searchbox').focus();
+        //document.getElementById('searchbox').value = '';;
+
+        document.getElementById("myOverlay").style.display = "block";
+        
+        //$('.search').val('');
+        //$('.search').focus();
+        //document.getElementById('#searchbox').value = '';
+
+        //this.flag = false;
+    }
+    closeSearch() {
+        document.getElementById("myOverlay").style.display = "none";
     }
     // Push a search term into the observable stream.  
     searchProd(term: string): void {
@@ -61,17 +76,14 @@ export class HeaderComponent implements OnInit {
         this.searchTerms.next(term);
     }
     onselectProd(prod: any) {
-        if (prod.ClientId != 0) {
-            this.ProdName = prod.Name;
-            this.flag = false;
-        }
-        else {
-            return false;
-        }
-    }  
+        document.getElementById("myOverlay").style.display = "none";
+        //this._router.navigate(['/productdetails', prod.ProductID]);
+        
+        this._router.navigate(['/productdetails', '1']);
+    }
     logout() {
         //this._authService.logout().subscribe((data) => {
-            
+
         //}, (error) => console.log(error));
         this._storageService.remove_access_token();
         this._storeService.removeFromSessionStorage('user_info');
@@ -83,11 +95,11 @@ export class HeaderComponent implements OnInit {
         this._router.navigate(['/account/basicinfo']);
         //console.log(this.access_token.userName);
     }
-    
+
     cartPopup() {
         this.cart = this._storageService.pullCart();
         this.cartSum = this._storageService.getCartSum();
-        
+
         setTimeout(function () {
             $('#cartPop').modal('show');
         }, 230);

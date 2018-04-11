@@ -3,8 +3,9 @@ import { Image } from '../classes/image';
 import { ImageService } from '../services/image.service';
 import { Product } from '../classes/product';
 import { ProductService } from '../services/product.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StorageService } from '../services/storage.service';
+import { Location } from '@angular/common';
 
 declare var jquery: any;
 declare var $: any;
@@ -22,6 +23,12 @@ export class ProductDetailsComponent implements OnInit {
     statusMessage: string;
     prodlist: any;
     ngOnInit(): void {
+
+        this.loadComponent();
+
+
+    }
+    loadComponent() {
         let prodid: string = this._activateroute.snapshot.params['id'];
         this._prodService.getProductDetails(prodid)
             .subscribe(
@@ -48,13 +55,9 @@ export class ProductDetailsComponent implements OnInit {
                         this.statusMessage = 'Session expired, please login again.';
                     }
                 }
-        );
-
-        //this._prodService.getProducts().subscribe((res) => this.prodlist = res);
-
+            );
 
     }
-
     displayImage(index: string) {
 
         //hide active image
@@ -90,7 +93,12 @@ export class ProductDetailsComponent implements OnInit {
         private _prodService: ProductService,
         private _activateroute: ActivatedRoute,
         private _storeService: StorageService,
+        private _route: ActivatedRoute,
+        private _router: Router,
     ) {
+        this._route.params.subscribe(params => {
+            this.loadComponent();
 
+        });
     }
 }

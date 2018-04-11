@@ -5,6 +5,7 @@ import {
 } from '@angular/forms';
 import { AuthenticationService } from '../services/authentication.service';
 import { StorageService } from '../services/storage.service';
+import { MiscellaneousService } from '../services/miscellaneous.service';
 //import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap'
 
 @Component({
@@ -13,7 +14,6 @@ import { StorageService } from '../services/storage.service';
     styleUrls: ['app/login/login.component.css'],
 })
 export class LoginComponent implements OnInit {
-    //@Input() heading: string;
 
     loginForm: FormGroup;
     statusMessage: string;
@@ -28,16 +28,13 @@ export class LoginComponent implements OnInit {
                 (data: any) => {
                     this._storeService.store_access_token(data);
                     this.access_token = this._storeService.pull_access_token().access_token;
-                    //console.log(this.access_token);
                     this._authService.getAccountInfo().subscribe(
                         (userdata: any) => {
-                            //console.log(userdata);
                             this._storeService.storeInSessionStorage(userdata, 'user_info');
                             this.statusMessage = "Login successful.";
                             location.reload();
                         },
                         (error) => {
-                            //console.error(error.json());
                             this._storeService.remove_access_token();
                             this.statusMessage = error.json();
                         }
@@ -73,7 +70,8 @@ export class LoginComponent implements OnInit {
         private _authService: AuthenticationService,
         private _elm: ElementRef,
         private _rend: Renderer2,
-        private _storeService: StorageService) {
+        private _storeService: StorageService,
+        private _miscServ: MiscellaneousService) {
 
         if (this._storeService.pull_access_token()) {
             this.access_token = this._storeService.pull_access_token().access_token;

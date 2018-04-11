@@ -12,6 +12,13 @@ export class MiscellaneousService {
                 return response.json();
             })
     }
+    private LoginPopupStatus: boolean = true;
+    getLoginPopupStatus() {
+        return this.LoginPopupStatus;
+    }
+    changeLoginPopupStatus() {
+        this.LoginPopupStatus = !this.LoginPopupStatus;
+    }
     constructor(private _http: Http) {
 
     }
