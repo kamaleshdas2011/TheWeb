@@ -29,6 +29,8 @@ var AcAddressComponent = (function () {
         this._fb = _fb;
         this._authService = _authService;
         this._acService = _acService;
+        this.addnewaddress = false;
+        this.stateSelection = 0;
     }
     AcAddressComponent.prototype.ngOnInit = function () {
         if (this._storeService.pull_access_token()) {
@@ -36,6 +38,46 @@ var AcAddressComponent = (function () {
             this.userinfo = this._storeService.pullFromSessionStorage('user_info');
         }
         this.getAllAddress();
+        this.getAddressTypes();
+        this.getStates();
+        this.acForm = this._fb.group({
+            Name: [''],
+            PhoneNumber: [''],
+            City: [''],
+            AddressLine1: [''],
+            AddressLine2: [''],
+            StateProvinceID: [''],
+            PostalCode: [''],
+            AddressTypeID: [''],
+            Landmark: [''],
+            AlternatePhoneNumber: [''],
+        });
+    };
+    //onAddressTypeSelectionChange(entry: any) {
+    //    this.addTypeSelection = entry;
+    //    //console.log(this.addTypeSelection);
+    //}
+    //onStateSelectionChange(entry: any) {
+    //    console.log(entry);
+    //    //this.stateSelection = entry;
+    //}
+    AcAddressComponent.prototype.getAddressTypes = function () {
+        var _this = this;
+        this._acService.getAddressTypes()
+            .subscribe(function (data) {
+            _this.addresstypes = data;
+        }, function (error) {
+            console.log("Error happened. " + error);
+        });
+    };
+    AcAddressComponent.prototype.getStates = function () {
+        var _this = this;
+        this._acService.getStates()
+            .subscribe(function (data) {
+            _this.states = data;
+        }, function (error) {
+            console.log("Error happened. " + error);
+        });
     };
     AcAddressComponent.prototype.getAllAddress = function () {
         var _this = this;
@@ -44,6 +86,50 @@ var AcAddressComponent = (function () {
             _this.useraddress = data;
         }, function (error) {
             console.log("Error happened. " + error);
+        });
+    };
+    AcAddressComponent.prototype.addNewAddress = function () {
+        var _this = this;
+        console.log(this.addTypeSelection);
+        console.log(this.stateSelection);
+        var formValue = this.acForm.value;
+        console.log(formValue);
+        this._acService.addNewAddress(formValue)
+            .subscribe(function (data) {
+            _this.statusMessage = "Successfully added";
+            _this.addnewaddress = false;
+            _this.getAllAddress();
+            _this.acForm.reset();
+        }, function (error) {
+            console.log("Error happened. " + error);
+            _this.statusMessage = "Something went wrong. Try agin after sometime";
+        });
+    };
+    AcAddressComponent.prototype.pinonblur = function () {
+        var _this = this;
+        //console.log(this.pincode);
+        var state;
+        var city;
+        this._misService.getAddress(this.pincode)
+            .subscribe(function (response) {
+            var address = response.results[0].address_components;
+            $.each(address, function (i, v) {
+                $.each(v.types, function (f, g) {
+                    //console.log(g);
+                    if (g == 'administrative_area_level_1') {
+                        state = v.short_name;
+                    }
+                    if (g == 'locality') {
+                        city = v.short_name;
+                    }
+                });
+            });
+            //this.stateSelection = state;
+            //this.acForm.setValue({ City: city });
+            _this.acForm.get('City').setValue(city);
+            _this.acForm.get('StateProvinceID').setValue(state);
+        }, function (error) {
+            console.log("Error happened" + error);
         });
     };
     return AcAddressComponent;

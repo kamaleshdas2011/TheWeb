@@ -34,6 +34,28 @@ export class AccountService {
                 return response.json();
             })
     }
+    addNewAddress(formData: any) {
+
+        return this._http.post('http://localhost:49959/api/account/addnewaddress', formData, this.options)
+            .map((response: Response) => {
+                return response.json();
+            })
+
+    }
+    getAddressTypes() {
+        return this._http.get('http://localhost:49959/api/account/getaddresstypes', this.options)
+            .map((response: Response) => {
+                //console.log(response.json())
+                return response.json();
+            })
+    }
+    getStates() {
+        return this._http.get('http://localhost:49959/api/account/getstates', this.options)
+            .map((response: Response) => {
+                //console.log(response.json())
+                return response.json();
+            })
+    }
     access_token: any;
     constructor(private _http: Http, private _authService: AuthenticationService,
         private _storeService: StorageService, ) {

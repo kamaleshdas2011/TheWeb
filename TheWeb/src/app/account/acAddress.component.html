@@ -1,12 +1,113 @@
 ﻿<div class="main-container">
 
-
     <div class="ac-addr-add-box">
-        <div class="add-address">
+        <div *ngIf="!addnewaddress" (click)="addnewaddress=true" class="add-address handtool">
             <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMiAxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGZpbGw9IiMyMTc1RkYiIGQ9Ik0xMS4yNSA2Ljc1aC00LjV2NC41aC0xLjV2LTQuNUguNzV2LTEuNWg0LjVWLjc1aDEuNXY0LjVoNC41Ii8+PHBhdGggZD0iTS0zLTNoMTh2MThILTMiLz48L2c+PC9zdmc+" />
             ADD A NEW ADDRESS
         </div>
+        <div *ngIf="addnewaddress" class="add-address-box">
+
+            <form novalidate (ngSubmit)="addNewAddress()" [formGroup]="acForm">
+                <div class="row" style="padding-bottom:10px;"><div class="col-md-12"><strong>ADD A NEW ADDRESS</strong></div></div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" id="name" class="form-control" required formControlName="Name">
+                            <label class="form-control-placeholder" for="name">Name</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" id="phone" class="form-control" required formControlName="PhoneNumber">
+                            <label class="form-control-placeholder" for="phone">Phone Number</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input [(ngModel)]="pincode" type="text" id="pin" class="form-control" 
+                                   required formControlName="PostalCode" (blur)="pinonblur()">
+                            <label class="form-control-placeholder" for="pin">Pincode</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" id="locality" class="form-control" required formControlName="AddressLine1">
+                            <label class="form-control-placeholder" for="locality">Locality</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <textarea id="address" class="form-control" required formControlName="AddressLine2"></textarea>
+                            <label class="form-control-placeholder" for="address">Address (Area and Street)</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" id="city" class="form-control" required formControlName="City">
+                            <label class="form-control-placeholder" for="city">City/District/Town</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group" >
+                            <select *ngIf="states" class="form-control" [(ngModel)]="stateSelection" formControlName="StateProvinceID">
+                                <option [value]="0">Select state</option>
+                                <option *ngFor="let state of states;" [value]="state.Code">{{state.Name}}</option>
+                            </select>
+                            <label class="form-control-placeholder">State</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" id="landmark" class="form-control" required formControlName="Landmark">
+                            <label class="form-control-placeholder" for="landmark">Landmark</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" id="altphone" class="form-control" required formControlName="AlternatePhoneNumber">
+                            <label class="form-control-placeholder" for="altphone">Alternate Phone number</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">Address Type</div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-6" *ngIf="addresstypes">
+                            <label *ngFor="let type of addresstypes;" class="radio-container">
+                                {{type.Name}}
+                                <input type="radio" [(ngModel)]="addTypeSelection" formControlName="AddressTypeID"
+                                       [value]="type.Code">
+                                <span class="checkmark"></span>
+                            </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <button class="btn btn-success">Save</button>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <button (click)="addnewaddress=false" class="btn btn-block">Calcel</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
     </div>
+
     <ng-container *ngIf="useraddress">
 
 
@@ -16,7 +117,7 @@
                     <span class="add-type">{{addr.AddressType}}</span>
                 </div>
                 <div class="col-md-1">
-                    
+
                     <div class="dropdown">
                         <a class="btn btn-info dropdown-toggle" href="javascript:void(0)"
                            id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -31,7 +132,7 @@
             </div>
 
             <div class="add-name">
-                <strong>{{addr.Title + ' ' + addr.FirstName}}</strong>
+                <strong>{{addr.FirstName}}</strong>
                 <strong>{{addr.PhoneNumber}}</strong>
 
             </div>
@@ -44,5 +145,5 @@
 <div class="container">
 
 
-   
+
 </div>

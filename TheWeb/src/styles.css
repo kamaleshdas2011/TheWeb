@@ -1434,9 +1434,11 @@ a.lang_sel_sel, #lang_sel a {
 }
 .form-control {
     border-radius: 0px !important;
-    border: 0px!important;
+    /*border: 1px!important;*/
 }
-
+.form-control:focus{
+    border: 1px solid #00BEE0 !important;
+}
 .btn {
     border-radius: 0px!important;
 }
@@ -1459,9 +1461,9 @@ a.lang_sel_sel, #lang_sel a {
     background: #ededed;
 }
 
-    .input-text:focus {
+    /*.input-text:focus {
         border: 1px solid #3399cc;
-    }
+    }*/
 
 .qty {
     width: 50px;

@@ -50,6 +50,26 @@ var AccountService = (function () {
             return response.json();
         });
     };
+    AccountService.prototype.addNewAddress = function (formData) {
+        return this._http.post('http://localhost:49959/api/account/addnewaddress', formData, this.options)
+            .map(function (response) {
+            return response.json();
+        });
+    };
+    AccountService.prototype.getAddressTypes = function () {
+        return this._http.get('http://localhost:49959/api/account/getaddresstypes', this.options)
+            .map(function (response) {
+            //console.log(response.json())
+            return response.json();
+        });
+    };
+    AccountService.prototype.getStates = function () {
+        return this._http.get('http://localhost:49959/api/account/getstates', this.options)
+            .map(function (response) {
+            //console.log(response.json())
+            return response.json();
+        });
+    };
     return AccountService;
 }());
 AccountService = __decorate([

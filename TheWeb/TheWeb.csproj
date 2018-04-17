@@ -420,6 +420,7 @@
     <Content Include="src\app\account\acBasic.component.html" />
     <Content Include="src\app\account\account.component.css" />
     <Content Include="src\app\app.component.html" />
+    <Content Include="src\assets\drop-down-arrow-01-512.png" />
     <Content Include="src\assets\zig-zag-blk.png" />
     <Content Include="src\app\cart\cart.component.css" />
     <Content Include="src\app\cart\cart.component.html" />

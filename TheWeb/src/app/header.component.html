@@ -50,7 +50,8 @@
             </a>
             <div *ngIf="access_token" class="dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" href="javascript:void(0)" data-toggle="dropdown">
-                    {{user.FirstName}}
+                    <span *ngIf="user.FirstName">{{user.FirstName}}</span>
+                    <span *ngIf="!user.FirstName">{{user.Email}}</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <a href="javascript:void(0)" class="dropdown-item" (click)="logout();">Logout</a>
