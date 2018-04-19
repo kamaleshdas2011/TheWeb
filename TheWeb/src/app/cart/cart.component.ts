@@ -6,7 +6,6 @@ import { ProductService } from '../services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StorageService } from '../services/storage.service';
 import { MiscellaneousService } from '../services/miscellaneous.service';
-import { debug } from 'util';
 
 
 declare var jquery: any;
@@ -43,7 +42,7 @@ export class CartComponent implements OnInit {
         else if (count == 1) {
             finalCount = parseInt(str) + 1;
         }
-        //console.log(finalCount);
+
         this._storeService.storeCart(prod, finalCount);
         this.cart = this._storeService.pullCart();
         this.cartSum = this._storeService.getCartSum();
@@ -58,15 +57,12 @@ export class CartComponent implements OnInit {
         }
         else {
             $('#loginModal').modal();
-            //document.getElementById('loginModal').style.display = 'block';
         }
     }
     private sleep(time: number) {
         return new Promise((resolve) => setTimeout(resolve, time));
     }
     getDeliveryCharge(delCharge: any) {
-        //debugger;
-        //console.log(delCharge);
         this.delCharge = parseInt(delCharge);
     }
     ngOnInit(): void {
@@ -79,8 +75,7 @@ export class CartComponent implements OnInit {
             this.access_token = this._storeService.pull_access_token().access_token;
             this.userinfo = this._storeService.pullFromSessionStorage('user_info');
         }
-        //this.cart = this._storeService.pullCart();
-        //this.cartSum = this._storeService.getCartSum();
+
         
     }
     constructor(private _imgService: ImageService,

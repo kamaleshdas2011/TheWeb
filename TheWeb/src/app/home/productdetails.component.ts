@@ -83,9 +83,13 @@ export class ProductDetailsComponent implements OnInit {
         this._rend.addClass(input, 'prod-img-visible');
     }
     addToCart(product: Product) {
-        let itemCount = this._elm.nativeElement.querySelector('#prodqty').value;
+        //let itemCount = this._elm.nativeElement.querySelector('#prodqty').value;
         this._storeService.storeCart(product, 1);
         $('#alertAddCart').show('fade');
+    }
+    buyNow(product: Product) {
+        this._storeService.storeCart(product, 1);
+        this._router.navigate(['/cart'])
     }
     clickWish(prod: Product) {
         if (this._storeService.presentInWishlist(prod.ProductID)) {

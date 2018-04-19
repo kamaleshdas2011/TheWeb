@@ -41,7 +41,6 @@ var CartComponent = (function () {
         else if (count == 1) {
             finalCount = parseInt(str) + 1;
         }
-        //console.log(finalCount);
         this._storeService.storeCart(prod, finalCount);
         this.cart = this._storeService.pullCart();
         this.cartSum = this._storeService.getCartSum();
@@ -61,8 +60,6 @@ var CartComponent = (function () {
         return new Promise(function (resolve) { return setTimeout(resolve, time); });
     };
     CartComponent.prototype.getDeliveryCharge = function (delCharge) {
-        //debugger;
-        //console.log(delCharge);
         this.delCharge = parseInt(delCharge);
     };
     CartComponent.prototype.ngOnInit = function () {
@@ -75,8 +72,6 @@ var CartComponent = (function () {
             this.access_token = this._storeService.pull_access_token().access_token;
             this.userinfo = this._storeService.pullFromSessionStorage('user_info');
         }
-        //this.cart = this._storeService.pullCart();
-        //this.cartSum = this._storeService.getCartSum();
     };
     return CartComponent;
 }());

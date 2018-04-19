@@ -8,6 +8,8 @@ import { StorageService } from '../services/storage.service';
 import { MiscellaneousService } from '../services/miscellaneous.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { AccountService } from '../services/account.service';
+import { OrderService } from '../services/order.service';
+import { Order } from '../classes/Order';
 
 
 declare var jquery: any;
@@ -25,6 +27,7 @@ export class CartAddressComponent implements OnInit {
     access_token: any;
     userinfo: any;
     useraddress: any;
+    Order: Order;
 
     getAllAddress() {
         this._acService.getAllAddress()
@@ -43,7 +46,8 @@ export class CartAddressComponent implements OnInit {
             this.userinfo = this._storeService.pullFromSessionStorage('user_info');
             this.getAllAddress();
         }
-        
+        this.Order = this._orderService.Order;
+        console.log(this.Order);
     }
     constructor(private _imgService: ImageService,
         private _elm: ElementRef,
@@ -53,7 +57,8 @@ export class CartAddressComponent implements OnInit {
         private _storeService: StorageService,
         private _misService: MiscellaneousService,
         private _authService: AuthenticationService,
-        private _acService: AccountService
+        private _acService: AccountService,
+        private _orderService:OrderService,
     ) {
 
 

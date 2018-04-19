@@ -34,6 +34,7 @@ import { CheckoutComponent } from './cart/checkout.component';
 import { CartReviewComponent } from './cart/review.component';
 import { CartCompleteComponent } from './cart/complete.component';
 import { PincodeComponent } from './others/pincode.component';
+import { OrderService } from './services/order.service';
 //import { NgxImageGalleryModule } from 'ngx-image-gallery'
 //import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap'
 
@@ -78,7 +79,7 @@ const appRoutes: Routes = [
     bootstrap: [AppComponent],
     providers: [ImageService, HomeService, ProductService,
         AuthenticationService, StorageService, MiscellaneousService,
-        AccountService],
+        AccountService, OrderService],
     //entryComponents: [LoginComponent]
 })
 export class AppModule { }

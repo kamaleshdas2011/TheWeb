@@ -74,9 +74,13 @@ var ProductDetailsComponent = (function () {
         this._rend.addClass(input, 'prod-img-visible');
     };
     ProductDetailsComponent.prototype.addToCart = function (product) {
-        var itemCount = this._elm.nativeElement.querySelector('#prodqty').value;
+        //let itemCount = this._elm.nativeElement.querySelector('#prodqty').value;
         this._storeService.storeCart(product, 1);
         $('#alertAddCart').show('fade');
+    };
+    ProductDetailsComponent.prototype.buyNow = function (product) {
+        this._storeService.storeCart(product, 1);
+        this._router.navigate(['/cart']);
     };
     ProductDetailsComponent.prototype.clickWish = function (prod) {
         if (this._storeService.presentInWishlist(prod.ProductID)) {

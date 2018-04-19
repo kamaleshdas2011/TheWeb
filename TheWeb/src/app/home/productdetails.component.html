@@ -18,12 +18,15 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <button class="btn btn-success">BUY NOW</button>
+                    <button style="width:100%;" class="btn btn-success" (click)="buyNow(product);">BUY NOW</button>
                 </div>
                 <div class="col-md-6">
-                    <button class="btn btn-primary">ADD TO CART</button>
+                    <button style="width:100%;" class="btn btn-primary" (click)="addToCart(product);">ADD TO CART</button>
                 </div>
-                <div role="alert" id="alertAddCart" (click)="addToCart(product);" class="alert alert-info collapse text-center">
+                
+            </div>
+            <div class="row" style="padding-top:10px;">
+                <div role="alert" id="alertAddCart" class="alert alert-info collapse text-center">
                     <strong>Successfully added to cart</strong>
                 </div>
             </div>
@@ -81,26 +84,28 @@
                     </div>
                 </div>-->
 
-                
-                <div class="sharingFormat">
-                    <div class="sharing-links">
-                        <div class="social-icon">
-                            <span>Share &nbsp;</span>
-                            <a href="#" target="_blank">
-                                <i class="fa fa-facebook"></i>
-                            </a>
-                            <a href="#" target="_blank">
-                                <i class="fa fa-twitter"></i>
-                            </a>
-                            <a href="#" target="_blank">
-                                <i class="fa fa-pinterest"></i>
-                            </a>
-                            <a href="#" target="_blank">
-                                <i class="fa fa-instagram"></i>
-                            </a>
+                <div class="row info-box">
+                    <div class="col-md-2 info-box-label">
+                        Share
+                    </div>
+                    <div class="col-md-10">
+                        <div class="sharing-links">
+                            <div class="social-icon">
+                                <a href="#" target="_blank">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                                <a href="#" target="_blank">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                                <a href="#" target="_blank">
+                                    <i class="fa fa-pinterest"></i>
+                                </a>
+                                <a href="#" target="_blank">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="wish-info">
                     <a *ngIf="!_storeService.presentInWishlist(product.ProductID)" (click)="clickWish(product)"

@@ -5,8 +5,42 @@
     <div class="row">
         <ng-container *ngFor="let addr of useraddress;let index = index">
             <div class="col-md-3">
-                <a (click)="gotoProductDetails(addr.AddressID)" banner="yes" class="home-banner handtool">
-                </a>
+                <label class="radio-container">
+                    <div class="ac-addr-box">
+                        <div class="row add-type-box">
+                            <div class="col-md-9">
+                                <span class="add-type">{{addr.AddressType}}</span>
+                            </div>
+                            <div class="col-md-3">
+
+                                <div class="dropdown pull-right">
+                                    <a class="btn btn-info dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" data-popout="true" aria-haspopup="true" aria-expanded="false">
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="">Edit</a>
+
+                                        <a class="dropdown-item handtool">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="add-name">
+                            <strong>{{addr.FirstName}}</strong>
+                            <strong>{{addr.PhoneNumber}}</strong>
+
+                        </div>
+                        <div class="add-line">
+                            <p class="">{{addr.AddressLine1}},{{addr.AddressLine2}},{{addr.City +' - '+ addr.PostalCode}},{{addr.State}}</p>
+                        </div>
+
+
+
+                    </div>
+                    <input type="radio" name="selectaddress" [(ngModel)]="Order.AddressID" [value]="addr.AddressID">
+                    <span class="checkmark"></span>
+                </label>
             </div>
         </ng-container>
 

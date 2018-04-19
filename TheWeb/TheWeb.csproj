@@ -490,6 +490,7 @@
     <TypeScriptCompile Include="src\app\app.component.spec.ts" />
     <TypeScriptCompile Include="src\app\app.component.ts" />
     <TypeScriptCompile Include="src\app\app.module.ts" />
+    <TypeScriptCompile Include="src\app\classes\Order.ts" />
     <TypeScriptCompile Include="src\app\classes\product.ts" />
     <TypeScriptCompile Include="src\app\classes\user.ts" />
     <TypeScriptCompile Include="src\app\footer.component.ts" />
@@ -501,6 +502,7 @@
     <TypeScriptCompile Include="src\app\others\pincode.component.ts" />
     <TypeScriptCompile Include="src\app\services\account.service.ts" />
     <TypeScriptCompile Include="src\app\services\authentication.service.ts" />
+    <TypeScriptCompile Include="src\app\services\order.service.ts" />
     <TypeScriptCompile Include="src\app\services\home.service.ts" />
     <TypeScriptCompile Include="src\app\services\image.service.ts" />
     <TypeScriptCompile Include="src\app\home\productdetails.component.ts" />

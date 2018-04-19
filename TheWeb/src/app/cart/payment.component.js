@@ -14,8 +14,9 @@ var product_service_1 = require("../services/product.service");
 var router_1 = require("@angular/router");
 var storage_service_1 = require("../services/storage.service");
 var miscellaneous_service_1 = require("../services/miscellaneous.service");
+var order_service_1 = require("../services/order.service");
 var CartPaymentComponent = (function () {
-    function CartPaymentComponent(_imgService, _elm, _rend, _prodService, _activateroute, _storeService, _misService) {
+    function CartPaymentComponent(_imgService, _elm, _rend, _prodService, _activateroute, _storeService, _misService, _orderService) {
         this._imgService = _imgService;
         this._elm = _elm;
         this._rend = _rend;
@@ -23,8 +24,11 @@ var CartPaymentComponent = (function () {
         this._activateroute = _activateroute;
         this._storeService = _storeService;
         this._misService = _misService;
+        this._orderService = _orderService;
     }
     CartPaymentComponent.prototype.ngOnInit = function () {
+        this.Order = this._orderService.Order;
+        console.log(this.Order);
     };
     return CartPaymentComponent;
 }());
@@ -40,7 +44,8 @@ CartPaymentComponent = __decorate([
         product_service_1.ProductService,
         router_1.ActivatedRoute,
         storage_service_1.StorageService,
-        miscellaneous_service_1.MiscellaneousService])
+        miscellaneous_service_1.MiscellaneousService,
+        order_service_1.OrderService])
 ], CartPaymentComponent);
 exports.CartPaymentComponent = CartPaymentComponent;
 //# sourceMappingURL=payment.component.js.map

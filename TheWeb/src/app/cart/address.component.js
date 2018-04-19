@@ -16,8 +16,9 @@ var storage_service_1 = require("../services/storage.service");
 var miscellaneous_service_1 = require("../services/miscellaneous.service");
 var authentication_service_1 = require("../services/authentication.service");
 var account_service_1 = require("../services/account.service");
+var order_service_1 = require("../services/order.service");
 var CartAddressComponent = (function () {
-    function CartAddressComponent(_imgService, _elm, _rend, _prodService, _activateroute, _storeService, _misService, _authService, _acService) {
+    function CartAddressComponent(_imgService, _elm, _rend, _prodService, _activateroute, _storeService, _misService, _authService, _acService, _orderService) {
         this._imgService = _imgService;
         this._elm = _elm;
         this._rend = _rend;
@@ -27,6 +28,7 @@ var CartAddressComponent = (function () {
         this._misService = _misService;
         this._authService = _authService;
         this._acService = _acService;
+        this._orderService = _orderService;
     }
     CartAddressComponent.prototype.getAllAddress = function () {
         var _this = this;
@@ -43,6 +45,8 @@ var CartAddressComponent = (function () {
             this.userinfo = this._storeService.pullFromSessionStorage('user_info');
             this.getAllAddress();
         }
+        this.Order = this._orderService.Order;
+        console.log(this.Order);
     };
     return CartAddressComponent;
 }());
@@ -60,7 +64,8 @@ CartAddressComponent = __decorate([
         storage_service_1.StorageService,
         miscellaneous_service_1.MiscellaneousService,
         authentication_service_1.AuthenticationService,
-        account_service_1.AccountService])
+        account_service_1.AccountService,
+        order_service_1.OrderService])
 ], CartAddressComponent);
 exports.CartAddressComponent = CartAddressComponent;
 //# sourceMappingURL=address.component.js.map
