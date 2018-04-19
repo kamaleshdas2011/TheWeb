@@ -15,14 +15,16 @@ var user_1 = require("./classes/user");
 var authentication_service_1 = require("./services/authentication.service");
 var rxjs_1 = require("rxjs");
 var product_service_1 = require("./services/product.service");
+var miscellaneous_service_1 = require("./services/miscellaneous.service");
 var HeaderComponent = (function () {
-    function HeaderComponent(_storageService, _route, _router, _storeService, _authService, _prodService) {
+    function HeaderComponent(_storageService, _route, _router, _storeService, _authService, _prodService, _miscServ) {
         this._storageService = _storageService;
         this._route = _route;
         this._router = _router;
         this._storeService = _storeService;
         this._authService = _authService;
         this._prodService = _prodService;
+        this._miscServ = _miscServ;
         this.cart = [];
         this.wish = [];
         this.searchTerms = new rxjs_1.Subject();
@@ -76,6 +78,7 @@ var HeaderComponent = (function () {
         this._storageService.remove_access_token();
         this._storeService.removeFromSessionStorage('user_info');
         this.access_token = null;
+        this._miscServ.changeLoginStatus(false);
         location.reload();
     };
     HeaderComponent.prototype.account = function () {
@@ -124,7 +127,8 @@ HeaderComponent = __decorate([
         router_1.Router,
         storage_service_1.StorageService,
         authentication_service_1.AuthenticationService,
-        product_service_1.ProductService])
+        product_service_1.ProductService,
+        miscellaneous_service_1.MiscellaneousService])
 ], HeaderComponent);
 exports.HeaderComponent = HeaderComponent;
 //# sourceMappingURL=header.component.js.map

@@ -1,0 +1,19 @@
+﻿<div *ngIf="!address">
+    <form>
+        <div class="input-group">
+            <input type="text" [(ngModel)]="pincode" name="pincode" class="input-text pin"
+                   pattern="\d*" maxlength="6">
+            <button (click)="checkPin();" class="input-group-addon handtool">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+    </form>
+</div>
+<div *ngIf="address">
+    <div>
+        {{address}}
+    </div>
+    <div>
+        <button (click)="address=null" class="checkout-button">Change</button>
+    </div>
+</div>

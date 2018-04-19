@@ -13,11 +13,18 @@ export class MiscellaneousService {
             })
     }
     private LoginPopupStatus: boolean = true;
+    private isLoggedin: boolean = false;
     getLoginPopupStatus() {
         return this.LoginPopupStatus;
     }
     changeLoginPopupStatus() {
         this.LoginPopupStatus = !this.LoginPopupStatus;
+    }
+    getLoginStatus() {
+        return this.isLoggedin;
+    }
+    changeLoginStatus(status: boolean) {
+        this.isLoggedin = status;
     }
     constructor(private _http: Http) {
 

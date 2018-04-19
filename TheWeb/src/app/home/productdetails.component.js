@@ -25,6 +25,7 @@ var ProductDetailsComponent = (function () {
         this._route = _route;
         this._router = _router;
         this.visible = 'prod-img-visible';
+        this.delCharge = 0;
         this._route.params.subscribe(function (params) {
             _this.loadComponent();
         });
@@ -54,6 +55,14 @@ var ProductDetailsComponent = (function () {
             }
         });
     };
+    ProductDetailsComponent.prototype.checkPin = function (address) {
+        this.address = address;
+    };
+    ProductDetailsComponent.prototype.getDeliveryCharge = function (delCharge) {
+        //debugger;
+        //console.log(delCharge);
+        this.delCharge = parseInt(delCharge);
+    };
     ProductDetailsComponent.prototype.displayImage = function (index) {
         //hide active image
         var activeImage = this._elm.nativeElement.querySelector(".prod-img-visible");
@@ -66,7 +75,7 @@ var ProductDetailsComponent = (function () {
     };
     ProductDetailsComponent.prototype.addToCart = function (product) {
         var itemCount = this._elm.nativeElement.querySelector('#prodqty').value;
-        this._storeService.storeCart(product, itemCount);
+        this._storeService.storeCart(product, 1);
         $('#alertAddCart').show('fade');
     };
     ProductDetailsComponent.prototype.clickWish = function (prod) {

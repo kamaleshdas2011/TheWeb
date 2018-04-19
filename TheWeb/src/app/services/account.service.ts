@@ -56,6 +56,12 @@ export class AccountService {
                 return response.json();
             })
     }
+    deleteAddress(AddressID: string) {
+        return this._http.delete('http://localhost:49959/api/account/deleteaddress/' + AddressID, this.options)
+            .map((response: Response) => {
+                return response;
+            })
+    }
     access_token: any;
     constructor(private _http: Http, private _authService: AuthenticationService,
         private _storeService: StorageService, ) {

@@ -12,6 +12,7 @@ export class ProductService {
     private prod: Product;
     header: Headers;
     options: RequestOptions;
+    access_token: any;
 
     getProductDetails(id: string) {
         //console.log(localStorage.getItem('access_token'));
@@ -33,8 +34,10 @@ export class ProductService {
         var prodlist = this._http.get('http://localhost:49959/api/product/productsearch/term' + '?term=' + term)
             .map((r: Response) => { return (r.json().length != 0 ? r.json() : [{ "ClientId": 0, "ClientName": "No Record Found" }]) as any[] });
         return prodlist;
-    }  
-    access_token: any;
+    }
+    getDeliveryCharge(pincode: string) {
+        return '100';
+    }
     constructor(private _http: Http, private _storeService: StorageService,) {
 
         if (this._storeService.pull_access_token()) {

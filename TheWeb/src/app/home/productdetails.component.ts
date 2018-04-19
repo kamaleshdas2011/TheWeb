@@ -22,6 +22,9 @@ export class ProductDetailsComponent implements OnInit {
     images: Image[];
     statusMessage: string;
     prodlist: any;
+    delCharge: number = 0;
+    address: any;
+
     ngOnInit(): void {
 
         this.loadComponent();
@@ -58,6 +61,14 @@ export class ProductDetailsComponent implements OnInit {
             );
 
     }
+    checkPin(address: any) {
+        this.address = address;
+    }
+    getDeliveryCharge(delCharge: any) {
+        //debugger;
+        //console.log(delCharge);
+        this.delCharge = parseInt(delCharge);
+    }
     displayImage(index: string) {
 
         //hide active image
@@ -73,7 +84,7 @@ export class ProductDetailsComponent implements OnInit {
     }
     addToCart(product: Product) {
         let itemCount = this._elm.nativeElement.querySelector('#prodqty').value;
-        this._storeService.storeCart(product, itemCount);
+        this._storeService.storeCart(product, 1);
         $('#alertAddCart').show('fade');
     }
     clickWish(prod: Product) {

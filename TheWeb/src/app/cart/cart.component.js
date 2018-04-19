@@ -15,7 +15,7 @@ var router_1 = require("@angular/router");
 var storage_service_1 = require("../services/storage.service");
 var miscellaneous_service_1 = require("../services/miscellaneous.service");
 var CartComponent = (function () {
-    function CartComponent(_imgService, _elm, _rend, _prodService, _activateroute, _storeService, _misService) {
+    function CartComponent(_imgService, _elm, _rend, _prodService, _activateroute, _storeService, _misService, _route, _router) {
         this._imgService = _imgService;
         this._elm = _elm;
         this._rend = _rend;
@@ -23,7 +23,9 @@ var CartComponent = (function () {
         this._activateroute = _activateroute;
         this._storeService = _storeService;
         this._misService = _misService;
-        this.cart = [];
+        this._route = _route;
+        this._router = _router;
+        this.delCharge = 0;
     }
     CartComponent.prototype.removeFromCart = function (prod) {
         this._storeService.storeCart(prod, 0);
@@ -44,20 +46,37 @@ var CartComponent = (function () {
         this.cart = this._storeService.pullCart();
         this.cartSum = this._storeService.getCartSum();
     };
-    CartComponent.prototype.checkPin = function () {
-        var _this = this;
-        //console.log(this.pincode);
-        this._misService.getAddress(this.pincode)
-            .subscribe(function (response) {
-            _this.address = response.results[0].formatted_address;
-            //console.log(this.address);
-        }, function (error) {
-            console.log("Error happened" + error);
-        });
+    CartComponent.prototype.checkPin = function (address) {
+        this.address = address;
+    };
+    CartComponent.prototype.checkout = function () {
+        if (this.userinfo) {
+            this._router.navigate(['/cart/checkout/address']);
+        }
+        else {
+            $('#loginModal').modal();
+        }
+    };
+    CartComponent.prototype.sleep = function (time) {
+        return new Promise(function (resolve) { return setTimeout(resolve, time); });
+    };
+    CartComponent.prototype.getDeliveryCharge = function (delCharge) {
+        //debugger;
+        //console.log(delCharge);
+        this.delCharge = parseInt(delCharge);
     };
     CartComponent.prototype.ngOnInit = function () {
-        this.cart = this._storeService.pullCart();
-        this.cartSum = this._storeService.getCartSum();
+        var _this = this;
+        this.sleep(100).then(function () {
+            _this.cart = _this._storeService.pullCart();
+            _this.cartSum = _this._storeService.getCartSum();
+        });
+        if (this._storeService.pull_access_token()) {
+            this.access_token = this._storeService.pull_access_token().access_token;
+            this.userinfo = this._storeService.pullFromSessionStorage('user_info');
+        }
+        //this.cart = this._storeService.pullCart();
+        //this.cartSum = this._storeService.getCartSum();
     };
     return CartComponent;
 }());
@@ -65,7 +84,7 @@ CartComponent = __decorate([
     core_1.Component({
         selector: 'cart-page',
         templateUrl: 'app/cart/cart.component.html',
-        styleUrls: ['app/cart/cart.component.css',],
+        styleUrls: ['app/cart/cart.component.css'],
     }),
     __metadata("design:paramtypes", [image_service_1.ImageService,
         core_1.ElementRef,
@@ -73,7 +92,9 @@ CartComponent = __decorate([
         product_service_1.ProductService,
         router_1.ActivatedRoute,
         storage_service_1.StorageService,
-        miscellaneous_service_1.MiscellaneousService])
+        miscellaneous_service_1.MiscellaneousService,
+        router_1.ActivatedRoute,
+        router_1.Router])
 ], CartComponent);
 exports.CartComponent = CartComponent;
 //# sourceMappingURL=cart.component.js.map

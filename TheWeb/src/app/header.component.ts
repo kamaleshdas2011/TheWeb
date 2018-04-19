@@ -7,6 +7,7 @@ import { User } from './classes/user';
 import { AuthenticationService } from './services/authentication.service';
 import { Observable, Subject } from 'rxjs';
 import { ProductService } from './services/product.service';
+import { MiscellaneousService } from './services/miscellaneous.service';
 
 declare var jquery: any;
 declare var $: any;
@@ -88,6 +89,7 @@ export class HeaderComponent implements OnInit {
         this._storageService.remove_access_token();
         this._storeService.removeFromSessionStorage('user_info');
         this.access_token = null;
+        this._miscServ.changeLoginStatus(false);
         location.reload();
     }
     account() {
@@ -131,7 +133,8 @@ export class HeaderComponent implements OnInit {
         private _router: Router,
         private _storeService: StorageService,
         private _authService: AuthenticationService,
-        private _prodService: ProductService) {
+        private _prodService: ProductService,
+        private _miscServ: MiscellaneousService) {
 
     }
 

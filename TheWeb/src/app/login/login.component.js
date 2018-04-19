@@ -37,6 +37,7 @@ var LoginComponent = (function () {
             _this._authService.getAccountInfo().subscribe(function (userdata) {
                 _this._storeService.storeInSessionStorage(userdata, 'user_info');
                 _this.statusMessage = "Login successful.";
+                _this._miscServ.changeLoginStatus(true);
                 location.reload();
             }, function (error) {
                 _this._storeService.remove_access_token();

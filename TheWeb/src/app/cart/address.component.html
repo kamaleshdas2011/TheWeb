@@ -1,0 +1,19 @@
+﻿<div *ngIf="!useraddress">
+    <loading message="Loading addresses"></loading>
+</div>
+<div *ngIf="useraddress" class="container home-main">
+    <div class="row">
+        <ng-container *ngFor="let addr of useraddress;let index = index">
+            <div class="col-md-3">
+                <a (click)="gotoProductDetails(addr.AddressID)" banner="yes" class="home-banner handtool">
+                </a>
+            </div>
+        </ng-container>
+
+    </div>
+
+    <div>
+        <button [routerLink]="['/cart/checkout/payment']" class="btn btn-success">Next</button>
+    </div>
+</div>
+    

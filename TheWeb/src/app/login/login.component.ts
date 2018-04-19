@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
                         (userdata: any) => {
                             this._storeService.storeInSessionStorage(userdata, 'user_info');
                             this.statusMessage = "Login successful.";
+                            this._miscServ.changeLoginStatus(true);
                             location.reload();
                         },
                         (error) => {

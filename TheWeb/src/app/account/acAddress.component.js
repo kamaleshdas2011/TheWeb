@@ -36,10 +36,10 @@ var AcAddressComponent = (function () {
         if (this._storeService.pull_access_token()) {
             this.access_token = this._storeService.pull_access_token().access_token;
             this.userinfo = this._storeService.pullFromSessionStorage('user_info');
+            this.getAllAddress();
+            this.getAddressTypes();
+            this.getStates();
         }
-        this.getAllAddress();
-        this.getAddressTypes();
-        this.getStates();
         this.acForm = this._fb.group({
             Name: [''],
             PhoneNumber: [''],
@@ -53,14 +53,31 @@ var AcAddressComponent = (function () {
             AlternatePhoneNumber: [''],
         });
     };
-    //onAddressTypeSelectionChange(entry: any) {
-    //    this.addTypeSelection = entry;
-    //    //console.log(this.addTypeSelection);
-    //}
-    //onStateSelectionChange(entry: any) {
-    //    console.log(entry);
-    //    //this.stateSelection = entry;
-    //}
+    AcAddressComponent.prototype.editAddress = function () {
+        var _this = this;
+        this._acService.getAddressTypes()
+            .subscribe(function (data) {
+            _this.addresstypes = data;
+        }, function (error) {
+            console.log("Error happened. " + error);
+        });
+    };
+    AcAddressComponent.prototype.clickDelete = function (AddressID) {
+        $('#hiddenaddid').attr("value", AddressID);
+        $('#deleteModal').modal();
+    };
+    AcAddressComponent.prototype.deleteAddress = function () {
+        var _this = this;
+        var AddressID = $('#hiddenaddid').val();
+        this._acService.deleteAddress(AddressID)
+            .subscribe(function (data) {
+            $('#deleteModal').modal('hide');
+            _this.getAllAddress();
+        }, function (error) {
+            //this.statusMessage = "Something went wrong. Try agin after sometime";
+            console.log("Error happened. " + error);
+        });
+    };
     AcAddressComponent.prototype.getAddressTypes = function () {
         var _this = this;
         this._acService.getAddressTypes()
@@ -90,10 +107,10 @@ var AcAddressComponent = (function () {
     };
     AcAddressComponent.prototype.addNewAddress = function () {
         var _this = this;
-        console.log(this.addTypeSelection);
-        console.log(this.stateSelection);
+        //console.log(this.addTypeSelection);
+        //console.log(this.stateSelection);
         var formValue = this.acForm.value;
-        console.log(formValue);
+        //console.log(formValue);
         this._acService.addNewAddress(formValue)
             .subscribe(function (data) {
             _this.statusMessage = "Successfully added";
@@ -117,6 +134,7 @@ var AcAddressComponent = (function () {
                 $.each(v.types, function (f, g) {
                     //console.log(g);
                     if (g == 'administrative_area_level_1') {
+                        //console.log(v.short_name);
                         state = v.short_name;
                     }
                     if (g == 'locality') {

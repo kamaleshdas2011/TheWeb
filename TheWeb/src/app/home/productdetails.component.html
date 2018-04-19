@@ -16,6 +16,17 @@
                     <img src="{{img.ImageUrl}}" width="75" height="75" alt="">
                 </a>
             </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <button class="btn btn-success">BUY NOW</button>
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-primary">ADD TO CART</button>
+                </div>
+                <div role="alert" id="alertAddCart" (click)="addToCart(product);" class="alert alert-info collapse text-center">
+                    <strong>Successfully added to cart</strong>
+                </div>
+            </div>
 
         </div>
         <!--<div *ngFor="let img of prodlist;let index=index">
@@ -28,11 +39,38 @@
                     <span [innerHTML]="product.ProductName" class="h1"></span>
                 </div>
                 <!--[innerHTML]="product.ProductLongDesc"-->
-                <div class="sharing-links" [innerHTML]="product.ProductLongDesc"></div>
-                <div class="price-info">
-                    <strong class="price">{{product.ProductPrice | currency:'INR':'symbol'}}</strong>
+                <div class="row info-box">
+                    <div class="col-md-2 info-box-label">
+                        Highlights
+                    </div>
+                    <div class="col-md-10">
+                        <div [innerHTML]="product.ProductLongDesc"></div>
+                    </div>
                 </div>
-                <div class="cart-info row">
+                <div class="row info-box">
+                    <div class="col-md-2 info-box-label">
+                        Delivery
+                    </div>
+                    <div class="col-md-10">
+                        <div><check-pincode (address)="checkPin($event)" (delCharge)="getDeliveryCharge($event)"></check-pincode></div>
+                        <div style="font-weight:bold;">
+                            Delivery in
+                            <span>2 days, Saturday</span>
+                            <span style="margin: 0 4px 0 5px;color: #c2c2c2;">|</span>
+                            <span style="color:#388e3c;">{{delCharge | currency:'INR':'symbol'}}</span>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row info-box">
+                    <div class="col-md-2 info-box-label">
+                        Price
+                    </div>
+                    <div class="col-md-10">
+                        <strong class="price fa-2x">{{product.ProductPrice | currency:'INR':'symbol'}}</strong>
+                    </div>
+                </div>
+                <!--<div class="cart-info row">
                     <div class="col-md-2">
                         <input id="prodqty" class="input-text qty" type="text" maxlength="12" value="1" pattern="\d*">
                     </div>
@@ -41,11 +79,9 @@
                             Add to Cart
                         </button>
                     </div>
-                </div>
+                </div>-->
 
-                <div role="alert" id="alertAddCart" class="alert alert-info collapse text-center">
-                    <strong>Successfully added to cart</strong>
-                </div>
+                
                 <div class="sharingFormat">
                     <div class="sharing-links">
                         <div class="social-icon">

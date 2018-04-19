@@ -1,4 +1,4 @@
-﻿<div class="main-container">
+﻿<div class="ac-box">
 
     <div class="ac-addr-add-box">
         <div *ngIf="!addnewaddress" (click)="addnewaddress=true" class="add-address handtool">
@@ -26,7 +26,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input [(ngModel)]="pincode" type="text" id="pin" class="form-control" 
+                            <input [(ngModel)]="pincode" type="text" id="pin" class="form-control"
                                    required formControlName="PostalCode" (blur)="pinonblur()">
                             <label class="form-control-placeholder" for="pin">Pincode</label>
                         </div>
@@ -54,10 +54,10 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group" >
+                        <div class="form-group">
                             <select *ngIf="states" class="form-control" [(ngModel)]="stateSelection" formControlName="StateProvinceID">
                                 <option [value]="0">Select state</option>
-                                <option *ngFor="let state of states;" [value]="state.Code">{{state.Name}}</option>
+                                <option *ngFor="let state of states;" [value]="state.Id">{{state.Name}}</option>
                             </select>
                             <label class="form-control-placeholder">State</label>
                         </div>
@@ -83,12 +83,12 @@
                 <br />
                 <div class="row">
                     <div class="col-md-6" *ngIf="addresstypes">
-                            <label *ngFor="let type of addresstypes;" class="radio-container">
-                                {{type.Name}}
-                                <input type="radio" [(ngModel)]="addTypeSelection" formControlName="AddressTypeID"
-                                       [value]="type.Code">
-                                <span class="checkmark"></span>
-                            </label>
+                        <label *ngFor="let type of addresstypes;" class="radio-container">
+                            {{type.Name}}
+                            <input type="radio" [(ngModel)]="addTypeSelection" formControlName="AddressTypeID"
+                                   [value]="type.Code">
+                            <span class="checkmark"></span>
+                        </label>
                     </div>
                 </div>
                 <div class="row">
@@ -107,25 +107,27 @@
 
         </div>
     </div>
-
+    <div *ngIf="!useraddress">
+        <loading message="Loading addresses"></loading>
+    </div>
     <ng-container *ngIf="useraddress">
 
 
         <div class="ac-addr-box" *ngFor="let addr of useraddress">
             <div class="row add-type-box">
-                <div class="col-md-11">
+                <div class="col-md-9">
                     <span class="add-type">{{addr.AddressType}}</span>
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-3">
 
-                    <div class="dropdown">
-                        <a class="btn btn-info dropdown-toggle" href="javascript:void(0)"
-                           id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="dropdown pull-right">
+                        <a class="btn btn-info dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" data-popout="true" aria-haspopup="true" aria-expanded="false">
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Edit</a>
-                            <a class="dropdown-item" href="#">Delete</a>
+                            <a class="dropdown-item" href="">Edit</a>
+
+                            <a class="dropdown-item handtool" (click)="clickDelete(addr.AddressID)">Delete</a>
                         </div>
                     </div>
                 </div>
@@ -139,11 +141,28 @@
             <div class="add-line">
                 <p class="">{{addr.AddressLine1}},{{addr.AddressLine2}},{{addr.City +' - '+ addr.PostalCode}},{{addr.State}}</p>
             </div>
+
+
+
         </div>
     </ng-container>
 </div>
-<div class="container">
-
-
-
+<!-- delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-danger" id="exampleModalLabel"><strong class="text-capitalize text-center">Are you sure?</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <input hidden="hidden" id="hiddenaddid" />
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" (click)="deleteAddress()" class="btn btn-primary">Confirm</button>
+            </div>
+        </div>
+    </div>
 </div>

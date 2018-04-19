@@ -46,7 +46,13 @@
     font-size: large;
     font-weight: bold;
 }
-
+.info-box-label {
+    color: #878787;
+    font-weight: 500;
+}
+.info-box {
+    padding: 10px 0 10px 0;
+}
 .cart-info {
     padding: 15px 0 15px 0;
 }

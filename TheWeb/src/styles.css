@@ -1430,7 +1430,10 @@ a.lang_sel_sel, #lang_sel a {
 
 .modal-body {
     /*     background-color: #eeeeee; */
-    /*width: 90%;*/
+    /*width: 100%;*/
+}
+.modal-content{
+
 }
 .form-control {
     border-radius: 0px !important;
@@ -1475,3 +1478,8 @@ a.lang_sel_sel, #lang_sel a {
 .handtool{
     cursor:pointer;
 }
+/**,
+*::before,
+*::after {
+    box-sizing: inherit!important;
+}*/

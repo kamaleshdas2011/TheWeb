@@ -49,6 +49,9 @@ var ProductService = (function () {
             .map(function (r) { return (r.json().length != 0 ? r.json() : [{ "ClientId": 0, "ClientName": "No Record Found" }]); });
         return prodlist;
     };
+    ProductService.prototype.getDeliveryCharge = function (pincode) {
+        return '100';
+    };
     return ProductService;
 }());
 ProductService = __decorate([

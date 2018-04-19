@@ -30,12 +30,30 @@ var account_component_1 = require("./account/account.component");
 var account_service_1 = require("./services/account.service");
 var acAddress_component_1 = require("./account/acAddress.component");
 var acBasic_component_1 = require("./account/acBasic.component");
+var navbar_component_1 = require("./cart/navbar.component");
+var loading_component_1 = require("./loading/loading.component");
+var address_component_1 = require("./cart/address.component");
+var payment_component_1 = require("./cart/payment.component");
+var checkout_component_1 = require("./cart/checkout.component");
+var review_component_1 = require("./cart/review.component");
+var complete_component_1 = require("./cart/complete.component");
+var pincode_component_1 = require("./others/pincode.component");
 //import { NgxImageGalleryModule } from 'ngx-image-gallery'
 //import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap'
 var appRoutes = [
     { path: 'home', component: home_component_1.HomeComponent },
     { path: 'productdetails/:id', component: productdetails_component_1.ProductDetailsComponent },
     { path: 'cart', component: cart_component_1.CartComponent },
+    {
+        path: 'cart/checkout', component: checkout_component_1.CheckoutComponent,
+        children: [
+            { path: 'address', component: address_component_1.CartAddressComponent },
+            { path: 'payment', component: payment_component_1.CartPaymentComponent },
+            { path: 'review', component: review_component_1.CartReviewComponent },
+            { path: 'complete', component: complete_component_1.CartCompleteComponent },
+            { path: '', redirectTo: 'cart/checkout', pathMatch: 'full' },
+        ]
+    },
     {
         path: 'account', component: account_component_1.AccountComponent,
         children: [
@@ -60,6 +78,8 @@ AppModule = __decorate([
             productdetails_component_1.ProductDetailsComponent, pagenotfound_component_1.PageNotFoundComponent,
             footer_component_1.FooterComponent, header_component_1.HeaderComponent,
             login_component_1.LoginComponent, register_component_1.RegisterComponent, account_component_1.AccountComponent, acAddress_component_1.AcAddressComponent, acBasic_component_1.AcBasicComponent,
+            navbar_component_1.NavbarComponent, loading_component_1.LoadingComponent, address_component_1.CartAddressComponent, payment_component_1.CartPaymentComponent, checkout_component_1.CheckoutComponent,
+            complete_component_1.CartCompleteComponent, review_component_1.CartReviewComponent, pincode_component_1.PincodeComponent
         ],
         bootstrap: [app_component_1.AppComponent],
         providers: [image_service_1.ImageService, home_service_1.HomeService, product_service_1.ProductService,

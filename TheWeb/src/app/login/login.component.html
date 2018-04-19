@@ -1,136 +1,62 @@
-﻿<div id="loginModal" class="modal">
-    <span onclick="document.getElementById('loginModal').style.display='none'" class="close" title="Close Modal">&times;</span>
-    <div class="modal-content">
-        <!-- signin -->
-        <div class="container" *ngIf="_miscServ.getLoginPopupStatus()">
-            <h1>Sign In</h1>
-            <hr>
-            
-            <form novalidate (ngSubmit)="login()" [formGroup]="loginForm">
-                <div class="form-group">
-                    <label for="email"><b>Email</b></label>
-                    <input id="login-email" type="text" placeholder="Email" formControlName="email" required>
-
-                    <span class="help-block" *ngIf="(loginForm.get('email').touched
-                                                || loginForm.get('email').dirty) &&
-                                                loginForm.get('email').errors">
-                        <span *ngIf="loginForm.get('email').errors.required">
-                            Please enter your email address.
-                        </span>
-                    </span>
-                    <br />
-                    <label for="psw"><b>Password</b></label>
-                    <input id="login-password" type="password" placeholder="Password" formControlName="password" required>
-
-                    <span class="help-block" *ngIf="(loginForm.get('password').touched
-                                                                    || loginForm.get('password').dirty) &&
-                                                                    loginForm.get('password').errors">
-                        <span *ngIf="loginForm.get('password').errors.required">
-                            Please enter password
-                        </span>
-                    </span>
-                    <br />
-                    <label>
-                        <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-                    </label>
-
-                    <div class="clearfix">
-                        <button type="button" onclick="document.getElementById('loginModal').style.display='none'" class="cancelbtn">Cancel</button>
-                        <button type="submit" class="signupbtn">Login</button>
-                    </div>
-                </div>
-                <div class="forgot login-footer">
-                    <span>
-                        Looking to
-                        <a href="javascript:void(0);" (click)="_miscServ.changeLoginPopupStatus()">create an account</a>
-                        ?
-                    </span>
-                </div>
-                <br />
-                <div *ngIf="statusMessage" class="alert alert-success"><strong>{{statusMessage}}</strong></div>
-            </form>
-        </div>
-        <!-- signup -->
-        <div class="container">
-            <register-popup *ngIf="!_miscServ.getLoginPopupStatus()"></register-popup>
-        </div>
-    </div>
-</div>
-
-<!-- Modal -->
-<!--<div class="modal fade login" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
+﻿<!-- Modal -->
+<div id="loginModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
+
+        <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">
-                    Login
-                </h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+
+                <h4 *ngIf="_miscServ.getLoginPopupStatus()" class="modal-title">Signin</h4>
+                <h4 *ngIf="!_miscServ.getLoginPopupStatus()" class="modal-title">Signup</h4>
+                
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            <div class="modal-body">
-                <div class="box">
-                    <div class="content">
-                        <div class="social">
-                            <button class="btn google" (click)="googlesign()">
-                                <i class="fa fa-google-plus fa-fw"></i>
-                            </button>
-                            <button class="btn facebook" href="#">
-                                <i class="fa fa-facebook fa-fw"></i>
-                            </button>
-                        </div>
-                        <div class="division">
-                            <div class="line l"></div>
-                            <span>or</span>
-                            <div class="line r"></div>
-                        </div>
-                        <div class="error"></div>
-                        <div class="form loginBox">
-                            <form novalidate (ngSubmit)="login()" [formGroup]="loginForm">
-                                <div class="form-group">
-                                    <input id="login-email" class="form-control" type="text" placeholder="Email" formControlName="email" required>
-                                    <span class="help-block" *ngIf="(loginForm.get('email').touched
-                                                || loginForm.get('email').dirty) &&
+            <div class="modal-body" *ngIf="_miscServ.getLoginPopupStatus()">
+                <form novalidate (ngSubmit)="login()" [formGroup]="loginForm">
+                    <!--<div *ngIf="_miscServ.getLoginStatus" class="alert alert-danger">
+                        <strong>Please login.</strong>
+                    </div>-->
+                    <div class="form-group">
+                        <input type="text" id="email" class="form-control" required formControlName="email">
+                        <label class="form-control-placeholder" for="email">Name</label>
+                        <span class="help-block" *ngIf="(loginForm.get('email').dirty) &&
                                                 loginForm.get('email').errors">
-                                        <span *ngIf="loginForm.get('email').errors.required">
-                                            Please enter your email address.
-                                        </span>
-                                    </span>
-                                    <input id="login-password" class="form-control" type="password" placeholder="Password" formControlName="password" required>
-                                    <span class="help-block" *ngIf="(loginForm.get('password').touched
-                                                                    || loginForm.get('password').dirty) &&
-                                                                    loginForm.get('password').errors">
-                                        <span *ngIf="loginForm.get('password').errors.required">
-                                            Please enter password
-                                        </span>
-                                    </span>
-                                    <input class="checkout-button" type="submit" value="Login">
-                                </div>
-                                <br />
-                                <div *ngIf="statusMessage" class="alert alert-success"><strong>{{statusMessage}}</strong></div>
-                            </form>
-                        </div>
-
+                            <span *ngIf="loginForm.get('email').errors.required">
+                                Please enter your email address.
+                            </span>
+                        </span>
                     </div>
-                </div>
-                <register-popup></register-popup>
+                    <div class="form-group">
+                        <input type="password" id="password" class="form-control" required formControlName="password">
+                        <label class="form-control-placeholder" for="password">Phone Number</label>
 
+                        <span class="help-block" *ngIf="(loginForm.get('password').dirty) &&
+                                                                    loginForm.get('password').errors">
+                            <span *ngIf="loginForm.get('password').errors.required">
+                                Please enter password
+                            </span>
+                        </span>
+                    </div>
+
+                    <button type="submit" class="btn btn-dark">Login</button>
+                    <div class="forgot login-footer">
+                        <span>
+                            Looking to
+                            <a href="javascript:void(0);" (click)="_miscServ.changeLoginPopupStatus()">create an account</a>
+                            ?
+                        </span>
+                    </div>
+                    <br />
+                    <div *ngIf="statusMessage" class="alert alert-success"><strong>{{statusMessage}}</strong></div>
+                </form>
+            </div>
+            <div class="modal-body" *ngIf="!_miscServ.getLoginPopupStatus()">
+                <register-popup></register-popup>
             </div>
             <div class="modal-footer">
-                <div class="forgot login-footer">
-                    <span>
-                        Looking to
-                        <a href="javascript: showRegisterForm();">create an account</a>
-                        ?
-                    </span>
-                </div>
-                <div class="forgot register-footer" style="display:none">
-                    <span>Already have an account?</span>
-                    <a href="javascript: showLoginForm();">Login</a>
-                </div>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             </div>
         </div>
-    </div>
-</div>-->
 
+    </div>
+</div>

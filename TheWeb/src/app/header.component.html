@@ -45,9 +45,10 @@
             </li>
         </ul>
         <div class="social-icon">
-            <a *ngIf="!access_token" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">
+            <a *ngIf="!access_token" href="javascript:void(0);" class="handtool" data-toggle="modal" data-target="#loginModal">
                 Login
             </a>
+            <login-popup></login-popup>
             <div *ngIf="access_token" class="dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" href="javascript:void(0)" data-toggle="dropdown">
                     <span *ngIf="user.FirstName">{{user.FirstName}}</span>
@@ -61,17 +62,15 @@
 
         </div>
         <form class="form-inline my-2 my-lg-0">
-            <!--<input class="form-control mr-sm-2" type="text" placeholder="Search" autocomplete="off">-->
-
-            <input placeholder="Search" class="form-control mr-sm-2" type="text" name="search" (click)="openSearch()" />
-
-            <!--<button class="btn btn-success my-2 my-sm-0" type="button">Search</button>-->
+            <div class="form-group"><input placeholder="Search" class="form-control" type="text" name="search" (click)="openSearch()" /></div>
+            
         </form>
         <div id="myOverlay" class="overlay">
             <span class="closebtn" (click)="closeSearch()" title="Close Overlay">x</span>
             <div class="overlay-content">
                 <form id="searchform">
-                    <input placeholder="Search" class="form-control" *ngIf="flag" type="text" [(ngModel)]="ProdName" (keyup)="searchProd(ProdName)"
+                    <input placeholder="Search" class="form-control" *ngIf="flag" type="text" 
+                           [(ngModel)]="ProdName" (keyup)="searchProd(ProdName)"
                            name="search" (click)="openSearch()" id="searchbox"/>
                     <button class="btn btn-success" type="button">Search</button>
                     <input class="form-control mr-sm-2" [(ngModel)]="ProdName" disabled *ngIf="!flag" type="text" name="search" />

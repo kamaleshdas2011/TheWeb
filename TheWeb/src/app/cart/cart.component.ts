@@ -1,11 +1,12 @@
-﻿import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+﻿import { Component, OnInit, ViewChild, ElementRef, Renderer2,EventEmitter } from '@angular/core';
 import { Image } from '../classes/image';
 import { ImageService } from '../services/image.service';
 import { Product } from '../classes/product';
 import { ProductService } from '../services/product.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StorageService } from '../services/storage.service';
 import { MiscellaneousService } from '../services/miscellaneous.service';
+import { debug } from 'util';
 
 
 declare var jquery: any;
@@ -16,15 +17,17 @@ declare var $: any;
 @Component({
     selector: 'cart-page',
     templateUrl: 'app/cart/cart.component.html',
-    styleUrls: ['app/cart/cart.component.css',],
-
+    styleUrls: ['app/cart/cart.component.css'],
 })
 export class CartComponent implements OnInit {
 
-    cart: Product[] = [];
+    cart: Product[];
     cartSum: number;
     pincode: string;
     address: any;
+    access_token: any;
+    userinfo: any;
+    delCharge: number = 0;
 
     removeFromCart(prod: Product) {
         this._storeService.storeCart(prod, 0);
@@ -46,23 +49,39 @@ export class CartComponent implements OnInit {
         this.cartSum = this._storeService.getCartSum();
     }
 
-    checkPin() {
-        //console.log(this.pincode);
-        this._misService.getAddress(this.pincode)
-            .subscribe(
-            (response) => {
-                this.address = response.results[0].formatted_address;
-                //console.log(this.address);
-                },
-                (error) => {
-                    console.log("Error happened" + error)
-                }
-            );
-        
+    checkPin(address: any) {
+        this.address = address;
+    }
+    checkout() {
+        if (this.userinfo) {
+            this._router.navigate(['/cart/checkout/address']);
+        }
+        else {
+            $('#loginModal').modal();
+            //document.getElementById('loginModal').style.display = 'block';
+        }
+    }
+    private sleep(time: number) {
+        return new Promise((resolve) => setTimeout(resolve, time));
+    }
+    getDeliveryCharge(delCharge: any) {
+        //debugger;
+        //console.log(delCharge);
+        this.delCharge = parseInt(delCharge);
     }
     ngOnInit(): void {
-        this.cart = this._storeService.pullCart();
-        this.cartSum = this._storeService.getCartSum();
+        this.sleep(100).then(() => {
+            this.cart = this._storeService.pullCart();
+            this.cartSum = this._storeService.getCartSum();
+        })
+
+        if (this._storeService.pull_access_token()) {
+            this.access_token = this._storeService.pull_access_token().access_token;
+            this.userinfo = this._storeService.pullFromSessionStorage('user_info');
+        }
+        //this.cart = this._storeService.pullCart();
+        //this.cartSum = this._storeService.getCartSum();
+        
     }
     constructor(private _imgService: ImageService,
         private _elm: ElementRef,
@@ -71,8 +90,10 @@ export class CartComponent implements OnInit {
         private _activateroute: ActivatedRoute,
         private _storeService: StorageService,
         private _misService: MiscellaneousService,
+        private _route: ActivatedRoute,
+        private _router: Router,
     ) {
-        
+
 
     }
 }

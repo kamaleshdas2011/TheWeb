@@ -41,11 +41,6 @@
     width: 100%;
 }
 
-@media (max-width:400px) {
-    .login .modal-dialog {
-        width: 100%;
-    }
-}
 
 .big-login, .big-register {
     background-color: #00bbff;
@@ -81,23 +76,23 @@
     width: 100px;
 }
 /* Full-width input fields */
-input[type=text], input[type=password] {
+/*input[type=text], input[type=password] {
     width: 100%;
     padding: 15px;
     margin: 5px 0 22px 0;
     display: inline-block;
     border: none;
     background: #f1f1f1;
-}
+}*/
 
     /* Add a background color when the inputs get focus */
-    input[type=text]:focus, input[type=password]:focus {
+    /*input[type=text]:focus, input[type=password]:focus {
         background-color: #ddd;
         outline: none;
-    }
+    }*/
 
 /* Set a style for all buttons */
-button {
+/*button {
     background-color: #4CAF50;
     color: white;
     padding: 14px 20px;
@@ -110,46 +105,26 @@ button {
 
     button:hover {
         opacity: 1;
-    }
+    }*/
 
 /* Extra styles for the cancel button */
-.cancelbtn {
+/*.cancelbtn {
     padding: 14px 20px;
     background-color: #f44336;
-}
+}*/
 
 /* Float cancel and signup buttons and add an equal width */
-.cancelbtn, .signupbtn {
+/*.cancelbtn, .signupbtn {
     float: left;
     width: 50%;
-}
+}*/
 
 /* Add padding to container elements */
 .container {
     padding: 16px;
 }
 
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: #474e5d;
-    padding-top: 50px;
-}
 
-/* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-}
 
 /* Style the horizontal ruler */
 hr {
@@ -158,20 +133,20 @@ hr {
 }
 
 /* The Close Button (x) */
-.close {
+/*.close {
     position: absolute;
     right: 35px;
     top: 15px;
     font-size: 40px;
     font-weight: bold;
     color: #f1f1f1;
-}
+}*/
 
-    .close:hover,
+    /*.close:hover,
     .close:focus {
         color: #f44336;
         cursor: pointer;
-    }
+    }*/
 
 /* Clear floats */
 .clearfix::after {
@@ -182,7 +157,30 @@ hr {
 
 /* Change styles for cancel button and signup button on extra small screens */
 @media screen and (max-width: 300px) {
-    .cancelbtn, .signupbtn {
+    /*.cancelbtn, .signupbtn {
         width: 100%;
-    }
+    }*/
+}
+
+
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.form-control-placeholder {
+    position: absolute;
+    top: 0;
+    padding: 7px 0 0 13px;
+    transition: all 200ms;
+    opacity: 0.5;
+}
+
+.form-control:focus + .form-control-placeholder,
+.form-control:valid + .form-control-placeholder {
+    font-size: 75%;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+    opacity: 1;
+    padding: 7px 0 0 0px;
 }

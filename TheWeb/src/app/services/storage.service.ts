@@ -86,6 +86,7 @@ export class StorageService {
         localStorage.setItem('cart_items', JSON.stringify(cart));
     }
     pullCart() {
+       
         let cart: Product[] = [];
         if (localStorage.getItem('cart_items')) {
             cart = JSON.parse(localStorage.getItem('cart_items'));

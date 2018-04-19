@@ -70,6 +70,12 @@ var AccountService = (function () {
             return response.json();
         });
     };
+    AccountService.prototype.deleteAddress = function (AddressID) {
+        return this._http.delete('http://localhost:49959/api/account/deleteaddress/' + AddressID, this.options)
+            .map(function (response) {
+            return response;
+        });
+    };
     return AccountService;
 }());
 AccountService = __decorate([
