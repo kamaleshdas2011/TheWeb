@@ -6,6 +6,8 @@ import { ProductService } from '../services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { StorageService } from '../services/storage.service';
 import { MiscellaneousService } from '../services/miscellaneous.service';
+import { OrderService } from '../services/order.service';
+import { Order } from '../classes/Order';
 
 
 declare var jquery: any;
@@ -21,9 +23,11 @@ declare var $: any;
 export class CheckoutComponent implements OnInit {
 
     
-    ngOnInit(): void {
-       
+    Order: Order;
 
+    ngOnInit(): void {
+        this.Order = this._orderService.Order;
+        console.log(this.Order);
     }
     constructor(private _imgService: ImageService,
         private _elm: ElementRef,
@@ -32,6 +36,7 @@ export class CheckoutComponent implements OnInit {
         private _activateroute: ActivatedRoute,
         private _storeService: StorageService,
         private _misService: MiscellaneousService,
+        private _orderService: OrderService,
     ) {
 
 

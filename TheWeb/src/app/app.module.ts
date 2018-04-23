@@ -50,7 +50,7 @@ const appRoutes: Routes = [
             { path: 'review', component: CartReviewComponent },
             { path: 'complete', component: CartCompleteComponent },
 
-            { path: '', redirectTo: 'cart/checkout', pathMatch: 'full' },
+            { path: '', redirectTo: 'cart/checkout/address', pathMatch: 'full' },
         ]
     },
     

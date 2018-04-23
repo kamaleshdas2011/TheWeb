@@ -1,10 +1,7 @@
 <div class="main-container">
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
             <div class="stepwizard">
-                <div class="stepwizard-row setup-panel">
-                    <div class="stepwizard-step">
+                <div class="row stepwizard-row">
+                    <div class="col-md-12 stepwizard-step">
                         <button type="button" routerLinkActive="btn-glow-primary" [routerLink]="['/cart/checkout/address']"
                                 class="btn btn-primary">
                             <i class="fa fa-address-book fa-3x"></i>
@@ -12,21 +9,21 @@
                         </button>
                         <p>Address</p>
                     </div>
-                    <div class="stepwizard-step">
+                    <div class="col-md-12 stepwizard-step">
                         <button type="button" routerLinkActive="btn-glow-success" [routerLink]="['/cart/checkout/payment']" 
                                 class="btn btn-success">
                             <i class="fa fa-paypal fa-3x"></i>
                         </button>
                         <p>Payment</p>
                     </div>
-                    <div class="stepwizard-step">
+                    <div class="col-md-12 stepwizard-step">
                         <button type="button" routerLinkActive="btn-glow-info" [routerLink]="['/cart/checkout/review']" 
                                 class="btn btn-info">
                             <i class="fa fa-eye fa-3x"></i>
                         </button>
                         <p>Review &amp; Order</p>
                     </div>
-                    <div class="stepwizard-step">
+                    <div class="col-md-12 stepwizard-step">
                         <button type="button" routerLinkActive="btn-glow-secondary" [routerLink]="['/cart/checkout/complete']" 
                                 class="btn btn-secondary">
                             <i class="fa fa-check-square fa-3x"></i>
@@ -36,10 +33,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-2"></div>
-
-    </div>
-</div>
 
 
 <!--<ul id="progressbar">

@@ -1503,6 +1503,9 @@ a.lang_sel_sel, #lang_sel a {
         opacity: 0;
         cursor: pointer;
     }
+    .radio-container input:checked {
+        background-color:aliceblue;
+    }
 
 /* Create a custom radio button */
 .checkmark {
@@ -1546,6 +1549,39 @@ input:checked ~ .checkmark:after {
     border-radius: 50%;
     background: white;
 }
+input[type=checkbox]{
+    height:25px;
+    width:25px;
+}
+/*
+  Hide radio button (the round disc)
+  we will use just the label to create pushbutton effect
+*/
+input[type=radio] {
+    display: none;
+    margin: 10px;
+}
+
+    /*
+  Change the look'n'feel of labels (which are adjacent to radiobuttons).
+  Add some margin, padding to label
+*/
+    input[type=radio] + label {
+        display: inline-block;
+        margin: -2px;
+        padding: 4px 12px;
+        background-color: #f1f0f0;
+        border-color: #ddd;
+    }
+    /*
+ Change background color for label next to checked radio button
+ to make it look like highlighted button
+*/
+    input[type=radio]:checked + label {
+        background-image: none;
+        background-color: #d0d0d0;
+    }
+
 
 .add-address-box {
     /*color: #2874f0;*/
@@ -1581,4 +1617,11 @@ input:checked ~ .checkmark:after {
     margin-left: 10px;
     display: block;
     max-width: 523px;
+}
+.ac-box {
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .08);
+    padding: 12px;
+    margin-bottom: 16px;
 }

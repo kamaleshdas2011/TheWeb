@@ -47,7 +47,7 @@ export class CartAddressComponent implements OnInit {
             this.getAllAddress();
         }
         this.Order = this._orderService.Order;
-        console.log(this.Order);
+        //console.log(this.Order);
     }
     constructor(private _imgService: ImageService,
         private _elm: ElementRef,

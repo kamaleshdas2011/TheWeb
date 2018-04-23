@@ -3,7 +3,7 @@ import { Image } from '../classes/image';
 import { ImageService } from '../services/image.service';
 import { Product } from '../classes/product';
 import { ProductService } from '../services/product.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StorageService } from '../services/storage.service';
 import { MiscellaneousService } from '../services/miscellaneous.service';
 import { OrderService } from '../services/order.service';
@@ -26,8 +26,11 @@ export class CartPaymentComponent implements OnInit {
     Order: Order;
     
     ngOnInit(): void {
+        //console.log(this.Order);
         this.Order = this._orderService.Order;
-        console.log(this.Order);
+        if (Object.keys(this.Order).length == 0) {
+            this._router.navigate(['/cart/checkout/address']);
+        }
     }
     constructor(private _imgService: ImageService,
         private _elm: ElementRef,
@@ -37,6 +40,8 @@ export class CartPaymentComponent implements OnInit {
         private _storeService: StorageService,
         private _misService: MiscellaneousService,
         private _orderService: OrderService,
+        private _route: ActivatedRoute,
+        private _router: Router,
     ) {
 
 

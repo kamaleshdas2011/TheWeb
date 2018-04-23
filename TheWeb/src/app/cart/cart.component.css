@@ -59,3 +59,8 @@
             padding: 14px;
         }
 }
+.address-box{
+    /*border-bottom:1px solid #ddd;*/
+    padding:10px;
+    /*box-shadow:#ccc 10px 10px;*/
+}

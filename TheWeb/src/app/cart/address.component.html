@@ -2,10 +2,10 @@
     <loading message="Loading addresses"></loading>
 </div>
 <div *ngIf="useraddress" class="container home-main">
-    <div class="row">
-        <ng-container *ngFor="let addr of useraddress;let index = index">
-            <div class="col-md-3">
-                <label class="radio-container">
+    <ng-container *ngFor="let addr of useraddress;let index = index">
+            <div class="address-box options" title="Click to select">
+                <input type="radio" id="selectaddress{{index}}" name="selectaddress" value="all" [(ngModel)]="Order.AddressID" [value]="addr.AddressID">
+                <label class="handtool" style="width:100%;" for="selectaddress{{index}}">
                     <div class="ac-addr-box">
                         <div class="row add-type-box">
                             <div class="col-md-9">
@@ -34,20 +34,22 @@
                         <div class="add-line">
                             <p class="">{{addr.AddressLine1}},{{addr.AddressLine2}},{{addr.City +' - '+ addr.PostalCode}},{{addr.State}}</p>
                         </div>
-
-
-
                     </div>
-                    <input type="radio" name="selectaddress" [(ngModel)]="Order.AddressID" [value]="addr.AddressID">
-                    <span class="checkmark"></span>
                 </label>
+
+                <!--<input type="radio" name="selectaddress"  />-->
+                <!--<label class="radio-container">
+                    
+                    <input type="radio" name="selectaddress" [(ngModel)]="Order.AddressID" [value]="addr.AddressID">
+                    <img />
+                    <button *ngIf="Order.AddressID" [routerLink]="['/cart/checkout/payment']" class="btn btn-primary pull-right">Continue</button>
+                </label>-->
             </div>
-        </ng-container>
-
-    </div>
-
-    <div>
-        <button [routerLink]="['/cart/checkout/payment']" class="btn btn-success">Next</button>
+    </ng-container>
+    <div class="row" style="padding-top:50px;">
+        <div class="col-md-6 col-sm-6"><button [routerLink]="['/cart']" class="btn btn-dark pull-left">Back</button></div>
+        <div class="col-md-6 col-sm-6"><button [routerLink]="['/cart/checkout/payment']" class="btn btn-success pull-right">Next</button></div>
     </div>
 </div>
-    
+
+

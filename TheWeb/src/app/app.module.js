@@ -52,7 +52,7 @@ var appRoutes = [
             { path: 'payment', component: payment_component_1.CartPaymentComponent },
             { path: 'review', component: review_component_1.CartReviewComponent },
             { path: 'complete', component: complete_component_1.CartCompleteComponent },
-            { path: '', redirectTo: 'cart/checkout', pathMatch: 'full' },
+            { path: '', redirectTo: 'cart/checkout/address', pathMatch: 'full' },
         ]
     },
     {

@@ -491,6 +491,7 @@
     <TypeScriptCompile Include="src\app\app.component.ts" />
     <TypeScriptCompile Include="src\app\app.module.ts" />
     <TypeScriptCompile Include="src\app\classes\Order.ts" />
+    <TypeScriptCompile Include="src\app\classes\Payment.ts" />
     <TypeScriptCompile Include="src\app\classes\product.ts" />
     <TypeScriptCompile Include="src\app\classes\user.ts" />
     <TypeScriptCompile Include="src\app\footer.component.ts" />
