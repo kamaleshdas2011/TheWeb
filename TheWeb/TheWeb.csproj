@@ -445,6 +445,7 @@
     <Content Include="src\app\javascript\JavaScript.js" />
     <Content Include="src\app\javascript\loading-bars.js" />
     <Content Include="src\app\loading\loading.component.html" />
+    <Content Include="src\app\others\applycoupon.component.html" />
     <Content Include="src\app\others\pincode.component.html" />
     <Content Include="src\assets\drop-down-arrow-01-512.png" />
     <Content Include="src\assets\loading-bars.svg" />
@@ -500,6 +501,7 @@
     <TypeScriptCompile Include="src\app\loading\loading.component.ts" />
     <TypeScriptCompile Include="src\app\login\login.component.ts" />
     <TypeScriptCompile Include="src\app\login\register.component.ts" />
+    <TypeScriptCompile Include="src\app\others\applycoupon.component.ts" />
     <TypeScriptCompile Include="src\app\others\pincode.component.ts" />
     <TypeScriptCompile Include="src\app\services\account.service.ts" />
     <TypeScriptCompile Include="src\app\services\authentication.service.ts" />

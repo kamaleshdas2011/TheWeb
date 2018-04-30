@@ -3,9 +3,10 @@ import { Image } from '../classes/image';
 import { ImageService } from '../services/image.service';
 import { Product } from '../classes/product';
 import { ProductService } from '../services/product.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StorageService } from '../services/storage.service';
 import { MiscellaneousService } from '../services/miscellaneous.service';
+import { Order } from '../classes/Order';
 
 
 declare var jquery: any;
@@ -21,9 +22,14 @@ declare var $: any;
 })
 export class CartCompleteComponent implements OnInit {
 
-
+    Order: Order;
     ngOnInit(): void {
-
+        if (this._storeService.pullFromSessionStorage('order')) {
+            this.Order = this._storeService.pullFromSessionStorage('order');
+        }
+        if (Object.keys(this.Order).length == 0) {
+            this._router.navigate(['/cart/checkout/address']);
+        }
     }
     constructor(private _imgService: ImageService,
         private _elm: ElementRef,
@@ -32,6 +38,8 @@ export class CartCompleteComponent implements OnInit {
         private _activateroute: ActivatedRoute,
         private _storeService: StorageService,
         private _misService: MiscellaneousService,
+        private _route: ActivatedRoute,
+        private _router: Router,
     ) {
 
 

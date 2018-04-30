@@ -39,6 +39,7 @@ var review_component_1 = require("./cart/review.component");
 var complete_component_1 = require("./cart/complete.component");
 var pincode_component_1 = require("./others/pincode.component");
 var order_service_1 = require("./services/order.service");
+var applycoupon_component_1 = require("./others/applycoupon.component");
 //import { NgxImageGalleryModule } from 'ngx-image-gallery'
 //import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap'
 var appRoutes = [
@@ -80,7 +81,7 @@ AppModule = __decorate([
             footer_component_1.FooterComponent, header_component_1.HeaderComponent,
             login_component_1.LoginComponent, register_component_1.RegisterComponent, account_component_1.AccountComponent, acAddress_component_1.AcAddressComponent, acBasic_component_1.AcBasicComponent,
             navbar_component_1.NavbarComponent, loading_component_1.LoadingComponent, address_component_1.CartAddressComponent, payment_component_1.CartPaymentComponent, checkout_component_1.CheckoutComponent,
-            complete_component_1.CartCompleteComponent, review_component_1.CartReviewComponent, pincode_component_1.PincodeComponent
+            complete_component_1.CartCompleteComponent, review_component_1.CartReviewComponent, pincode_component_1.PincodeComponent, applycoupon_component_1.CouponComponent
         ],
         bootstrap: [app_component_1.AppComponent],
         providers: [image_service_1.ImageService, home_service_1.HomeService, product_service_1.ProductService,

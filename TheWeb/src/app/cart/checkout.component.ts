@@ -23,11 +23,11 @@ declare var $: any;
 export class CheckoutComponent implements OnInit {
 
     
-    Order: Order;
+    //Order: Order;
 
     ngOnInit(): void {
-        this.Order = this._orderService.Order;
-        console.log(this.Order);
+        //this.Order = this._orderService.Order;
+        //console.log(this.Order);
     }
     constructor(private _imgService: ImageService,
         private _elm: ElementRef,

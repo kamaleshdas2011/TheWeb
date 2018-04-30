@@ -4,7 +4,8 @@
 <div *ngIf="useraddress" class="container home-main">
     <ng-container *ngFor="let addr of useraddress;let index = index">
             <div class="address-box options" title="Click to select">
-                <input type="radio" id="selectaddress{{index}}" name="selectaddress" value="all" [(ngModel)]="Order.AddressID" [value]="addr.AddressID">
+                <input type="radio" id="selectaddress{{index}}" name="selectaddress" value="all"
+                       [(ngModel)]="Order.AddressID" [value]="addr.AddressID" (change)="selectAddress()">
                 <label class="handtool" style="width:100%;" for="selectaddress{{index}}">
                     <div class="ac-addr-box">
                         <div class="row add-type-box">
@@ -48,7 +49,7 @@
     </ng-container>
     <div class="row" style="padding-top:50px;">
         <div class="col-md-6 col-sm-6"><button [routerLink]="['/cart']" class="btn btn-dark pull-left">Back</button></div>
-        <div class="col-md-6 col-sm-6"><button [routerLink]="['/cart/checkout/payment']" class="btn btn-success pull-right">Next</button></div>
+        <div class="col-md-6 col-sm-6"><button [routerLink]="['/cart/checkout/review']" class="btn btn-success pull-right">Next</button></div>
     </div>
 </div>
 

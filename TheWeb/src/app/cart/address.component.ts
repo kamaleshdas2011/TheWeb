@@ -46,8 +46,15 @@ export class CartAddressComponent implements OnInit {
             this.userinfo = this._storeService.pullFromSessionStorage('user_info');
             this.getAllAddress();
         }
-        this.Order = this._orderService.Order;
+        if (this._storeService.pullFromSessionStorage('order')) {
+            this.Order = this._storeService.pullFromSessionStorage('order');
+        }
+        
         //console.log(this.Order);
+    }
+    selectAddress() {
+        //console.log(this.Order);
+        this._storeService.storeInSessionStorage(this.Order, 'order');
     }
     constructor(private _imgService: ImageService,
         private _elm: ElementRef,

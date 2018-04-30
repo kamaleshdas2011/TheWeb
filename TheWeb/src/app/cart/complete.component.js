@@ -15,7 +15,7 @@ var router_1 = require("@angular/router");
 var storage_service_1 = require("../services/storage.service");
 var miscellaneous_service_1 = require("../services/miscellaneous.service");
 var CartCompleteComponent = (function () {
-    function CartCompleteComponent(_imgService, _elm, _rend, _prodService, _activateroute, _storeService, _misService) {
+    function CartCompleteComponent(_imgService, _elm, _rend, _prodService, _activateroute, _storeService, _misService, _route, _router) {
         this._imgService = _imgService;
         this._elm = _elm;
         this._rend = _rend;
@@ -23,8 +23,16 @@ var CartCompleteComponent = (function () {
         this._activateroute = _activateroute;
         this._storeService = _storeService;
         this._misService = _misService;
+        this._route = _route;
+        this._router = _router;
     }
     CartCompleteComponent.prototype.ngOnInit = function () {
+        if (this._storeService.pullFromSessionStorage('order')) {
+            this.Order = this._storeService.pullFromSessionStorage('order');
+        }
+        if (Object.keys(this.Order).length == 0) {
+            this._router.navigate(['/cart/checkout/address']);
+        }
     };
     return CartCompleteComponent;
 }());
@@ -40,7 +48,9 @@ CartCompleteComponent = __decorate([
         product_service_1.ProductService,
         router_1.ActivatedRoute,
         storage_service_1.StorageService,
-        miscellaneous_service_1.MiscellaneousService])
+        miscellaneous_service_1.MiscellaneousService,
+        router_1.ActivatedRoute,
+        router_1.Router])
 ], CartCompleteComponent);
 exports.CartCompleteComponent = CartCompleteComponent;
 //# sourceMappingURL=complete.component.js.map

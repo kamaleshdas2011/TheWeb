@@ -1,0 +1,15 @@
+﻿<div *ngIf="!coupons">
+    <form>
+        <div class="input-group">
+            <input type="text" [(ngModel)]="couponCode" name="couponCode" class="input-text pin">
+            <button (click)="checkCoupon();" class="input-group-addon handtool">
+                <i class="fa fa-paper-plane"></i>
+            </button>
+        </div>
+    </form>
+</div>
+
+<div *ngIf="coupons">
+    {{coupon.Description}}
+    <button class="btn btn-danger small" (click)="coupon=null"><i class="fa fa-remove"></i></button>
+</div>

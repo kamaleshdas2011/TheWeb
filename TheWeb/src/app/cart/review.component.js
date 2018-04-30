@@ -15,7 +15,7 @@ var router_1 = require("@angular/router");
 var storage_service_1 = require("../services/storage.service");
 var miscellaneous_service_1 = require("../services/miscellaneous.service");
 var CartReviewComponent = (function () {
-    function CartReviewComponent(_imgService, _elm, _rend, _prodService, _activateroute, _storeService, _misService) {
+    function CartReviewComponent(_imgService, _elm, _rend, _prodService, _activateroute, _storeService, _misService, _route, _router) {
         this._imgService = _imgService;
         this._elm = _elm;
         this._rend = _rend;
@@ -23,8 +23,41 @@ var CartReviewComponent = (function () {
         this._activateroute = _activateroute;
         this._storeService = _storeService;
         this._misService = _misService;
+        this._route = _route;
+        this._router = _router;
+        this.delCharge = 0;
     }
     CartReviewComponent.prototype.ngOnInit = function () {
+        this.cart = this._storeService.pullCart();
+        this.cartSum = this._storeService.getCartSum();
+        if (this._storeService.pullFromLocalStorage('pincode')) {
+            this.pincode = this._storeService.pullFromLocalStorage('pincode');
+            this.delCharge = parseInt(this._prodService.getDeliveryCharge(this.pincode));
+        }
+        //console.log(this.cart);
+        //console.log(this.cartSum);
+        if (this._storeService.pull_access_token()) {
+            this.access_token = this._storeService.pull_access_token().access_token;
+            this.userinfo = this._storeService.pullFromSessionStorage('user_info');
+        }
+        if (this._storeService.pullFromSessionStorage('order')) {
+            this.Order = this._storeService.pullFromSessionStorage('order');
+        }
+        if (Object.keys(this.Order).length == 0) {
+            this._router.navigate(['/cart/checkout/address']);
+        }
+        if (this._storeService.pullFromSessionStorage('order')) {
+            this.Order = this._storeService.pullFromSessionStorage('order');
+        }
+        if (Object.keys(this.Order).length == 0) {
+            this._router.navigate(['/cart/checkout/address']);
+        }
+    };
+    CartReviewComponent.prototype.getCoupons = function (coupons) {
+        debugger;
+        //console.log(coupons);
+        this.coupon = coupons;
+        this.cartSum = this.cartSum + this.delCharge - this.coupon.Discount;
     };
     return CartReviewComponent;
 }());
@@ -40,7 +73,9 @@ CartReviewComponent = __decorate([
         product_service_1.ProductService,
         router_1.ActivatedRoute,
         storage_service_1.StorageService,
-        miscellaneous_service_1.MiscellaneousService])
+        miscellaneous_service_1.MiscellaneousService,
+        router_1.ActivatedRoute,
+        router_1.Router])
 ], CartReviewComponent);
 exports.CartReviewComponent = CartReviewComponent;
 //# sourceMappingURL=review.component.js.map

@@ -14,9 +14,8 @@ var product_service_1 = require("../services/product.service");
 var router_1 = require("@angular/router");
 var storage_service_1 = require("../services/storage.service");
 var miscellaneous_service_1 = require("../services/miscellaneous.service");
-var order_service_1 = require("../services/order.service");
-var CheckoutComponent = (function () {
-    function CheckoutComponent(_imgService, _elm, _rend, _prodService, _activateroute, _storeService, _misService, _orderService) {
+var CouponComponent = (function () {
+    function CouponComponent(_imgService, _elm, _rend, _prodService, _activateroute, _storeService, _misService, _route, _router) {
         this._imgService = _imgService;
         this._elm = _elm;
         this._rend = _rend;
@@ -24,19 +23,36 @@ var CheckoutComponent = (function () {
         this._activateroute = _activateroute;
         this._storeService = _storeService;
         this._misService = _misService;
-        this._orderService = _orderService;
+        this._route = _route;
+        this._router = _router;
+        this.coupons = new core_1.EventEmitter;
     }
-    //Order: Order;
-    CheckoutComponent.prototype.ngOnInit = function () {
-        //this.Order = this._orderService.Order;
-        //console.log(this.Order);
+    CouponComponent.prototype.checkCoupon = function () {
+        var _this = this;
+        this._misService.checkCoupon(this.couponCode)
+            .subscribe(function (response) {
+            _this.coupons = response;
+        }, function (error) {
+            console.log("Error happened" + error);
+        });
     };
-    return CheckoutComponent;
+    CouponComponent.prototype.ngOnInit = function () {
+        this.coupons = null;
+        if (this._storeService.pull_access_token()) {
+            this.access_token = this._storeService.pull_access_token().access_token;
+            this.userinfo = this._storeService.pullFromSessionStorage('user_info');
+        }
+    };
+    return CouponComponent;
 }());
-CheckoutComponent = __decorate([
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", Object)
+], CouponComponent.prototype, "coupons", void 0);
+CouponComponent = __decorate([
     core_1.Component({
-        templateUrl: 'app/cart/checkout.component.html',
-        styleUrls: ['app/cart/form.css', 'app/cart/style.css'],
+        selector: 'apply-coupon',
+        templateUrl: 'app/others/applycoupon.component.html',
     }),
     __metadata("design:paramtypes", [image_service_1.ImageService,
         core_1.ElementRef,
@@ -45,7 +61,8 @@ CheckoutComponent = __decorate([
         router_1.ActivatedRoute,
         storage_service_1.StorageService,
         miscellaneous_service_1.MiscellaneousService,
-        order_service_1.OrderService])
-], CheckoutComponent);
-exports.CheckoutComponent = CheckoutComponent;
-//# sourceMappingURL=checkout.component.js.map
+        router_1.ActivatedRoute,
+        router_1.Router])
+], CouponComponent);
+exports.CouponComponent = CouponComponent;
+//# sourceMappingURL=applycoupon.component.js.map

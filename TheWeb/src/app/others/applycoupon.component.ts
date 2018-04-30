@@ -14,54 +14,34 @@ declare var $: any;
 
 
 @Component({
-    selector: 'check-pincode',
-    templateUrl: 'app/others/pincode.component.html',
+    selector: 'apply-coupon',
+    templateUrl: 'app/others/applycoupon.component.html',
     //styleUrls: ['app/cart/cart.component.css'],
 })
-export class PincodeComponent implements OnInit {
+export class CouponComponent implements OnInit {
 
-    pincode: string;
-    @Output() address = new EventEmitter;
     access_token: any;
     userinfo: any;
-    @Output() delCharge = new EventEmitter;
+    couponCode: string;
+    @Output() coupons = new EventEmitter;
 
-
-
-    checkPin() {
-        //console.log(this.pincode);
-        this._misService.getAddress(this.pincode)
+    checkCoupon() {
+        this._misService.checkCoupon(this.couponCode)
             .subscribe(
                 (response) => {
-                    this.address = response.results[0].formatted_address;
-                    //this.address.emit();
-                    this._storeService.storeInLocalStorage(this.pincode, 'pincode');
-                    this.getDeliveryCharge();
-                    //console.log(this.address);
+                    this.coupons = response;
                 },
                 (error) => {
                     console.log("Error happened" + error)
                 }
             );
     }
-
-    getDeliveryCharge() {
-        //this.delCharge=
-        this.delCharge.emit(this._prodService.getDeliveryCharge(this.pincode));
-    }
     ngOnInit(): void {
 
-
+        this.coupons = null;
         if (this._storeService.pull_access_token()) {
             this.access_token = this._storeService.pull_access_token().access_token;
             this.userinfo = this._storeService.pullFromSessionStorage('user_info');
-        }
-        if (this._storeService.pullFromLocalStorage('pincode')) {
-            this.pincode = this._storeService.pullFromLocalStorage('pincode');
-            this.checkPin();
-        }
-        else {
-            this.address = null;
         }
 
     }

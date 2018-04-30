@@ -24,10 +24,26 @@ declare var $: any;
 export class CartPaymentComponent implements OnInit {
 
     Order: Order;
-    
+    cart: Product[];
+    cartSum: number;
+    pincode: string;
+    access_token: any;
+    userinfo: any;
+    delCharge: number = 0;
+
     ngOnInit(): void {
         //console.log(this.Order);
-        this.Order = this._orderService.Order;
+        this.cart = this._storeService.pullCart();
+        this.cartSum = this._storeService.getCartSum();
+        console.log(this.cart);
+        console.log(this.cartSum);
+        if (this._storeService.pull_access_token()) {
+            this.access_token = this._storeService.pull_access_token().access_token;
+            this.userinfo = this._storeService.pullFromSessionStorage('user_info');
+        }
+        if (this._storeService.pullFromSessionStorage('order')) {
+            this.Order = this._storeService.pullFromSessionStorage('order');
+        }
         if (Object.keys(this.Order).length == 0) {
             this._router.navigate(['/cart/checkout/address']);
         }

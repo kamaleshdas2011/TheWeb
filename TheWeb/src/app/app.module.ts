@@ -35,6 +35,7 @@ import { CartReviewComponent } from './cart/review.component';
 import { CartCompleteComponent } from './cart/complete.component';
 import { PincodeComponent } from './others/pincode.component';
 import { OrderService } from './services/order.service';
+import { CouponComponent } from './others/applycoupon.component';
 //import { NgxImageGalleryModule } from 'ngx-image-gallery'
 //import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap'
 
@@ -74,7 +75,7 @@ const appRoutes: Routes = [
         FooterComponent, HeaderComponent,
         LoginComponent, RegisterComponent, AccountComponent, AcAddressComponent, AcBasicComponent,
         NavbarComponent, LoadingComponent, CartAddressComponent, CartPaymentComponent, CheckoutComponent,
-        CartCompleteComponent, CartReviewComponent, PincodeComponent
+        CartCompleteComponent, CartReviewComponent, PincodeComponent, CouponComponent
     ],
     bootstrap: [AppComponent],
     providers: [ImageService, HomeService, ProductService,

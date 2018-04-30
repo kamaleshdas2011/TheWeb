@@ -45,8 +45,14 @@ var CartAddressComponent = (function () {
             this.userinfo = this._storeService.pullFromSessionStorage('user_info');
             this.getAllAddress();
         }
-        this.Order = this._orderService.Order;
+        if (this._storeService.pullFromSessionStorage('order')) {
+            this.Order = this._storeService.pullFromSessionStorage('order');
+        }
         //console.log(this.Order);
+    };
+    CartAddressComponent.prototype.selectAddress = function () {
+        //console.log(this.Order);
+        this._storeService.storeInSessionStorage(this.Order, 'order');
     };
     return CartAddressComponent;
 }());

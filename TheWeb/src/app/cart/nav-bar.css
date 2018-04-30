@@ -11,7 +11,7 @@
 .stepwizard {
     display: table;
     width: 100%;
-    position: relative;
+    /*position: relative;*/
     /*padding:20px;*/
 }
 
@@ -35,7 +35,7 @@
 .stepwizard-row:before {
     position: absolute;
     content: " ";
-    width: 5px;
+    width: 1px;
     height: 100%;
     background-color: coral;
     z-order: 0;

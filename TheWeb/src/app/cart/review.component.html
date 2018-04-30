@@ -1,10 +1,53 @@
 ﻿<div class="container">
     <div class="row">
-
+        <div class="col-md-12">
+            <h4>APPLY COUPON</h4>
+            <apply-coupon (coupons)="getCoupons($event)"></apply-coupon>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h4>ITEM DETAILS</h4>
+            <table class="table table-hover table-info table-bordered">
+                <tbody>
+                    <tr *ngFor="let prod of cart;let index=index">
+                        <td class="text-left">{{prod.ProductName}}</td>
+                        <td class="text-right">
+                            {{prod.ProductPrice | currency:'INR':'symbol'}}
+                            <i class="fa fa-remove"></i>
+                            {{prod.CartCount}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <h4>PRICE DETAILS</h4>
+            <table class="table table-hover table-primary">
+                <tbody>
+                    <tr>
+                        <td class="text-left">SUBTOTAL</td>
+                        <td class="text-right">{{cartSum | currency:'INR':'symbol'}}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-left">ESTIMATED SHIPPING & HANDLING</td>
+                        <td *ngIf="delCharge" class="text-right">{{delCharge | currency:'INR':'symbol'}}</td>
+                    </tr>
+                    <tr *ngIf="coupon">
+                        <td class="text-left">COUPON</td>
+                        <td class="text-right">-{{coupon.Discount | currency:'INR':'symbol'}}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-left">TOTAL</td>
+                        <td class="text-right">{{cartSum | currency:'INR':'symbol'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
     <div class="row" style="">
-        <div class="col-md-6 col-sm-6"><button [routerLink]="['/cart/checkout/review']" class="btn btn-dark pull-left">Back</button></div>
-        <div class="col-md-6 col-sm-6"><button [routerLink]="['/cart/checkout/complete']" class="btn btn-success pull-right">Next</button></div>
+        <div class="col-md-6 col-sm-6"><button [routerLink]="['/cart/checkout/address']" class="btn btn-dark pull-left">Back</button></div>
+        <div class="col-md-6 col-sm-6"><button [routerLink]="['/cart/checkout/payment']" class="btn btn-success pull-right">Next</button></div>
     </div>
 </div>
 
